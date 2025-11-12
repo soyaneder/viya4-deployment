@@ -1,4 +1,4 @@
-# Copyright © 2020-2024, SAS Institute Inc., Cary, NC, USA. All Rights Reserved.
+# Copyright © 2020-2025, SAS Institute Inc., Cary, NC, USA. All Rights Reserved.
 # SPDX-License-Identifier: Apache-2.0
 
 ---
@@ -27,4 +27,5 @@ config:
       objectFilter: (objectClass=inetOrgPerson)
       searchFilter: uid={0}
     sas.logon.initial.password: Password123
-config/identities/sas.identities/administrator: viya_admin
+  identities:
+    administrator: 'viya_admin'

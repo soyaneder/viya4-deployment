@@ -12,6 +12,8 @@ V4_CFG_MANAGE_STORAGE: true
 V4_CFG_SAS_API_KEY: <api_client_id>
 V4_CFG_SAS_API_SECRET: <api_client_secret>
 V4_CFG_ORDER_NUMBER: <order_number>
+V4_CFG_CADENCE_NAME: <cadence_name> # [lts|stable]
+V4_CFG_CADENCE_VERSION: <cadence_version>
 
 ## CR Access
 V4_CFG_CR_USER: <container_registry_user>
@@ -32,10 +34,6 @@ V4_CFG_CONSUL_ENABLE_LOADBALANCER: false
 
 ## SAS/CONNECT
 V4_CFG_CONNECT_ENABLE_LOADBALANCER: false
-
-## Monitoring and Logging
-## uncomment and update the below values when deploying the viya4-monitoring-kubernetes stack
-# V4M_BASE_DOMAIN: <base_domain>
 
 ## Viya Start and Stop Schedule
 ## uncomment and update the values below with CronJob schedule expressions if you would

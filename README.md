@@ -1,17 +1,54 @@
 # SAS Viya 4 Deployment
 
+## Table of Contents
+
+- [Overview](#overview)
+- [Prerequisites](#prerequisites)
+  - [Technical Prerequisites](#technical-prerequisites)
+  - [Infrastructure Prerequisites](#infrastructure-prerequisites)
+    - [Kubernetes Cluster](#kubernetes-cluster)
+    - [Storage](#storage)
+    - [Jump Box Virtual Machine](#jump-box-virtual-machine)
+- [Getting Started](#getting-started)
+  - [Clone this Project](#clone-this-project)
+  - [Authenticating Ansible to Access Cloud Provider](#authenticating-ansible-to-access-cloud-provider)
+  - [Customize Input Values](#customize-input-values)
+    - [Ansible Vars File](#ansible-vars-file)
+    - [Sitedefault File](#optional-sitedefault-file)
+    - [Kubeconfig File](#kubeconfig-file)
+    - [Terraform State File](#terraform-state-file)
+  - [Customize Deployment Overlays](#customize-deployment-overlays)
+    - [SAS Viya Platform Customizations](#sas-viya-platform-customizations)
+    - [Base kustomization.yaml ConfigMap and Secret Generators](#base-kustomizationyaml-configmap-and-secret-generators)
+    - [Base kustomization.yaml additions from sas-bases/overlays](#base-kustomizationyaml-additions-from-sas-basesoverlays)
+    - [OpenLDAP Customizations](#openldap-customizations)
+- [Creating and Managing Deployments](#creating-and-managing-deployments)
+  - [DNS](#dns)
+    - [SAS/CONNECT](#sasconnect)
+- [Troubleshooting](#troubleshooting)
+- [Contributing](#contributing)
+- [License](#license)
+- [Additional Resources](#additional-resources)
+
+
 ## Overview
 
-This project contains Ansible code that creates a baseline cluster in an existing Kubernetes environment for use with the SAS Viya platform, generates the manifest for a SAS Viya platform software order, and then deploys that order into the specified Kubernetes environment. Here is a list of tasks that this tool can perform: 
+- This project can only be used for patch updates that use the exact same manifest as the existing deployment. 
+- Updating to a new SAS Viya platform version, cadence, or a new software offering is not supported using this project.
+- For more information about updating your software, see [KB0041450: The SAS Viya Deployment as a Code project does not perform updates](https://sas.service-now.com/csm?id=kb_article_view&sysparm_article=KB0041450).
+
+This project contains Ansible code that creates a baseline cluster in an existing Kubernetes environment for use with the SAS Viya platform, generates the manifest for a SAS Viya platform software order, and then deploys that order into the specified Kubernetes environment. Here is a list of tasks that this tool can perform (also see [playbook overview](./playbooks/README.md) for info on the default tasks):
 
 - Prepare Kubernetes cluster
   - Deploy [ingress-nginx](https://kubernetes.github.io/ingress-nginx)
-  - Deploy [nfs-subdir-external-provisioner](https://github.com/kubernetes-sigs/nfs-subdir-external-provisioner) for PVs
+  - Deploy [csi-driver-nfs](https://github.com/kubernetes-csi/csi-driver-nfs) for PVs
   - Deploy [cert-manager](https://github.com/jetstack/cert-manager) for TLS
   - Deploy [metrics-server](https://github.com/bitnami/charts/tree/master/bitnami/metrics-server/) (AWS only)
   - Deploy [aws-ebs-csi-driver](https://github.com/kubernetes-sigs/aws-ebs-csi-driver) (AWS only)
   - Manage storageClass settings
-  
+
+*NOTE*: See the list of [supported third-party components](./docs/third-party-components.md) for more information. For information on networking considerations for these and other components, see [networking considerations](./docs/user/NetworkingConsiderations.md).
+
 - Deploy the SAS Viya Platform
   - Retrieve the deployment assets using [SAS Viya Orders CLI](https://github.com/sassoftware/viya4-orders-cli)
   - Retrieve cloud configuration from tfstate (if using a SAS Viya 4 IaC project)
@@ -19,14 +56,13 @@ This project contains Ansible code that creates a baseline cluster in an existin
   - Create affinity rules such that processes are targeted to appropriately labeled nodes
   - Create pod disruption budgets for each service such that cluster maintenance will not let the last instance of a service go down (during a node maintenance operation, for example)
   - Use kustomize to mount user private (home) directories and data directories on CAS nodes and on compute server instances
-  - Deploy [SAS Viya Monitoring for Kubernetes](https://github.com/sassoftware/viya4-monitoring-kubernetes)
   - Deploy MPP or SMP CAS servers
 
 - Manage SAS Viya Platform Deployments
   - Organize and persist configuration for any number of SAS Viya platform deployments across namespaces, clusters, or cloud providers.
 
-- SAS Viya with SingleStore Deployment
-  - SingleStore is a cloud-native database designed for data-intensive applications. See the [SAS Viya with SingleStore Documentation](./docs/user/SingleStore.md) for details.
+- SAS SpeedyStore Deployment
+  - SingleStore is a cloud-native database designed for data-intensive applications. See the [SAS SpeedyStore Documentation](./docs/user/SingleStore.md) for details.
 
 ## Prerequisites
 
@@ -90,11 +126,14 @@ Run the following commands in a terminal session:
 
 ```bash
 # clone this repository
-git clone https://github.com/sassoftware/viya4-deployment
+git clone -b <release-version-tag> https://github.com/sassoftware/viya4-deployment
 
 # move to directory
 cd viya4-deployment
 ```
+**NOTE:** To obtain a tagged release version of this project, always refer to the desired release version tag when cloning this repository as shown above. Alternatively, you can `git checkout <tag>` the tagged release version if you've already cloned the repository without a tag. 
+
+You can find the latest release version in the [releases page](https://github.com/sassoftware/viya4-deployment/releases).
 
 ### Authenticating Ansible to Access Cloud Provider
 
@@ -150,7 +189,9 @@ The following information is parsed from the integration:
 
 ### Customize Deployment Overlays
 
-The Ansible playbook in viya4-deployment fully manages the kustomization.yaml file. Users can make changes by adding custom overlays into subfolders under the `/site-config` folder. If this is the first time that you are running the playbook and plan to add customizations, create the following folder structure:
+The Ansible playbook in viya4-deployment fully manages the kustomization.yaml file. Users can make changes by adding custom overlays into subfolders under the `/site-config` folder. If this is the first time that you are running the playbook and plan to add customizations, create the following folder structure:  
+
+**Note:** Set `DEPLOY: false` in the ansible-vars.yaml file and run playbook with --tags "baseline,viya,install" to have Ansible create the folder structure.  
 
 ```bash
 <base_dir>            <- parent directory
@@ -183,6 +224,64 @@ For example:
  ```
 
 The SAS Viya platform customizations that are managed by viya4-deployment are located under the [templates](https://github.com/sassoftware/viya4-deployment/tree/main/roles/vdm/templates) directory. These are purposely templatized and included there since they contain a set of customizations that are common or required for a functioning SAS Viya platform deployment. These particular files are configured via exposed variables that are documented within [CONFIG-VARS.md](docs/CONFIG-VARS.md) and do not need to be manually placed under `/site-config`.
+
+#### Base kustomization.yaml ConfigMap and Secret Generators
+
+In some scenarios, a README or the deployment documentation instructs you to add a `configMapGenerator` or `secretGenerator` entry to the base `kustomization.yaml` (`$deploy/kustomization.yaml`). For example:
+
+```yaml
+configMapGenerator:
+...
+- name: sas-risk-cirrus-core-parameters
+  behavior: merge
+  envs:
+    - site-config/sas-risk-cirrus-rcc/configuration.env
+...
+```
+
+In that scenario, copy the `configuration.env` file into the appropriate site-config subdirectory, and create a peer `-configmap.yaml` (or `-secret.yaml`) file:
+
+```bash
+  /deployments                                  <- parent directory
+    /demo-cluster                               <- folder per cluster
+      /demo-ns                                  <- folder per namespace
+        /site-config                            <- location for all customizations
+          /sas-risk-cirrus-rcc                  <- folder containing user defined customizations
+            /configuration.env                  <- env file
+            /sas-risk-cirrus-rcc-configmap.yaml <- individual generator file
+ ```
+
+In the `-configmap.yaml` (or `-secret.yaml`) file, create a `ConfigMapGenerator` (or `SecretGenerator`) that corresponds with the documented `configMapGenerator` (or `secretGenerator`) entry:
+
+```yaml
+apiVersion: builtin
+kind: ConfigMapGenerator
+metadata:
+  name: sas-risk-cirrus-core-parameters
+behavior: merge
+envs:
+  - site-config/sas-risk-cirrus-rcc/configuration.env 
+```
+
+#### Base kustomization.yaml additions from sas-bases/
+
+In some scenarios, a README or the deployment documentation instructs you to add an entry to the base `kustomization.yaml` (`$deploy/kustomization.yaml`). For example:
+
+```yaml
+transformers:
+...
+- sas-bases/overlays/backup/sas-scheduled-backup-incr-job-enable.yaml
+...
+```
+
+In that scenario, create an `inject-sas-bases-overlays.yaml` file in a subdirectory under site-config. In the file, create the necessary category and add the entry to it:
+
+```yaml
+transformers:
+- sas-bases/overlays/backup/sas-scheduled-backup-incr-job-enable.yaml
+```
+
+Supported categories are `resources`, `components`, `transformers`, `generators`, and `configurations`. Multiple categories may appear in the file, and multiple entries may appear for each category.
 
 #### OpenLDAP Customizations
 
@@ -222,7 +321,7 @@ Create and manage deployments using one of the following methods:
   
 ### DNS
 
-During the installation, an ingress load balancer can be installed for the SAS Viya platform and for the monitoring and logging stack. The host name for these services must be registered with your DNS provider in order to resolve to the LoadBalancer endpoint. This can be done by creating a record for each unique ingress controller host. 
+During the installation, an ingress load balancer can be installed for the SAS Viya platform. The host name for these services must be registered with your DNS provider in order to resolve to the LoadBalancer endpoint. This can be done by creating a record for each unique ingress controller host. 
 
 However, when you are managing multiple SAS Viya platform deployments, creating these records can be time-consuming. In such a case, SAS recommends creating a DNS record that points to the ingress controller's endpoint. The endpoint might be an IP address or FQDN, depending on the cloud provider. Take these steps:
 
@@ -246,20 +345,9 @@ In the above example, the ingress controller's LoadBalancer endpoint is 52.52.52
 - An A record (such as `example.com`) that points to the 52.52.52.52 address
 - A wildcard CNAME (`*.example.com`) that points to example.com
 
-
 #### SAS/CONNECT
 
 When running the `viya` action with `V4_CFG_CONNECT_ENABLE_LOADBALANCER=true`, a separate loadbalancer service is created to allow external SAS/CONNECT clients to connect to the SAS Viya platform. You will need to register this LoadBalancer endpoint with your DNS provider such that the desired host name (for example, connect.example.com) points to the LoadBalancer endpoint.
-
-
-### Updating SAS Viya Manually
-
-Manual steps are required by the SAS software to update a SAS deployment in an existing cluster. As a result, viya4-deployment does not perform updates. The viya4-deployment tools can perform subsequent `viya,install` tasks if you are simply reapplying the same software order into the cluster.
-
-If you have an existing deployment that you performed with the viya4-deployment project, take the following steps in order to update the SAS Viya platform:
-
-- Follow the instructions in [Updating Software](https://documentation.sas.com/?cdcId=sasadmincdc&cdcVersion=default&docsetId=k8sag&docsetTarget=titlepage.htm) in the SAS Viya Platform Operations Guide.
-- You are expected to modify the steps that are described in the SAS Viya Platform Operations Guide to accommodate the slightly different directory structure 
 
 ### Troubleshooting
 
