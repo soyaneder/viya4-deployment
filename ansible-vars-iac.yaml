@@ -1,0 +1,46 @@
+---
+## Cluster
+NAMESPACE: viya
+
+## MISC
+DEPLOY: true # Set to false to stop at generating the manifest
+LOADBALANCER_SOURCE_RANGES: ["201.223.207.132/32", "199.166.14.64/29", "199.166.10.64/29"]
+## Storage
+V4_CFG_MANAGE_STORAGE: true
+
+## SAS API Access
+V4_CFG_SAS_API_KEY: UJqAPWa3tSyX5BT0DuuwkIFthZJkQtfp
+V4_CFG_SAS_API_SECRET: zgfe87BOALmbgdL3
+V4_CFG_ORDER_NUMBER: 9D33NB
+V4_CFG_CADENCE_NAME: lts # [lts|stable]
+V4_CFG_CADENCE_VERSION: "2025.03"
+
+## CR Access
+# No es necesario si se usa SAS API Access
+# V4_CFG_CR_USER: <container_registry_user>
+# V4_CFG_CR_PASSWORD: <container_registry_password>
+
+## Ingress
+V4_CFG_INGRESS_TYPE: ingress
+V4_CFG_INGRESS_FQDN: SCO-PE-SAS-PRD.intanis-cloud.net
+V4_CFG_TLS_MODE: full-stack # [full-stack|front-door|ingress-only|disabled]
+V4_CFG_TLS_CERT: "{{ BASE_DIR }}/scotia-peru-viya4-deployment/intanis-cloud_net.crt"
+V4_CFG_TLS_KEY: "{{ BASE_DIR }}/scotia-peru-viya4-deployment/key.key"
+V4_CFG_TLS_TRUSTED_CA_CERTS: "{{ BASE_DIR }}/scotia-peru-viya4-deployment/intanis-cloud_net.ca-bundle"
+
+## Postgres
+
+## LDAP
+V4_CFG_EMBEDDED_LDAP_ENABLE: false
+
+## Consul UI
+V4_CFG_CONSUL_ENABLE_LOADBALANCER: false
+
+## SAS/CONNECT
+V4_CFG_CONNECT_ENABLE_LOADBALANCER: false
+
+## Viya Start and Stop Schedule
+## uncomment and update the values below with CronJob schedule expressions if you would
+## like to start and stop your Viya Deployment on a schedule
+# V4_CFG_VIYA_START_SCHEDULE: "0 7 * * 1-5"
+# V4_CFG_VIYA_STOP_SCHEDULE: "0 19 * * 1-5"

@@ -26,3 +26,8 @@ venv.bak/
 __pycache__/
 *.py[cod]
 *$py.class
+
+# Certificados
+*.crt
+*.key
+*.ca-bundle
