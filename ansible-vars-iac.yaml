@@ -29,6 +29,11 @@ V4_CFG_TLS_KEY: "{{ BASE_DIR }}/key.key"
 V4_CFG_TLS_TRUSTED_CA_CERTS: "{{ BASE_DIR }}/intanis-cloud_net.ca-bundle"
 
 ## Postgres
+V4_CFG_POSTGRES_SERVERS:
+  default:
+    internal: true
+  cds-postgres:
+    internal: true
 
 ## LDAP
 V4_CFG_EMBEDDED_LDAP_ENABLE: false

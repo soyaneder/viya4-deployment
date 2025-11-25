@@ -7,6 +7,7 @@
 ## ignore ansible-vars.yml
 ansible-vars.yml
 ansible-vars.yaml
+ansible-vars-iac.yaml
 
 ## ignore data directory
 data/
