@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta http-equiv="content-type" content="text/html; charset=utf-8">
+        <link rel="stylesheet" type="text/css" href="sas.css"/>
+        <title>Configure SAS Viya Platform for Large Analytic Store Models</title>
+    </head>
+    <body>
+        <h1 id="139729113868176configure-sas-viya-platform-for-large-analytic-store-models">Configure SAS Viya Platform for Large Analytic Store Models</h1>
+<h2 id="139729113868176overview">Overview</h2>
+<p>The SAS Model Repository service provides support for registering, organizing,
+and managing models within a common model repository. When working with large
+analytic store models, additional resource configurations are necessary to
+ensure that users can successfully import and process the models.</p>
+<p>This README describes how to configure your SAS Viya platform environment to handle
+large analytic store models by increasing CPU and memory resources for key services.</p>
+<h2 id="139729113868176prerequisites">Prerequisites</h2>
+<p>Before using the resource transformer YAML file, you must perform the following tasks:</p>
+<ol>
+<li>
+<p>Verify that you have access to your SAS Viya platform deployment&rsquo;s Kubernetes
+   configuration.</p>
+</li>
+<li>
+<p>Ensure you have permissions to modify the deployment&rsquo;s Kustomize
+   configuration.</p>
+</li>
+<li>
+<p>Verify that your Kubernetes cluster has sufficient resources to accommodate
+   the increased resource allocations for these services.</p>
+</li>
+</ol>
+<h2 id="139729113868176resource-configurations">Resource Configurations</h2>
+<p>The transformer applies the following resource configurations:</p>
+<ul>
+<li>
+<p><strong>sas-files</strong>:</p>
+<ul>
+<li>CPU: 2 cores</li>
+<li>Memory: 4Gi</li>
+</ul>
+</li>
+<li>
+<p><strong>sas-launcher</strong>:</p>
+<ul>
+<li>CPU: 4 cores</li>
+<li>Memory: 8Gi</li>
+</ul>
+</li>
+<li>
+<p><strong>sas-model-repository</strong>:</p>
+<ul>
+<li>CPU: 2 cores</li>
+<li>Memory: 4Gi</li>
+</ul>
+</li>
+<li>
+<p><strong>sas-catalog-services</strong>:</p>
+<ul>
+<li>CPU: 2 cores</li>
+<li>Memory: 4Gi</li>
+</ul>
+</li>
+</ul>
+<h2 id="139729113868176installation">Installation</h2>
+<ol>
+<li>
+<p>Add <code>sas-bases/overlays/sas-model-repository/astores/astore-large-model-resource-transformer.yaml</code>
+   to the transformers block in the base kustomization.yaml file in the
+   <code>$deploy</code> directory.</p>
+<pre class="highlight"><code class="language-yaml">transformers:
+  - sas-bases/overlays/sas-model-repository/astores/astore-large-model-resource-transformer.yaml</code></pre>
+
+</li>
+<li>
+<p>Complete the deployment steps to apply the new settings. See
+   <a href="http://documentation.sas.com/?cdcId=itopscdc&amp;cdcVersion=default&amp;docsetId=dplyml0phy0dkr&amp;docsetTarget=p127f6y30iimr6n17x2xe9vlt54q.htm">Deploy the Software</a>
+   in <em>SAS Viya Platform: Deployment Guide</em>.</p>
+<p><strong>Note:</strong> This overlay can be applied during the initial deployment of the
+ SAS Viya platform or after the deployment of the SAS Viya platform.</p>
+<ul>
+<li>If you are applying the overlay during the initial deployment of the SAS
+   Viya platform, complete all the tasks in the README files that you want to
+   use, then run <code>kustomize build</code> to create and apply the manifests.</li>
+<li>If the overlay is applied after the initial deployment of the SAS Viya
+   platform, run <code>kustomize build</code> to create and apply the manifests.</li>
+</ul>
+</li>
+</ol>
+<h2 id="139729113868176verification">Verification</h2>
+<p>After applying the changes, you can verify that the new resource settings have
+been applied by comparing them to the expected values described at <a href="#139729113868176resource-configurations">Resource Configurations</a>.</p>
+<pre class="highlight"><code class="language-bash">kubectl get deployment sas-files -o jsonpath='{.spec.template.spec.containers[0].resources}'
+kubectl get deployment sas-launcher -o jsonpath='{.spec.template.spec.containers[0].resources}'
+kubectl get deployment sas-model-repository -o jsonpath='{.spec.template.spec.containers[0].resources}'
+kubectl get deployment sas-catalog-services -o jsonpath='{.spec.template.spec.containers[0].resources}'</code></pre>
+
+<p>If the values match, the overlay has been successfully applied.
+If not, review the installation steps and try again.</p>
+<h2 id="139729113868176additional-resources">Additional Resources</h2>
+<ul>
+<li><a href="http://documentation.sas.com/?cdcId=itopscdc&amp;cdcVersion=default&amp;docsetId=dplyml0phy0dkr&amp;docsetTarget=titlepage.htm">SAS Viya Platform Deployment Guide</a></li>
+<li><a href="https://documentation.sas.com/?cdcId=sasadmincdc&amp;cdcVersion=default&amp;docsetId=calmodels&amp;docsetTarget=titlepage.htm">SAS Viya Platform: Models Administration</a></li>
+<li><a href="http://documentation.sas.com/?cdcId=mdlmgrcdc&amp;cdcVersion=default&amp;docsetId=mdlmgrag">SAS Model Manager: Administrator&rsquo;s Guide</a></li>
+<li><a href="https://kubernetes.io/docs/tasks/manage-kubernetes-objects/kustomization/">Kubernetes Kustomize documentation</a></li>
+</ul>
+    </body>
+</html>

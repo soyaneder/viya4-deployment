@@ -1,0 +1,31 @@
+apiVersion: builtin
+kind: PatchTransformer
+metadata:
+  name: cirrus-builder-parameter-transform
+patch: |-
+
+  # Cirrus builder env variables
+ 
+  - op: replace
+    path: /data/RISK_CIRRUS_UI_SAVE_ENABLED
+    value: "{{ ENABLE-ARTIFACTS-SAVE }}"
+
+  - op: replace
+    path: /data/DEFAULT_EMAIL_ADDRESS
+    value: "{{ EMAIL-ADDRESS }}"
+
+  - op: replace
+    path: /data/SAS_LOG_LEVEL_RISKCIRRUSBUILDER
+    value: "{{ INFO-OR-DEBUG }}"
+
+  - op: replace
+    path: /data/SAS_LOG_LEVEL_RISKCIRRUSCOMMONS
+    value: "{{ INFO-OR-DEBUG }}"
+
+  - op: replace
+    path: /data/SAS_LOG_LEVEL
+    value: "{{ INFO-OR-DEBUG }}"
+
+target:
+  kind: ConfigMap
+  name: sas-risk-cirrus-builder-parameters*

@@ -1,0 +1,14 @@
+resources:
+  - ../../../sas-bases/overlays/kerberos/http/resources
+
+configMapGenerator:
+  - behavior: merge
+    envs:
+      - configuration.env
+    name: sas-kerberos-config
+
+secretGenerator:
+  - name: sas-kerberos-secrets
+    files:
+      - krb5.conf
+      - keytab

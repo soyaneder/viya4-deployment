@@ -1,0 +1,11 @@
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+secretGenerator:
+  - name: oracle-credentials
+    envs:
+      - oracle-user.env
+    type: Opaque
+    options:
+      disableNameSuffixHash: true
+transformers:
+  - transformers/add-oracle-env-to-deployment.yaml

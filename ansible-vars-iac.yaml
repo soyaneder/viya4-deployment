@@ -4,7 +4,7 @@ NAMESPACE: viya
 
 ## MISC
 DEPLOY: true # Set to false to stop at generating the manifest
-LOADBALANCER_SOURCE_RANGES: ["201.223.207.132/32", "199.166.14.64/29", "199.166.10.64/29"]
+LOADBALANCER_SOURCE_RANGES: ["201.223.200.153/32", "199.166.14.64/29", "199.166.10.64/29"]
 ## Storage
 V4_CFG_MANAGE_STORAGE: true
 
@@ -13,7 +13,7 @@ V4_CFG_SAS_API_KEY: UJqAPWa3tSyX5BT0DuuwkIFthZJkQtfp
 V4_CFG_SAS_API_SECRET: zgfe87BOALmbgdL3
 V4_CFG_ORDER_NUMBER: 9D33NB
 V4_CFG_CADENCE_NAME: lts # [lts|stable]
-V4_CFG_CADENCE_VERSION: "2025.03"
+V4_CFG_CADENCE_VERSION: "2025.09"
 
 ## CR Access
 # No es necesario si se usa SAS API Access
@@ -24,9 +24,9 @@ V4_CFG_CADENCE_VERSION: "2025.03"
 V4_CFG_INGRESS_TYPE: ingress
 V4_CFG_INGRESS_FQDN: SCO-PE-SAS-PRD.intanis-cloud.net
 V4_CFG_TLS_MODE: full-stack # [full-stack|front-door|ingress-only|disabled]
-V4_CFG_TLS_CERT: "{{ BASE_DIR }}/scotia-peru-viya4-deployment/intanis-cloud_net.crt"
-V4_CFG_TLS_KEY: "{{ BASE_DIR }}/scotia-peru-viya4-deployment/key.key"
-V4_CFG_TLS_TRUSTED_CA_CERTS: "{{ BASE_DIR }}/scotia-peru-viya4-deployment/intanis-cloud_net.ca-bundle"
+V4_CFG_TLS_CERT: "{{ BASE_DIR }}/intanis-cloud_net.crt"
+V4_CFG_TLS_KEY: "{{ BASE_DIR }}/key.key"
+V4_CFG_TLS_TRUSTED_CA_CERTS: "{{ BASE_DIR }}/intanis-cloud_net.ca-bundle"
 
 ## Postgres
 

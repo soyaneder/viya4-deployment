@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta http-equiv="content-type" content="text/html; charset=utf-8">
+        <link rel="stylesheet" type="text/css" href="sas.css"/>
+        <title>Configure Environment ID Settings for SAS Risk Cirrus Objects Microservice</title>
+    </head>
+    <body>
+        <h1 id="139729115043680configure-environment-id-settings-for-sas-risk-cirrus-objects-microservice">Configure Environment ID Settings for SAS Risk Cirrus Objects Microservice</h1>
+<h2 id="139729115043680overview">Overview</h2>
+<p>The SAS Risk Cirrus Objects Microservice stores information related to business object definitions and business
+object instances such as analysis data, analysis runs, models, or model reviews. Cirrus Objects also stores and
+retrieves items related to business objects, such as attachments. These business objects are associated with the
+Risk Cirrus Platform that underlies most Risk offerings.</p>
+<p>SAS Risk Cirrus Objects is deployed with some default settings. These settings can be overridden by using
+the <code>$deploy/sas-bases/examples/sas-risk-cirrus-objects/resources/sas_risk_cirrus_objects_transform.yaml</code> file
+as a starting point.</p>
+<p>There is no requirement to configure this transform. Currently, all fields in the transform are optional (with the
+default value documented here used if no value is supplied).</p>
+<p><strong>Note:</strong> For more information about the SAS Risk Cirrus Objects Microservice,
+see <a href="https://go.documentation.sas.com/doc/en/cirruscdc/v_024/cirrusag/about-cirrus-objects.htm">Administrator&rsquo;s Guide: Cirrus Objects</a>.</p>
+<h2 id="139729115043680installation">Installation</h2>
+<ol>
+<li>
+<p>Copy the files in <code>$deploy/sas-bases/examples/sas-risk-cirrus-objects/resources</code>
+   to the <code>$deploy/site-config/sas-risk-cirrus-objects/resources</code> directory. Create a
+   destination directory if one does not exist.</p>
+<p><strong>IMPORTANT:</strong> If the destination directory already exists, verify that the
+ <a href="#139729115043680verify-overlay-default-settings">overlay default settings</a> have been correctly applied. No further actions are
+ required, unless
+ you want to change the default settings to different values.</p>
+</li>
+<li>
+<p>Modify the new copy of <code>sas_risk_cirrus_objects_transform.yaml</code> to specify your
+   settings as follows:</p>
+<ul>
+<li>
+<p>For JAVA_OPTION_ENVIRONMENT_ID, replace {{ MY-ENVIRONMENT-ID }} with the identifier you have chosen for
+    this particular environment.</p>
+</li>
+<li>
+<p>If not configured, the system will default to no environment identifier.</p>
+</li>
+</ul>
+</li>
+<li>
+<p>In the base <code>kustomization.yaml</code> file in the <code>$deploy</code> directory, add
+   <code>site-config/risk-cirrus-objects/resources/sas_risk_cirrus_objects_transform.yaml</code> to the <strong>transformers</strong>
+   block. Here is an example:</p>
+<pre class="highlight"><code class="language-yaml">transformers:
+- site-config/risk-cirrus-objects/resources/sas_risk_cirrus_objects_transform.yaml</code></pre>
+
+</li>
+<li>
+<p>Complete the deployment steps to apply the new settings.
+   See <a href="https://go.documentation.sas.com/doc/en/cirruscdc/default/cirrusag/overview-pre-deployment-tasks.htm">Deployment Tasks: Deploy SAS Risk Cirrus</a>.</p>
+</li>
+</ol>
+<p><strong>Note:</strong> This overlay can be applied during the initial deployment of the SAS Viya platform. or after the deployment of
+the SAS Viya platform.</p>
+<ul>
+<li>If you are applying the overlay during the initial deployment of the SAS Viya platform,
+  complete all the tasks in the README files that you want to use, and then
+  run <code>kustomize build</code> to create and apply the manifests.</li>
+<li>If the overlay is applied after the initial deployment of the SAS Viya platform, run
+  <code>kustomize build</code> to create and apply the manifests.</li>
+</ul>
+<h2 id="139729115043680verify-overlay-default-settings">Verify Overlay Default Settings</h2>
+<ol>
+<li>
+<p>Run the following command to verify whether the overlay has been applied to
+   the configuration map:</p>
+<pre class="highlight"><code class="language-sh">kubectl -n &lt;name-of-namespace&gt; get configmap | grep sas-risk-cirrus-objects</code></pre>
+
+<p>The command returns the ConfigMaps defined for sas-risk-cirrus-objects.
+ Here is an example:</p>
+<pre class="highlight"><code class="language-sh">sas-risk-cirrus-objects-parameters-&lt;id&gt;                  9      6d19h
+sas-risk-cirrus-objects-config-&lt;id&gt;                      9      6d19h</code></pre>
+
+</li>
+<li>
+<p>Execute the following:</p>
+<pre class="highlight"><code class="language-sh">kubectl describe configmap sas-risk-cirrus-objects-config-&lt;id&gt; -n &lt;name-of-namespace&gt;</code></pre>
+
+</li>
+<li>
+<p>Verify that the output contains the settings that you configured.</p>
+<pre class="highlight"><code class="language-yaml">Name:         sas-risk-cirrus-objects-config-g5dg72m87g
+Namespace:    d89282
+Labels:       sas.com/admin=cluster-local
+  sas.com/deployment=sas-viya
+Annotations:  &lt;none&gt;
+
+  Data
+  ====
+JAVA_OPTION_CIRRUS_ENVIRONMENT_ID:
+  ----
+  -Dcirrus.environment.id=MY_DEV_123
+JAVA_OPTION_XMX:
+  ----
+  -Xmx512m
+JAVA_OPTION_XPREFETCH:
+  ----
+  -Dsas.event.consumer.prefetchCount=8
+SEARCH_ENABLED:
+  ----
+  true
+JAVA_OPTION_JAVA_LOCALE_USEOLDISOCODES:
+  ----
+  -Djava.locale.useOldISOCodes=true
+JAVA_OPTION_XSS:
+  ----
+  -Xss1048576
+
+  BinaryData
+  ====
+
+Events:  &lt;none&gt;</code></pre>
+
+<p>Tip: Use filtering to focus on a specific setting:</p>
+<pre class="highlight"><code class="language-sh">kubectl describe configmap sas-risk-cirrus-objects-config-&lt;id&gt; -n &lt;name-of-namespace&gt; | grep environment</code></pre>
+
+<p>Result:</p>
+<pre class="highlight"><code class="language-yaml">JAVA_OPTION_CIRRUS_ENVIRONMENT_ID:
+  -Dcirrus.environment.id=MY_DEV_123</code></pre>
+
+</li>
+</ol>
+    </body>
+</html>

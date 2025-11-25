@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta http-equiv="content-type" content="text/html; charset=utf-8">
+        <link rel="stylesheet" type="text/css" href="sas.css"/>
+        <title>Configure a Temporary Directory for JNA in OpenSearch</title>
+    </head>
+    <body>
+        <h1 id="139729114641408configure-a-temporary-directory-for-jna-in-opensearch">Configure a Temporary Directory for JNA in OpenSearch</h1>
+<p>By default, OpenSearch creates its temporary directory within /tmp using an emptyDir volume mount. However, some hardened installations mount /tmp on emptyDir volumes with the <code>noexec</code> option, preventing JNA and libffi from functioning correctly. This can cause startup failures with exceptions like <code>java.lang.UnsatisfiedLinkerError</code> or messages indicating issues with mapping segments or allocating closures.</p>
+<p>In order to allow JNA loading without relaxing filesystem restrictions, OpenSearch can be configured to use a memory-backed temporary directory.</p>
+<h2 id="139729114641408configure-temporary-directory-for-jna">Configure Temporary Directory for JNA</h2>
+<p>To configure OpenSearch to use a memory-backed temporary directory:</p>
+<ol>
+<li>
+<p>Copy the JNA Temporary Directory transformer from <code>$deploy/sas-bases/examples/configure-elasticsearch/internal/jna/jna-tmp-dir-transformer.yaml</code> into the <code>$deploy/site-config</code> directory.</p>
+</li>
+<li>
+<p>Add the jna-tmp-dir-transformer.yaml file to the transformers block of the base kustomization.yaml file (<code>$deploy/kustomization.yaml</code>). Here is an example:</p>
+<pre class="highlight"><code class="language-yaml">transformers:
+...
+- site-config/jna-tmp-dir-transformer.yaml</code></pre>
+
+</li>
+</ol>
+<h2 id="139729114641408additional-resources">Additional Resources</h2>
+<p>For more information, see
+<a href="http://documentation.sas.com/?cdcId=itopscdc&amp;cdcVersion=default&amp;docsetId=dplyml0phy0dkr&amp;docsetTarget=titlepage.htm&amp;locale=en">SAS Viya Platform: Deployment Guide</a>.</p>
+    </body>
+</html>

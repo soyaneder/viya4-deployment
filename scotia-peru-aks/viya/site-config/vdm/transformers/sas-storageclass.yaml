@@ -1,0 +1,42 @@
+---
+apiVersion: builtin
+kind: PatchTransformer
+metadata: 
+  name: sas-pv-storageclass
+patch: |-
+  kind: PersistentStorageClass
+  metadata:
+    name: wildcard
+  spec:
+    storageClassName: "sas"
+target:
+  kind: PersistentVolumeClaim
+---
+apiVersion: builtin
+kind: PatchTransformer
+metadata:
+  name: sas-ss-storageclass
+patch: |-
+  - op: add
+    path: /spec/volumeClaimTemplates/0/spec/storageClassName
+    value: sas
+target:
+  group: apps
+  kind: StatefulSet
+  annotationSelector: sas.com/component-name notin (sas-rabbitmq-server,sas-airflow,sas-risk-cirrus-search,sas-workload-orchestrator,sas-data-agent-server-colocated)
+---
+apiVersion: builtin
+kind: PatchTransformer
+metadata:
+  name: sas-rabbitmq-storageclass
+patch: |-
+  - op: add
+    path: /spec/volumeClaimTemplates/0/spec/storageClassName
+    value: managed-csi-premium-v2-mq
+  - op: replace
+    path: /spec/volumeClaimTemplates/0/spec/resources/requests/storage
+    value: 4Gi
+target:
+  group: apps
+  kind: StatefulSet
+  annotationSelector: sas.com/component-name in (sas-rabbitmq-server)

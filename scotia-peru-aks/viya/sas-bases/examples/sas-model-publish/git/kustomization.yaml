@@ -1,0 +1,4 @@
+configMapGenerator:
+  - name: sas-model-publish-git-pvc-config
+    envs:
+      - configuration.env

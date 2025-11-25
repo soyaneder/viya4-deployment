@@ -1,0 +1,15 @@
+apiVersion: builtin
+kind: PatchTransformer
+metadata:
+  name: cirrus-objects-config-transform
+patch: |-
+
+  # Cirrus Objects env variables
+  
+  - op: replace
+    path: /data/JAVA_OPTION_CIRRUS_ENVIRONMENT_ID
+    value: "-Dcirrus.environment.id={{ MY-ENVIRONMENT-ID }}"
+
+target:
+  kind: ConfigMap
+  name: sas-risk-cirrus-objects-config*

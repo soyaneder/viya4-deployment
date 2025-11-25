@@ -1,0 +1,56 @@
+##
+##
+## Front-door TLS with Customer-Provided OpenShift Ingress Certificates without the use of the cert-utils-operator
+##
+##
+---
+apiVersion: builtin
+kind: PatchTransformer
+metadata:
+  name: sas-route-front-door-tls-transformer-no-cert-utils-operator
+patch: |-
+  - op: replace
+    path: /spec/tls
+    value:
+      termination: edge
+      insecureEdgeTerminationPolicy: Redirect
+      key: PLACEHOLDER
+      certificate: PLACEHOLDER
+      caCertificate: PLACEHOLDER
+  - op: remove
+    path: /metadata/annotations/cert-utils-operator.redhat-cop.io~1certs-from-secret
+target:
+  kind: Route
+---    
+apiVersion: builtin    
+kind: ReplacementTransformer    
+metadata:    
+  name: update-front-door-routes-with-ingress-certificates
+replacements:    
+- source:    
+    kind: ConfigMap
+    name: openshift-no-cert-utils-operator-input
+    fieldPath: data.key    
+  targets:    
+  - select:    
+      kind: Route    
+    fieldPaths:    
+      - spec.tls.key    
+- source:    
+    kind: ConfigMap
+    name: openshift-no-cert-utils-operator-input
+    fieldPath: data.certificate    
+  targets:    
+  - select:    
+      kind: Route    
+    fieldPaths:    
+      - spec.tls.certificate    
+- source:    
+    kind: ConfigMap
+    name: openshift-no-cert-utils-operator-input
+    fieldPath: data.caCertificate
+  targets:    
+  - select:    
+      kind: Route    
+    fieldPaths:    
+      - spec.tls.caCertificate

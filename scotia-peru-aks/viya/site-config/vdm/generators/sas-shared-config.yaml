@@ -1,0 +1,8 @@
+---
+apiVersion: builtin
+kind: ConfigMapGenerator
+metadata:
+  name: sas-shared-config
+behavior: merge
+literals:
+  - SAS_SERVICES_URL=https://SCO-PE-SAS-PRD.intanis-cloud.net:443

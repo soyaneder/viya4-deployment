@@ -1,0 +1,746 @@
+apiVersion: apiextensions.k8s.io/v1
+kind: CustomResourceDefinition
+metadata:
+  annotations:
+    controller-gen.kubebuilder.io/version: v0.11.1
+    sas.com/component-name: sas-deployment-operator
+    sas.com/component-version: 1.147.0-20250903.1756922825567
+    sas.com/version: 1.147.0
+  creationTimestamp: null
+  labels:
+    app.kubernetes.io/name: sas-deployment-operator
+    sas.com/admin: cluster-wide
+    sas.com/deployment: sas-viya
+  name: sasdeployments.orchestration.sas.com
+spec:
+  group: orchestration.sas.com
+  names:
+    kind: SASDeployment
+    listKind: SASDeploymentList
+    plural: sasdeployments
+    singular: sasdeployment
+  scope: Namespaced
+  versions:
+  - additionalPrinterColumns:
+    - jsonPath: .status.state
+      name: State
+      type: string
+    - jsonPath: .spec.cadenceName
+      name: CadenceName
+      type: string
+    - jsonPath: .spec.cadenceVersion
+      name: CadenceVersion
+      type: string
+    - jsonPath: .spec.cadenceRelease
+      name: CadenceRelease
+      type: string
+    - jsonPath: .status.displayName
+      name: CadenceDisplayName
+      priority: 1
+      type: string
+    - jsonPath: .status.supportLevel
+      name: SupportLevel
+      priority: 1
+      type: string
+    - jsonPath: .status.supportEnd
+      name: SupportEnd
+      priority: 1
+      type: string
+    - jsonPath: .metadata.creationTimestamp
+      name: Age
+      type: date
+    name: v1alpha1
+    schema:
+      openAPIV3Schema:
+        description: SASDeployment is the representation of a SAS Deployment
+        properties:
+          apiVersion:
+            description: 'APIVersion defines the versioned schema of this representation
+              of an object. Servers should convert recognized schemas to the latest
+              internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources'
+            type: string
+          kind:
+            description: 'Kind is a string value representing the REST resource this
+              object represents. Servers may infer this from the endpoint the client
+              submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds'
+            type: string
+          metadata:
+            type: object
+          spec:
+            description: SASDeploymentSpec is the specification of the desired behavior
+              of the SAS Deployment.
+            properties:
+              buildType:
+                description: BuildType is the build type to deploy. Optional. Default
+                  x64_oci_linux_2-docker.
+                type: string
+              caCertificate:
+                description: CACertificate is the certificate authority. Optional.
+                properties:
+                  content:
+                    description: Content is the content of the certificate. Optional.
+                      One, and only one, of content, secretRef, or url must be specified.
+                    type: string
+                  secretKeyRef:
+                    description: SecretKeyRef selects a key of a secret in the SASDeployment's
+                      namespace. Optional. One and only one, of content, secretRef,
+                      or url must be specified.
+                    properties:
+                      key:
+                        description: Key is the secret key.
+                        type: string
+                      name:
+                        description: Name is the secret name.
+                        type: string
+                    required:
+                    - key
+                    - name
+                    type: object
+                  url:
+                    description: URL is a go-getter url from which to fetch content.
+                      Optional. One, and only one, of content, secretRef, or url must
+                      be specified.
+                    type: string
+                type: object
+              cadenceName:
+                description: CadenceName is the name of the cadence to deploy.
+                type: string
+              cadenceRelease:
+                description: CadenceRelease is the release of the cadence to deploy.
+                  Optional.
+                type: string
+              cadenceVersion:
+                description: CadenceVersion is the version of the cadence to deploy.
+                type: string
+              clientCertificate:
+                description: ClientCertificate is the client certificate. Optional.
+                properties:
+                  content:
+                    description: Content is the content of the certificate. Optional.
+                      One, and only one, of content, secretRef, or url must be specified.
+                    type: string
+                  secretKeyRef:
+                    description: SecretKeyRef selects a key of a secret in the SASDeployment's
+                      namespace. Optional. One and only one, of content, secretRef,
+                      or url must be specified.
+                    properties:
+                      key:
+                        description: Key is the secret key.
+                        type: string
+                      name:
+                        description: Name is the secret name.
+                        type: string
+                    required:
+                    - key
+                    - name
+                    type: object
+                  url:
+                    description: URL is a go-getter url from which to fetch content.
+                      Optional. One, and only one, of content, secretRef, or url must
+                      be specified.
+                    type: string
+                type: object
+              deploymentType:
+                description: DeploymentType is the deployment type to deploy. Optional.
+                type: string
+              imageRegistry:
+                description: ImageRegistry is the image registry from which to deploy.
+                  Optional.
+                type: string
+              license:
+                description: License is the license to apply to the deployment. Optional.
+                properties:
+                  content:
+                    description: Content is the content of the certificate. Optional.
+                      One, and only one, of content, secretRef, or url must be specified.
+                    type: string
+                  secretKeyRef:
+                    description: SecretKeyRef selects a key of a secret in the SASDeployment's
+                      namespace. Optional. One and only one, of content, secretRef,
+                      or url must be specified.
+                    properties:
+                      key:
+                        description: Key is the secret key.
+                        type: string
+                      name:
+                        description: Name is the secret name.
+                        type: string
+                    required:
+                    - key
+                    - name
+                    type: object
+                  url:
+                    description: URL is a go-getter url from which to fetch content.
+                      Optional. One, and only one, of content, secretRef, or url must
+                      be specified.
+                    type: string
+                type: object
+              repositoryWarehouse:
+                description: RepositoryWarehouse is the repository warehouse metadata.
+                  Optional.
+                properties:
+                  updatePolicy:
+                    description: UpdatePolicy determines what repository warehouse
+                      content updates will cause an automatic updated reconcile of
+                      this SASDeployment.
+                    type: string
+                  url:
+                    description: URL is the repository warehouse url from which to
+                      deploy. Default https://ses.sas.download/ses. Optional.
+                    type: string
+                type: object
+              userContent:
+                description: UserContent is the user content.
+                properties:
+                  files:
+                    additionalProperties:
+                      type: string
+                    description: Files is a map from file path to file content. Optional.
+                      One, and only one, of files or url must be specified.
+                    type: object
+                  url:
+                    description: URL is a go-getter url from which to fetch content.
+                      Optional. One, and only one, of files or url must be specified.
+                    type: string
+                type: object
+            required:
+            - cadenceName
+            - cadenceVersion
+            - userContent
+            type: object
+          status:
+            description: SASDeploymentStatus represents the most recently observed
+              status of the SASDeployment.
+            properties:
+              conditions:
+                description: Represents the latest available observations of a SASDeployment's
+                  current state.
+                items:
+                  description: SASDeploymentCondition contains details for the current
+                    condition of a SASDeployment.
+                  properties:
+                    lastTransitionTime:
+                      description: LastTransitionTime is the timestamp corresponding
+                        to the last status change of this condition.
+                      format: date-time
+                      type: string
+                    message:
+                      description: Message is a human readable description of the
+                        details of the last transition, complementing reason.
+                      type: string
+                    reason:
+                      description: Reason is a brief machine readable explanation
+                        for the condition's last transition.
+                      type: string
+                    status:
+                      description: Status is the status of the condition, one of ('True',
+                        'False', 'Unknown').
+                      type: string
+                    type:
+                      description: Type is the type of the condition.
+                      type: string
+                  required:
+                  - status
+                  - type
+                  type: object
+                type: array
+              displayName:
+                description: DisplayName is the display name of the SAS Deployment
+                  cadence.
+                type: string
+              latest:
+                description: Latest are the latest available release and version.
+                properties:
+                  releaseForCadence:
+                    description: ReleaseForCadence reports information about the latest
+                      available release for the cadence specified by this SASDeployment.
+                    properties:
+                      cadenceName:
+                        description: CadenceName is the name of the available cadence.
+                        type: string
+                      cadenceRelease:
+                        description: CadenceRelease is the release of the available
+                          cadence.
+                        type: string
+                      cadenceVersion:
+                        description: CadenceVersion is the version of the available
+                          cadence.
+                        type: string
+                      displayName:
+                        description: DisplayName is the display name of the available
+                          cadence.
+                        type: string
+                      matchesDeployedRelease:
+                        description: MatchesDeployedRelease is true if the available
+                          release matches the deployed release. False otherwise.
+                        type: boolean
+                      supportEnd:
+                        description: SupportEnd is when support will end for the available
+                          cadence.
+                        type: string
+                      supportLevel:
+                        description: SupportLevel is the support level for the available
+                          cadence.
+                        type: string
+                    required:
+                    - cadenceName
+                    - cadenceRelease
+                    - cadenceVersion
+                    - displayName
+                    - matchesDeployedRelease
+                    - supportEnd
+                    - supportLevel
+                    type: object
+                  releaseForVersion:
+                    description: ReleaseForVersion reports information about the latest
+                      available release for the version specified by this SASDeployment.
+                    properties:
+                      cadenceName:
+                        description: CadenceName is the name of the available cadence.
+                        type: string
+                      cadenceRelease:
+                        description: CadenceRelease is the release of the available
+                          cadence.
+                        type: string
+                      cadenceVersion:
+                        description: CadenceVersion is the version of the available
+                          cadence.
+                        type: string
+                      displayName:
+                        description: DisplayName is the display name of the available
+                          cadence.
+                        type: string
+                      matchesDeployedRelease:
+                        description: MatchesDeployedRelease is true if the available
+                          release matches the deployed release. False otherwise.
+                        type: boolean
+                      supportEnd:
+                        description: SupportEnd is when support will end for the available
+                          cadence.
+                        type: string
+                      supportLevel:
+                        description: SupportLevel is the support level for the available
+                          cadence.
+                        type: string
+                    required:
+                    - cadenceName
+                    - cadenceRelease
+                    - cadenceVersion
+                    - displayName
+                    - matchesDeployedRelease
+                    - supportEnd
+                    - supportLevel
+                    type: object
+                required:
+                - releaseForCadence
+                - releaseForVersion
+                type: object
+              messages:
+                description: Messages is the list of messages from the most recent
+                  action performed on this SAS Deployment.
+                items:
+                  type: string
+                type: array
+              state:
+                description: State is the current state of the SAS Deployment.
+                type: string
+              supportEnd:
+                description: SupportEnd is when support will end for the SAS Deployment.
+                type: string
+              supportLevel:
+                description: SupportLevel is the support level for the SAS Deployment.
+                type: string
+            required:
+            - displayName
+            - latest
+            - messages
+            - state
+            - supportEnd
+            - supportLevel
+            type: object
+        type: object
+    served: true
+    storage: true
+    subresources: {}
+---
+apiVersion: v1
+kind: ServiceAccount
+metadata:
+  annotations:
+    sas.com/component-name: sas-deployment-operator
+    sas.com/component-version: 1.147.0-20250903.1756922825567
+    sas.com/version: 1.147.0
+  labels:
+    app.kubernetes.io/name: sas-deployment-operator
+    sas.com/admin: cluster-wide
+    sas.com/deployment: sas-viya
+  name: sas-deployment-operator
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: Role
+metadata:
+  annotations:
+    sas.com/component-name: sas-deployment-operator
+    sas.com/component-version: 1.147.0-20250903.1756922825567
+    sas.com/version: 1.147.0
+  creationTimestamp: null
+  labels:
+    app.kubernetes.io/name: sas-deployment-operator
+    sas.com/admin: cluster-wide
+    sas.com/deployment: sas-viya
+  name: sas-deployment-operator
+rules:
+- apiGroups:
+  - ""
+  resources:
+  - configmaps
+  - events
+  - secrets
+  - serviceaccounts
+  verbs:
+  - create
+  - delete
+  - get
+  - list
+  - update
+  - watch
+- apiGroups:
+  - batch
+  resources:
+  - cronjobs
+  - jobs
+  verbs:
+  - create
+  - delete
+  - get
+  - list
+  - patch
+  - update
+  - watch
+- apiGroups:
+  - coordination.k8s.io
+  resources:
+  - leases
+  verbs:
+  - create
+  - delete
+  - get
+  - list
+  - update
+  - watch
+- apiGroups:
+  - orchestration.sas.com
+  resources:
+  - sasdeployments
+  verbs:
+  - get
+  - list
+  - update
+  - watch
+- apiGroups:
+  - orchestration.sas.com
+  resources:
+  - sasdeployments/finalizers
+  verbs:
+  - update
+- apiGroups:
+  - rbac.authorization.k8s.io
+  resources:
+  - rolebindings
+  - roles
+  verbs:
+  - bind
+  - create
+  - delete
+  - escalate
+  - get
+  - list
+  - patch
+  - update
+  - watch
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRole
+metadata:
+  annotations:
+    sas.com/component-name: sas-deployment-operator
+    sas.com/component-version: 1.147.0-20250903.1756922825567
+    sas.com/version: 1.147.0
+  creationTimestamp: null
+  labels:
+    app.kubernetes.io/name: sas-deployment-operator
+    sas.com/admin: cluster-wide
+    sas.com/deployment: sas-viya
+  name: sas-deployment-operator
+rules:
+- apiGroups:
+  - orchestration.sas.com
+  resources:
+  - sasdeployments/finalizers
+  verbs:
+  - update
+- apiGroups:
+  - rbac.authorization.k8s.io
+  resources:
+  - clusterrolebindings
+  - clusterroles
+  verbs:
+  - bind
+  - create
+  - delete
+  - escalate
+  - get
+  - list
+  - patch
+  - update
+  - watch
+- apiGroups:
+  - ""
+  resources:
+  - secrets
+  - serviceaccounts
+  verbs:
+  - list
+  - get
+  - delete
+  - watch
+  - create
+  - update
+- apiGroups:
+  - ""
+  resources:
+  - configmaps
+  verbs:
+  - create
+  - get
+  - update
+  - list
+  - delete
+- apiGroups:
+  - ""
+  resources:
+  - services
+  verbs:
+  - get
+  - list
+  - watch
+  - create
+- apiGroups:
+  - batch
+  resources:
+  - cronjobs
+  - jobs
+  verbs:
+  - create
+  - get
+  - list
+  - patch
+  - update
+  - watch
+  - delete
+- apiGroups:
+  - orchestration.sas.com
+  resources:
+  - sasdeployments
+  verbs:
+  - get
+  - list
+  - watch
+  - update
+- apiGroups:
+  - rbac.authorization.k8s.io
+  resources:
+  - roles
+  - rolebindings
+  verbs:
+  - create
+  - get
+  - list
+  - watch
+  - update
+  - patch
+  - delete
+  - bind
+  - escalate
+- apiGroups:
+  - coordination.k8s.io
+  resources:
+  - leases
+  verbs:
+  - create
+  - delete
+  - get
+  - list
+  - update
+  - watch
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: RoleBinding
+metadata:
+  annotations:
+    sas.com/component-name: sas-deployment-operator
+    sas.com/component-version: 1.147.0-20250903.1756922825567
+    sas.com/version: 1.147.0
+  labels:
+    app.kubernetes.io/name: sas-deployment-operator
+    sas.com/admin: cluster-wide
+    sas.com/deployment: sas-viya
+  name: sas-deployment-operator
+roleRef:
+  apiGroup: rbac.authorization.k8s.io
+  kind: Role
+  name: sas-deployment-operator
+subjects:
+- kind: ServiceAccount
+  name: sas-deployment-operator
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRoleBinding
+metadata:
+  annotations:
+    sas.com/component-name: sas-deployment-operator
+    sas.com/component-version: 1.147.0-20250903.1756922825567
+    sas.com/version: 1.147.0
+  labels:
+    app.kubernetes.io/name: sas-deployment-operator
+    sas.com/admin: cluster-wide
+    sas.com/deployment: sas-viya
+  name: sasoperator
+roleRef:
+  apiGroup: rbac.authorization.k8s.io
+  kind: ClusterRole
+  name: sas-deployment-operator
+subjects:
+- kind: ServiceAccount
+  name: sas-deployment-operator
+  namespace: sasoperator
+---
+apiVersion: v1
+data:
+  seccomp-remove: |-
+    #!/bin/sh
+    exec yq eval 'del(..|select(has("securityContext"))."securityContext"|select(has("seccompProfile"))."seccompProfile")' -
+kind: ConfigMap
+metadata:
+  annotations:
+    sas.com/component-name: sas-deployment-operator
+    sas.com/component-version: 1.147.0-20250903.1756922825567
+    sas.com/version: 1.147.0
+  labels:
+    app.kubernetes.io/name: sas-deployment-operator
+    sas.com/admin: cluster-wide
+    sas.com/deployment: sas-viya
+  name: default-reconcile-transformers
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  annotations:
+    sas.com/component-name: sas-deployment-operator
+    sas.com/component-version: 1.147.0-20250903.1756922825567
+    sas.com/version: 1.147.0
+  labels:
+    app.kubernetes.io/name: sas-deployment-operator
+    sas.com/admin: cluster-wide
+    sas.com/deployment: sas-viya
+  name: sas-deployment-operator
+spec:
+  replicas: 1
+  selector:
+    matchExpressions: []
+    matchLabels:
+      app.kubernetes.io/name: sas-deployment-operator
+      sas.com/admin: cluster-wide
+      sas.com/deployment: sas-viya
+  template:
+    metadata:
+      annotations:
+        prometheus.io/path: /metrics
+        prometheus.io/port: "8080"
+        prometheus.io/scheme: http
+        prometheus.io/scrape: "true"
+        sas.com/component-name: sas-deployment-operator
+        sas.com/component-version: 1.147.0-20250903.1756922825567
+        sas.com/version: 1.147.0
+      labels:
+        app.kubernetes.io/name: sas-deployment-operator
+        sas.com/admin: cluster-wide
+        sas.com/deployment: sas-viya
+    spec:
+      affinity:
+        nodeAffinity:
+          preferredDuringSchedulingIgnoredDuringExecution:
+          - preference:
+              matchExpressions:
+              - key: kubernetes.azure.com/mode
+                operator: In
+                values:
+                - system
+            weight: 100
+      containers:
+      - args:
+        - reconcile
+        command: []
+        env:
+        - name: SERVICE_ACCOUNT_NAME
+          valueFrom:
+            fieldRef:
+              fieldPath: spec.serviceAccountName
+        - name: WATCH_NAMESPACE
+          value: ""
+        - name: POD_NAME
+          valueFrom:
+            fieldRef:
+              fieldPath: metadata.name
+        - name: OPERATOR_NAME
+          value: sas-deployment-operator
+        envFrom: []
+        image: cr.sas.com/viya-4-x64_oci_linux_2-docker/sas-deployment-operator:1.147.0-20250903.1756922825567
+        imagePullPolicy: Always
+        livenessProbe:
+          httpGet:
+            path: /healthz
+            port: 8081
+          initialDelaySeconds: 300
+          periodSeconds: 300
+        name: sas-deployment-operator
+        ports: []
+        resources:
+          limits:
+            cpu: 500m
+            memory: 500Mi
+          requests:
+            cpu: 50m
+            memory: 50Mi
+        securityContext:
+          allowPrivilegeEscalation: false
+          capabilities:
+            drop:
+            - ALL
+          readOnlyRootFilesystem: true
+        volumeDevices: []
+        volumeMounts:
+        - mountPath: /work
+          name: work
+        - mountPath: /reconcile-transformers/default/seccomp-remove
+          name: default-reconcile-transformers
+          subPath: seccomp-remove
+      hostAliases: []
+      imagePullSecrets: []
+      readinessGates: []
+      securityContext:
+        runAsNonRoot: true
+        seccompProfile:
+          type: RuntimeDefault
+      serviceAccountName: sas-deployment-operator
+      tolerations: []
+      volumes:
+      - emptyDir: {}
+        name: work
+      - configMap:
+          defaultMode: 493
+          items:
+          - key: seccomp-remove
+            path: seccomp-remove
+          name: default-reconcile-transformers
+        name: default-reconcile-transformers

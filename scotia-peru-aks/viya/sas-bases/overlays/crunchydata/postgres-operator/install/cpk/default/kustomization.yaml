@@ -1,0 +1,9 @@
+kind: Kustomization
+
+resources:
+- ../crd
+- ../rbac/cluster
+- ../manager
+
+components:
+- ../../components/images-by-tag

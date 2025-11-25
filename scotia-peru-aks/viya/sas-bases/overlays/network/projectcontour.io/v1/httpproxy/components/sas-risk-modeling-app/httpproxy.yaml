@@ -1,0 +1,34 @@
+---
+apiVersion: projectcontour.io/v1
+kind: HTTPProxy
+metadata:
+  annotations:
+    sas.com/kustomize-base: base
+  labels:
+    app.kubernetes.io/name: sas-risk-modeling-app
+    sas.com/admin: namespace
+  name: sas-risk-modeling-app
+spec:
+  routes:
+  - conditions:
+    - prefix: /SASRiskModeling
+    loadBalancerPolicy:
+      strategy: Cookie
+    pathRewritePolicy:
+      replacePrefix:
+      - replacement: /SASRiskModeling/
+    services:
+    - name: sas-risk-modeling-app
+      port: 80
+    timeoutPolicy:
+      response: 300s
+  - conditions:
+    - prefix: /SASRiskModeling/
+    loadBalancerPolicy:
+      strategy: Cookie
+    services:
+    - name: sas-risk-modeling-app
+      port: 80
+    timeoutPolicy:
+      response: 300s
+

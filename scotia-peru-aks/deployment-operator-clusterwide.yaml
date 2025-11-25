@@ -1,0 +1,7 @@
+# Information about the active clusterwide SAS Viya Platform Deployment Operator
+---
+deployment_operator:
+    mode: clusterwide
+    namespace: sasoperator
+    crb: sasoperator
+    resources: /home/soyanede/sco-pe-viya4/scotia-peru-aks/viya/operator-deploy-clusterwide

@@ -1,0 +1,30 @@
+# Optional git-storage-transformer file that can be used when a user wants
+# to override the size or class of the PVC for Git. For more information, see
+# sas-bases/examples/sas-model-publish/git/README.md.
+# ---
+apiVersion: builtin
+kind: ReplacementTransformer
+metadata:
+  name: apply-git-pvc-storage-configuration
+replacements:
+  - source:
+      kind: ConfigMap
+      name: sas-model-publish-git-pvc-config
+      fieldPath: data.gitStorageSize
+    targets:
+      - select:
+          kind: PersistentVolumeClaim
+          name: sas-model-publish-git
+        fieldPaths:
+          - spec.resources.requests.storage
+
+  - source:
+      kind: ConfigMap
+      name: sas-model-publish-git-pvc-config
+      fieldPath: data.gitStorageClass
+    targets:
+      - select:
+          kind: PersistentVolumeClaim
+          name: sas-model-publish-git
+        fieldPaths:
+          - spec.storageClassName

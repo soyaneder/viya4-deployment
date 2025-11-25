@@ -1,0 +1,41 @@
+---
+apiVersion: networking.istio.io/v1alpha3
+kind: DestinationRule
+metadata:
+  name: sas-risk-modeling-app
+spec:
+  host: sas-risk-modeling-app
+  trafficPolicy:
+    loadBalancer:
+      consistentHash:
+        httpCookie:
+          name: sas-ingress-istio
+          path: /SASRiskModeling/
+          ttl: 0s
+
+---
+apiVersion: networking.istio.io/v1alpha3
+kind: VirtualService
+metadata:
+  annotations:
+    sas.com/kustomize-base: base
+  labels:
+    app.kubernetes.io/name: sas-risk-modeling-app
+    sas.com/admin: namespace
+  name: sas-risk-modeling-app
+spec:
+  gateways:
+  - public-gateway
+  hosts:
+  - '*'
+  http:
+  - match:
+    - uri:
+        exact: /SASRiskModeling
+    - uri:
+        prefix: /SASRiskModeling/
+    route:
+    - destination:
+        host: sas-risk-modeling-app
+    timeout: 300s
+

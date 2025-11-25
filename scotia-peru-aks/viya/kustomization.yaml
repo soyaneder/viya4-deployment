@@ -1,0 +1,54 @@
+kind: Kustomization
+apiVersion: kustomize.config.k8s.io/v1beta1
+
+namespace: viya 
+
+resources:
+## vdm defined resources (pre)
+- sas-bases/base
+- sas-bases/overlays/update-checker
+- sas-bases/overlays/cas-server
+- sas-bases/overlays/postgres/platform-postgres
+- sas-bases/overlays/crunchydata/postgres-operator
+- sas-bases/overlays/postgres/cds-postgres
+- sas-bases/overlays/network/networking.k8s.io
+- sas-bases/overlays/internal-elasticsearch
+- sas-bases/overlays/sas-workload-orchestrator
+- site-config/vdm/resources/sas-deployment-buildinfo.yaml
+- sas-bases/overlays/cas-server/auto-resources
+
+configurations:
+## vdm defined configurations (post)
+- sas-bases/overlays/required/kustomizeconfig.yaml
+
+transformers:
+## vdm defined transformers (pre)
+- site-config/vdm/transformers/cas-auto-restart.yaml
+- site-config/vdm/transformers/sas-cds-postgres-dataserver-transformer.yaml
+- sas-bases/overlays/internal-elasticsearch/internal-elasticsearch-transformer.yaml
+- site-config/vdm/transformers/cas-add-nfs-mount.yaml
+- site-config/vdm/transformers/compute-server-add-nfs-mount.yaml
+- site-config/vdm/transformers/launcher-nfs-mount.yaml
+- site-config/vdm/transformers/sas-storageclass.yaml
+## vdm defined transformers (post)
+- sas-bases/overlays/internal-elasticsearch/sysctl-transformer.yaml
+- sas-bases/overlays/required/transformers.yaml
+- sas-bases/overlays/cas-server/auto-resources/remove-resources.yaml
+
+generators:
+## vdm defined generators (pre)
+- site-config/vdm/generators/sas-license.yaml
+- site-config/vdm/generators/sas-shared-config.yaml
+- site-config/vdm/generators/sas-consul-config-secret.yaml
+- site-config/vdm/generators/ingress-input.yaml
+# - site-config/vdm/generators/postgres-default-secrets.yaml
+- site-config/vdm/generators/customer-provided-ca-certificates.yaml
+- site-config/vdm/generators/customer-provided-ingress-certificate.yaml
+- site-config/vdm/generators/customer-provided-merge-sas-certframe-configmap.yaml
+
+components:
+## vdm defined components (post)
+- sas-bases/components/security/core/base/full-stack-tls
+- sas-bases/components/security/network/networking.k8s.io/ingress/nginx.ingress.kubernetes.io/full-stack-tls
+- sas-bases/components/crunchydata/internal-platform-postgres
+

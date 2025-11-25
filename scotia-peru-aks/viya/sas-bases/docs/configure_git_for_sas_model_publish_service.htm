@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta http-equiv="content-type" content="text/html; charset=utf-8">
+        <link rel="stylesheet" type="text/css" href="sas.css"/>
+        <title>Configure Git for SAS Model Publish Service</title>
+    </head>
+    <body>
+        <h1 id="139729114356992configure-git-for-sas-model-publish-service">Configure Git for SAS Model Publish Service</h1>
+<h2 id="139729114356992overview">Overview</h2>
+<p>The Model Publish service uses the sas-model-publish-git dedicated
+PersistentVolume Claim (PVC) as a workspace. When a user publishes a model to a
+Git destination, sas-model-publish creates a local repository under
+/models/git/publish/, which is then mounted from the sas-model-publish-git PVC
+in the start-up process.</p>
+<h2 id="139729114356992installation">Installation</h2>
+<ol>
+<li>
+<p>Copy the files in the <code>$deploy/sas-bases/examples/sas-model-publish/git</code>
+   directory to the <code>$deploy/site-config/sas-model-publish/git</code> directory.
+   Create the target directory, if it does not already exist.</p>
+<p><strong>Note:</strong> If the destination directory already exists,
+ <a href="#139729114356992verify-overlays">verify that the overlays</a> have been
+ applied. If the output contains the /models/git/ mount directory path, you do
+ not need to take any further actions, unless you want to override the defaults.</p>
+</li>
+<li>
+<p>Modify the parameters in <code>configuration.env</code>.</p>
+<ul>
+<li>Replace {{ GIT-STORAGE-SIZE }} with the amount of storage required.</li>
+<li>Replace {{ GIT-STORAGE-CLASS }} with the appropriate storage class.</li>
+</ul>
+<p>Here is an example:</p>
+<pre class="highlight"><code class="language-env">gitStorageClass=nfs-client
+gitStorageSize=1Gi</code></pre>
+
+<p><strong>Important:</strong> The PVC requires <code>ReadWriteMany</code> access mode.
+ Certain storage classes, such as Azure managed disks
+ (<code>managed-csi-premium</code>), support only <code>ReadWriteOnce</code> access and
+ will fail. Use a storage class that supports <code>ReadWriteMany</code> access,
+ such as Azure Files or NFS.</p>
+<p>For more information about PersistentVolume Claims (PVCs),
+ see <a href="https://kubernetes.io/docs/concepts/storage/persistent-volumes/#persistentvolumeclaims">Persistent Volume Claims on Kubernetes</a>.</p>
+</li>
+<li>
+<p>Make the following changes to the base kustomization.yaml file in the $deploy
+   directory.</p>
+<ul>
+<li>Add <code>site-config/sas-model-publish/git</code> to the resources block.</li>
+<li>Add <code>sas-bases/overlays/sas-model-publish/git/storage.yaml</code> to the
+   resources block.</li>
+<li>Add <code>sas-bases/overlays/sas-model-publish/git/git-transformer.yaml</code> to the
+   transformers block.</li>
+<li>Add <code>sas-bases/overlays/sas-model-publish/git/git-storage-transformer.yaml</code>
+   to the transformers block.</li>
+</ul>
+<p>Here is an example:</p>
+<pre class="highlight"><code class="language-yaml">resources:
+  - site-config/sas-model-publish/git
+  - sas-bases/overlays/sas-model-publish/git/storage.yaml
+
+transformers:
+  - sas-bases/overlays/sas-model-publish/git/git-transformer.yaml
+  - sas-bases/overlays/sas-model-publish/git/git-storage-transformer.yaml</code></pre>
+
+</li>
+<li>
+<p>Complete the deployment steps to apply the new settings. See
+   <a href="http://documentation.sas.com/?cdcId=itopscdc&amp;cdcVersion=default&amp;docsetId=dplyml0phy0dkr&amp;docsetTarget=p127f6y30iimr6n17x2xe9vlt54q.htm">Deploy the Software</a>
+   in <em>SAS Viya Platform: Deployment Guide</em>.</p>
+<p><strong>Note:</strong> The overlays can be applied during the initial deployment of the
+ SAS Viya platform or after the deployment of the SAS Viya platform.</p>
+<ul>
+<li>If you are applying the overlays during the initial deployment of the SAS
+   Viya platform, complete all the tasks in the README files that you want to
+   use, then run <code>kustomize build</code> to create and apply the manifests.</li>
+<li>If the overlays are applied after the initial deployment of the SAS Viya
+   platform, run <code>kustomize build</code> to create and apply the manifests.</li>
+</ul>
+</li>
+</ol>
+<h2 id="139729114356992verify-overlays">Verify Overlays</h2>
+<ol>
+<li>
+<p>Run the following command to verify whether the overlays have been applied:</p>
+<pre class="highlight"><code class="language-sh">kubectl describe pod  &lt;sas-model-publish-pod-name&gt; -n &lt;name-of-namespace&gt;</code></pre>
+
+</li>
+<li>
+<p>Verify that the output contains the following mount directory paths:</p>
+<pre class="highlight"><code class="language-yaml">Mounts: /models/git/publish</code></pre>
+
+</li>
+</ol>
+<h2 id="139729114356992additional-resources">Additional Resources</h2>
+<ul>
+<li><a href="http://documentation.sas.com/?cdcId=itopscdc&amp;cdcVersion=default&amp;docsetId=dplyml0phy0dkr&amp;docsetTarget=titlepage.htm">SAS Viya Platform: Deployment Guide</a></li>
+<li><a href="https://kubernetes.io/docs/concepts/storage/persistent-volumes/#persistentvolumeclaims">Persistent Volume Claims on Kubernetes</a></li>
+<li><a href="http://documentation.sas.com/?cdcId=mdlmgrcdc&amp;cdcVersion=default&amp;docsetId=mdlmgrag&amp;docsetTarget=n0x0rvwqs9lvpun16sfdqoff4tsk.htm">Configuring Publishing Destinations</a>
+  in the <em>SAS Model Manager: Administrator&rsquo;s Guide</em></li>
+</ul>
+    </body>
+</html>

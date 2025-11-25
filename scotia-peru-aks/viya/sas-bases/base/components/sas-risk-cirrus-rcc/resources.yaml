@@ -1,0 +1,113 @@
+
+---
+apiVersion: batch/v1
+kind: CronJob
+metadata:
+  annotations:
+    sas.com/certificate-file-format: pem
+    sas.com/component-name: sas-risk-cirrus-rcc
+    sas.com/kustomize-base: base
+  labels:
+    app.kubernetes.io/name: sas-risk-cirrus-rcc
+    workload.sas.com/class: stateless
+  name: sas-risk-cirrus-rcc
+spec:
+  concurrencyPolicy: Forbid
+  jobTemplate:
+    spec:
+      backoffLimit: 4
+      template:
+        metadata:
+          annotations:
+            sas.com/certificate-file-format: pem
+            sas.com/kustomize-base: base
+          labels:
+            app.kubernetes.io/name: sas-risk-cirrus-rcc
+            workload.sas.com/class: stateless
+        spec:
+          affinity:
+            nodeAffinity:
+              preferredDuringSchedulingIgnoredDuringExecution:
+              - preference:
+                  matchExpressions:
+                  - key: workload.sas.com/class
+                    operator: In
+                    values:
+                    - stateless
+                weight: 100
+              - preference:
+                  matchExpressions:
+                  - key: workload.sas.com/class
+                    operator: NotIn
+                    values:
+                    - cas
+                    - compute
+                    - stateful
+                weight: 50
+              requiredDuringSchedulingIgnoredDuringExecution:
+                nodeSelectorTerms:
+                - matchExpressions:
+                  - key: kubernetes.azure.com/mode
+                    operator: NotIn
+                    values:
+                    - system
+            podAffinity:
+              preferredDuringSchedulingIgnoredDuringExecution: []
+              requiredDuringSchedulingIgnoredDuringExecution: []
+            podAntiAffinity:
+              preferredDuringSchedulingIgnoredDuringExecution: []
+              requiredDuringSchedulingIgnoredDuringExecution: []
+          automountServiceAccountToken: true
+          containers:
+          - env: []
+            envFrom:
+            - configMapRef:
+                name: sas-go-config
+            - configMapRef:
+                name: sas-shared-config
+            - secretRef:
+                name: sas-consul-client
+            - secretRef:
+                name: sas-risk-cirrus-core-secret
+            - configMapRef:
+                name: sas-risk-cirrus-core-parameters
+            image: sas-risk-cirrus-rcc
+            name: sas-risk-cirrus-rcc
+            resources:
+              limits:
+                cpu: 500m
+                memory: 500Mi
+              requests:
+                cpu: 50m
+                memory: 50Mi
+            securityContext:
+              allowPrivilegeEscalation: false
+              capabilities:
+                add: []
+                drop:
+                - ALL
+              privileged: false
+              readOnlyRootFilesystem: true
+            volumeMounts:
+            - mountPath: /tmp
+              name: risk-cirrus-rcc-volume
+          imagePullSecrets: []
+          restartPolicy: Never
+          securityContext:
+            runAsNonRoot: true
+            seccompProfile:
+              type: RuntimeDefault
+          tolerations:
+          - effect: NoSchedule
+            key: workload.sas.com/class
+            operator: Equal
+            value: stateless
+          - effect: NoSchedule
+            key: workload.sas.com/class
+            operator: Equal
+            value: stateful
+          volumes:
+          - emptyDir: {}
+            name: risk-cirrus-rcc-volume
+      ttlSecondsAfterFinished: 86400
+  schedule: '* * 30 2 *'

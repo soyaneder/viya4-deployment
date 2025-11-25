@@ -1,0 +1,41 @@
+---
+apiVersion: networking.istio.io/v1alpha3
+kind: DestinationRule
+metadata:
+  name: sas-risk-cirrus-app
+spec:
+  host: sas-risk-cirrus-app
+  trafficPolicy:
+    loadBalancer:
+      consistentHash:
+        httpCookie:
+          name: sas-ingress-istio
+          path: /SASRiskCirrus/
+          ttl: 0s
+
+---
+apiVersion: networking.istio.io/v1alpha3
+kind: VirtualService
+metadata:
+  annotations:
+    sas.com/kustomize-base: base
+  labels:
+    app.kubernetes.io/name: sas-risk-cirrus-app
+    sas.com/admin: namespace
+  name: sas-risk-cirrus-app
+spec:
+  gateways:
+  - public-gateway
+  hosts:
+  - '*'
+  http:
+  - match:
+    - uri:
+        exact: /SASRiskCirrus
+    - uri:
+        prefix: /SASRiskCirrus/
+    route:
+    - destination:
+        host: sas-risk-cirrus-app
+    timeout: 300s
+

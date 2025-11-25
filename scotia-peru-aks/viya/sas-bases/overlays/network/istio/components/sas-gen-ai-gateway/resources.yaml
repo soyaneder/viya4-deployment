@@ -1,0 +1,41 @@
+---
+apiVersion: networking.istio.io/v1alpha3
+kind: DestinationRule
+metadata:
+  name: sas-gen-ai-gateway
+spec:
+  host: sas-gen-ai-gateway
+  trafficPolicy:
+    loadBalancer:
+      consistentHash:
+        httpCookie:
+          name: sas-ingress-istio
+          path: /genAiGateway/
+          ttl: 0s
+
+---
+apiVersion: networking.istio.io/v1alpha3
+kind: VirtualService
+metadata:
+  annotations:
+    sas.com/kustomize-base: base
+  labels:
+    app.kubernetes.io/name: sas-gen-ai-gateway
+    sas.com/admin: namespace
+  name: sas-gen-ai-gateway
+spec:
+  gateways:
+  - public-gateway
+  hosts:
+  - '*'
+  http:
+  - match:
+    - uri:
+        exact: /genAiGateway
+    - uri:
+        prefix: /genAiGateway/
+    route:
+    - destination:
+        host: sas-gen-ai-gateway
+    timeout: 300s
+

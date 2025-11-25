@@ -1,0 +1,10 @@
+apiVersion: builtin
+kind: ConfigMapGenerator
+metadata:
+  name: sas-certframe-user-config
+behavior: merge
+literals:
+- SAS_CERTIFICATE_DURATION="730"
+- SAS_CERTIFICATE_ADDITIONAL_SAN_DNS=
+- SAS_CERTIFICATE_ADDITIONAL_SAN_IP=
+- SAS_CERTIFICATE_GENERATOR=openssl

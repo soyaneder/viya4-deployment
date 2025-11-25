@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta http-equiv="content-type" content="text/html; charset=utf-8">
+        <link rel="stylesheet" type="text/css" href="sas.css"/>
+        <title>Quality Knowledge Base for the SAS Viya Platform</title>
+    </head>
+    <body>
+        <h1 id="139729114303168quality-knowledge-base-for-the-sas-viya-platform">Quality Knowledge Base for the SAS Viya Platform</h1>
+<h2 id="139729114303168overview">Overview</h2>
+<p>The <code>$deploy/sas-bases/examples/data-quality/storagesize</code> directory contains
+resources for modifying the size of the persistent volume claim (PVC) used to
+store the Quality Knowledge Base (QKB) in the SAS Viya platform.</p>
+<h2 id="139729114303168installation">Installation</h2>
+<ol>
+<li>
+<p>Copy the file <code>sas-bases/examples/data-quality/storagesize/configuration.env</code>
+   to your <code>site-config/data-quality/storagesize</code> directory.</p>
+</li>
+<li>
+<p>Update the configuration.env to replace {{ QKB-STORAGE-SIZE }} with the
+   desired size for the QKB volume. The recommended size is 8Gi. Note that
+   allocating less than this may your ability to add new QKBs to the SAS Viya
+   platform. The minimum required is 1Gi.</p>
+</li>
+<li>
+<p>Update the base kustomization.yaml file (<code>$deploy/kustomization.yaml</code>) to
+   add the following entry to the <code>configMapGenerator</code> section:</p>
+<pre class="highlight"><code class="language-yaml">
+configMapGenerator:
+...
+- behavior: merge
+envs:
+- site-config/data-quality/storagesize/configuration.env
+name: sas-qkb-management-pvc-config
+...
+</code></pre>
+
+</li>
+<li>
+<p>Also update the base kustomization.yaml file (<code>$deploy/kustomization.yaml</code>)
+   to add the following entry to the <code>transformers</code> section:</p>
+<pre class="highlight"><code class="language-yaml">
+transformers:
+...
+- sas-bases/overlays/data-quality/storagesize/storage-size-transformer.yaml
+...
+</code></pre>
+
+</li>
+</ol>
+<h2 id="139729114303168additional-resources">Additional Resources</h2>
+<p>For more information about using example files, see the
+<a href="http://documentation.sas.com/?cdcId=itopscdc&amp;cdcVersion=default&amp;docsetId=dplyml0phy0dkr&amp;docsetTarget=titlepage.htm">SAS Viya Platform Deployment Guide</a></p>
+    </body>
+</html>

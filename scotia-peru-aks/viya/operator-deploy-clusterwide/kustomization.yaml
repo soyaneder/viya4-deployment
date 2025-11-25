@@ -1,0 +1,7 @@
+resources:
+- operator-base
+transformers:
+- site-config/transformer.yaml
+## Uncomment the following inclusion if you are deploying the
+## operator in clusterwide mode.
+- site-config/cluster-wide-transformer.yaml

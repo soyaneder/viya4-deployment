@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta http-equiv="content-type" content="text/html; charset=utf-8">
+        <link rel="stylesheet" type="text/css" href="sas.css"/>
+        <title>Configure Default Settings for SAS Risk Cirrus Builder Microservice</title>
+    </head>
+    <body>
+        <h1 id="139729115045840configure-default-settings-for-sas-risk-cirrus-builder-microservice">Configure Default Settings for SAS Risk Cirrus Builder Microservice</h1>
+<h2 id="139729115045840overview">Overview</h2>
+<p>SAS Risk Cirrus Builder Microservice is the Go service that backs the Solution Builder.
+The service manages the lifecycle of solutions and their customizations.</p>
+<p>By default, SAS Risk Cirrus Builder Microservice is deployed with some
+default settings. These settings can be overridden via the
+sas_risk_cirrus_builder_transform.yaml file. There is a template (in
+<code>$deploy/sas-bases/examples/sas-risk-cirrus-builder/resources</code>) that
+should be used as a starting point.</p>
+<p>There is no requirement to configure this transform.  Currently all fields in the transform are optional (with the default value documented here used as default if not supplied).</p>
+<p><strong>Note:</strong> For more information about the SAS Risk Cirrus Builder Microservice, see 
+<a href="https://go.documentation.sas.com/doc/en/cirruscdc/default/cirrusag/n0dswnd6mu8lkdn181uyij4dutln.htm">Introduction to SAS Risk Cirrus</a>
+in the <em>SAS Risk Cirrus: Administrator&rsquo;s Guide</em>.</p>
+<h2 id="139729115045840installation">Installation</h2>
+<ol>
+<li>Copy the files in <code>$deploy/sas-bases/examples/sas-risk-cirrus-builder/resources</code>
+   to the <code>$deploy/site-config/sas-risk-cirrus-builder/resources</code> directory. Create a
+   destination directory if one does not exist.</li>
+</ol>
+<p><strong>IMPORTANT:</strong> If the destination directory already exists, verify that the
+overlay default settings (#verify-overlay-default-settings) have been
+correctly applied. No further actions are required, unless you want to change
+the default settings to different values.</p>
+<ol>
+<li>
+<p>Modify the sas_risk_cirrus_builder_transform.yaml file (located in the
+   <code>$deploy/site-config/sas-risk-cirrus-builder/resources</code> directory) to specify your
+   settings as follows:</p>
+</li>
+<li>
+<p>For RISK_CIRRUS_UI_SAVE_ENABLED, replace {{ ENABLE-ARTIFACTS-SAVE }} with the desired value.
+  Use &lsquo;true&rsquo; to enable saving the UI artifacts in the solution builder UI. Use &lsquo;false&rsquo; to disable saving the UI artifacts.
+  <strong>Note:</strong> In &lsquo;production&rsquo; or &lsquo;test&rsquo; systems, this should be set to &lsquo;false&rsquo; so that the UI artifacts cannot be
+  accidentally updated in the configured repository.  Activation of existing commits will be allowed regardless of this value.
+  If not configured, the default is &lsquo;true&rsquo;</p>
+</li>
+<li>For DEFAULT_EMAIL_ADDRESS, replace {{ EMAIL-ADDRESS }} with the email address to use for connecting to git if the logged in user does not have an email address defined.  If not configured, the system will default to &lsquo;{logged in userid}@email.address.com&rsquo;</li>
+<li>For SAS_LOG_LEVEL_RISKCIRRUSBUILDER, replace {{ INFO-OR-DEBUG }} with the logging level desired.  If not configured, the default is &lsquo;INFO&rsquo;.</li>
+<li>For SAS_LOG_LEVEL_RISKCIRRUSCOMMONS, replace {{ INFO-OR-DEBUG }} with the logging level desired.  If not configured, the default is &lsquo;INFO&rsquo;.</li>
+<li>
+<p>For SAS_LOG_LEVEL, replace {{ INFO-OR-DEBUG }} with the logging level desired.  If not configured, the default is &lsquo;INFO&rsquo;.
+  <strong>Note:</strong> Setting this to DEBUG will result in the logging for all the other SAS Microservices that SAS Risk Cirrus Builder
+  communicates with, thereby increasing the size of the log.</p>
+</li>
+<li>
+<p>In the base kustomization.yaml file in the $deploy directory, add
+   site-config/risk-cirrus-builder/resources/sas_risk_cirrus_builder_transform.yaml to the transformers
+   block. Here is an example:</p>
+<pre class="highlight"><code class="language-yaml">transformers:
+  - site-config/risk-cirrus-builder/resources/sas_risk_cirrus_builder_transform.yaml</code></pre>
+
+</li>
+<li>
+<p>Complete the deployment steps to apply the new settings. See <a href="http://documentation.sas.com/?cdcId=itopscdc&amp;cdcVersion=default&amp;docsetId=dplyml0phy0dkr&amp;docsetTarget=p127f6y30iimr6n17x2xe9vlt54q.htm">Deploy the
+   Software</a>
+   in the <em>SAS Viya Platform: Deployment Guide</em>.</p>
+</li>
+</ol>
+<p><strong>Note:</strong> This overlay can be applied during the initial deployment of the SAS Viya platform.
+or after the deployment of the SAS Viya platform.</p>
+<ul>
+<li>If you are applying the overlay during the initial deployment of the SAS Viya platform,
+  complete all the tasks in the README files that you want to use, and then
+  run <code>kustomize build</code> to create and apply the manifests.</li>
+<li>If the overlay is applied after the initial deployment of the SAS Viya platform, run
+  <code>kustomize build</code> to create and apply the manifests.</li>
+</ul>
+<h2 id="139729115045840verify-overlay-default-settings">Verify Overlay Default Settings</h2>
+<ol>
+<li>
+<p>Run the following command to verify whether the overlay has been applied to
+   the configuration map:</p>
+<pre class="highlight"><code class="language-sh">kubectl -n &lt;name-of-namespace&gt; get configmap | grep sas-risk-cirrus-builder</code></pre>
+
+<p>The above will return the ConfigMap defined for sas-risk-cirrus-builder.
+ Here is an example:</p>
+<pre class="highlight"><code class="language-yaml">sas-risk-cirrus-builder-parameters-&lt;id&gt;                      9      6d19h</code></pre>
+
+</li>
+<li>
+<p>Execute the following:</p>
+<pre class="highlight"><code class="language-sh">kubectl describe configmap sas-risk-cirrus-builder-parameters-&lt;id&gt; -n
+&lt;name-of-namespace&gt;</code></pre>
+
+</li>
+<li>
+<p>Verify that the output contains the settings that you configured.</p>
+<pre class="highlight"><code class="language-yaml">Name:         sas-risk-cirrus-builder-parameters-&lt;id&gt;
+Namespace:    &lt;name-of-namespace&gt;
+Labels:       sas.com/admin=cluster-local
+               sas.com/deployment=sas-viya
+Annotations:  &lt;none&gt;
+
+Data
+====
+SAS_LOG_LEVEL_RISKCIRRUSBUILDER:
+----
+INFO
+SAS_LOG_LEVEL_RISKCIRRUSCOMMONS:
+----
+INFO
+RISK_CIRRUS_UI_SAVE_ENABLED:
+----
+true
+DEFAULT_EMAIL_ADDRESS:
+----
+admin@myhost.com</code></pre>
+
+</li>
+</ol>
+    </body>
+</html>

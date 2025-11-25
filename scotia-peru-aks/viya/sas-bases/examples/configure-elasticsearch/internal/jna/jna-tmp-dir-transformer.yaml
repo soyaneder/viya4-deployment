@@ -1,0 +1,22 @@
+apiVersion: builtin
+kind: PatchTransformer
+metadata:
+  name: sas-opendistro-jna-tmp-dir-transformer
+patch: |-
+  - op: add
+    path: /spec/template/spec/volumes/-
+    value:
+      name: jnatmpdir
+      emptyDir: 
+        medium: Memory
+        sizeLimit: 10Mi
+  - op: add
+    path: /spec/template/spec/containers/0/volumeMounts/-
+    value:
+      mountPath: /usr/share/elasticsearch/tmp
+      name: jnatmpdir
+  - op: add
+    path: /spec/config/jvm/-
+    value: -Djna.tmpdir=/usr/share/elasticsearch/tmp
+target:
+  kind: OpenDistroCluster

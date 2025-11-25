@@ -1,0 +1,10 @@
+kind: Kustomization
+
+resources:
+- ../crd
+- ../rbac/namespace
+- ../manager
+
+components:
+- ../../components/images-by-tag
+- ../../components/single-namespace

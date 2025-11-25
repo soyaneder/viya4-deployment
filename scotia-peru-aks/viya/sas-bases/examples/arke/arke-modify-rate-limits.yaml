@@ -1,0 +1,59 @@
+#
+# Setting Rate Limits
+#
+# The intent of rate limits is not to "limit" clients, but rather to protect
+# arke and rabbit from misconfigured services or poor network connections
+# that could result in excessive calls.
+#
+# These rate limits do not apply to sending and receiving messages, only to
+# the initial startup calls that all publishers and consumers make.
+#
+# If RATE_LIMIT_ENFORCED is set to "true," consider the following values
+# as reasonable starting points. Note that if you see log messages about
+# rate limited clients, you may need to adjust these values or determine if
+# there is issue causing excessive client calls.
+#
+# - RATE_LIMIT_BUCKET_SIZE: 100
+# - RATE_LIMIT_REFILL_SECONDS: 5
+# - RATE_LIMIT_MAX_AGE_STALE_CLIENTS: 600
+
+---
+apiVersion: builtin
+kind: PatchTransformer
+metadata:
+  name: arke-modify-rate-limits
+patch: |-
+
+  # whether or not rate limits are enforced at all, one of true or false (default)
+  - op: add
+    path: /spec/template/spec/containers/0/env/0
+    value:
+      name: RATE_LIMIT_ENFORCED
+      value: "{{ RATE_LIMIT_ENFORCED }}"
+
+  # number of requests allowed per refill interval
+  - op: add
+    path: /spec/template/spec/containers/0/env/0
+    value:
+      name: RATE_LIMIT_BUCKET_SIZE
+      value: "{{ RATE_LIMIT_BUCKET_SIZE }}"
+
+  # how often to replenish tokens (seconds)
+  - op: add
+    path: /spec/template/spec/containers/0/env/0
+    value:
+      name: RATE_LIMIT_REFILL_SECONDS
+      value: "{{ RATE_LIMIT_REFILL_SECONDS }}"
+
+  # how long (in seconds) to keep track of clients that have been idle. If a
+  # client has not made any calls in this time, it is considered stale and no
+  # longer tracked.
+  - op: add
+    path: /spec/template/spec/containers/0/env/0
+    value:
+      name: RATE_LIMIT_MAX_AGE_STALE_CLIENTS
+      value: "{{ RATE_LIMIT_MAX_AGE_STALE_CLIENTS }}"
+
+target:
+  kind: Deployment
+  name: sas-arke

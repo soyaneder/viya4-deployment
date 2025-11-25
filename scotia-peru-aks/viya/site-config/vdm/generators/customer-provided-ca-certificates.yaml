@@ -1,0 +1,7 @@
+apiVersion: builtin
+kind: ConfigMapGenerator
+metadata:
+  name: sas-customer-provided-ca-certificates
+behavior: merge
+files:
+  - cacerts1.pem=site-config/vdm/security/cacerts/.source
