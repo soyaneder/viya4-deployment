@@ -20,7 +20,7 @@ DB_NAME="scotia-peru-default-flexpsql"
 # 4. Tiempo de pausa entre comandos (en segundos)
 # Recomendación: 10-15 segundos es suficiente para limpiar el buffer de salida
 # ya que el comando de Azure por defecto espera a que la operación termine.
-TIEMPO_PAUSA=10
+TIEMPO_PAUSA=6
 
 # Función para mostrar barra de progreso
 barra_progreso () {
@@ -63,7 +63,7 @@ echo "Iniciando secuencia de apagado de ambiente SAS Viya..."
 echo "------------------------------------------------------"
 
 kubectl create job sas-stop-all-`date +%s` --from cronjobs/sas-stop-all -n viya
-barra_progreso $TIEMPO_PAUSA*12
+barra_progreso $TIEMPO_PAUSA*10*2
 
 echo "------------------------------------------------------"
 echo "Iniciando secuencia de apagado de recursos en Azure..."
@@ -85,11 +85,6 @@ echo "✅ VM desasignada correctamente."
 
 echo "⏸️ Pausando por $TIEMPO_PAUSA segundos..."
 barra_progreso $TIEMPO_PAUSA
-
-# 3. Apagar PostgreSQL Flexible Server
-echo "⏳ [3/3] Deteniendo servidor PostgreSQL Flexible: $DB_NAME..."
-az postgres flexible-server stop --resource-group $DB_RESOURCE_GROUP --name $DB_NAME --output none
-echo "✅ Base de datos detenida correctamente."
 
 echo "-----------------------------------------------------"
 echo "🎉 Todos los recursos han sido apagados exitosamente."

@@ -3,6 +3,6 @@ kind: ConfigMap
 metadata:
   name: sas-deployment-buildinfo
 data:
-  git-hash: "b8e7a5641b4daf403dca8087a08e404f45127cb1"
-  timestamp: "2025-11-25T15:55:16Z"
+  git-hash: "78aa52335a9533972f431774c5a30c02d0d4ae6a"
+  timestamp: "2025-11-26T01:55:19Z"
   deployment-tooling: "ansible"

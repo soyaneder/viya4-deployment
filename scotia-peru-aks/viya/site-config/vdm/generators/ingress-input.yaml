@@ -5,4 +5,4 @@ metadata:
   name: ingress-input
 behavior: merge
 literals:
-  - INGRESS_HOST=SCO-PE-SAS-PRD.intanis-cloud.net
+  - INGRESS_HOST=sco-pe-sas-prd.intanis-cloud.net

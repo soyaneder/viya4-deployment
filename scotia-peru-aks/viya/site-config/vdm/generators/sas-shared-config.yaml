@@ -5,4 +5,4 @@ metadata:
   name: sas-shared-config
 behavior: merge
 literals:
-  - SAS_SERVICES_URL=https://SCO-PE-SAS-PRD.intanis-cloud.net:443
+  - SAS_SERVICES_URL=https://sco-pe-sas-prd.intanis-cloud.net:443
