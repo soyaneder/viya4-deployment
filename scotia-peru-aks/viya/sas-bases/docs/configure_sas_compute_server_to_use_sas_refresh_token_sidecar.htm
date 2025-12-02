@@ -6,8 +6,8 @@
         <title>Configure SAS Compute Server to Use SAS Refresh Token Sidecar</title>
     </head>
     <body>
-        <h1 id="139729114398144configure-sas-compute-server-to-use-sas-refresh-token-sidecar">Configure SAS Compute Server to Use SAS Refresh Token Sidecar</h1>
-<h2 id="139729114398144overview">Overview</h2>
+        <h1 id="139641630032080configure-sas-compute-server-to-use-sas-refresh-token-sidecar">Configure SAS Compute Server to Use SAS Refresh Token Sidecar</h1>
+<h2 id="139641630032080overview">Overview</h2>
 <p>The SAS Compute server provides the ability to execute SAS Refresh Token, 
 which by use of a sidecar works as a silent partner to the main container,
 refreshing the client token as needed. Using the sidecar is valuable for 
@@ -16,12 +16,12 @@ which in turn inhibits the successful completion of such tasks. The sidecar
 seamlessly refreshes the token so that these tasks can continue running unimpeded.</p>
 <p>The SAS Refresh Token facility is disabled by default.  This README file describes how to
 customize your SAS Viya platform deployment to allow SAS Compute server to run the SAS Refresh Token sidecar.</p>
-<h2 id="139729114398144installation">Installation</h2>
+<h2 id="139641630032080installation">Installation</h2>
 <p>Enable the ability for the pod where the SAS Compute
 server is running to run SAS Refresh Token. SAS Refresh Token starts when the SAS
 Compute server is started. It exists for the life of
 the SAS Compute server.</p>
-<h3 id="139729114398144enable-sas-refresh-token-in-the-sas-compute-server">Enable SAS Refresh Token in the SAS Compute Server</h3>
+<h3 id="139641630032080enable-sas-refresh-token-in-the-sas-compute-server">Enable SAS Refresh Token in the SAS Compute Server</h3>
 <p>SAS has provided an overlay to enable SAS Refresh Token in your environment.</p>
 <p>To use the overlay:</p>
 <ol>
@@ -44,7 +44,7 @@ transformers:
 <a href="http://documentation.sas.com/?cdcId=itopscdc&amp;cdcVersion=default&amp;docsetId=dplyml0phy0dkr&amp;docsetTarget=titlepage.htm">SAS Viya Platform: Deployment Guide</a>.</p>
 </li>
 </ol>
-<h3 id="139729114398144disable-sas-refresh-token-in-the-sas-compute-server">Disable SAS Refresh Token in the SAS Compute Server</h3>
+<h3 id="139641630032080disable-sas-refresh-token-in-the-sas-compute-server">Disable SAS Refresh Token in the SAS Compute Server</h3>
 <p>To disable SAS Refresh Token:</p>
 <ol>
 <li>

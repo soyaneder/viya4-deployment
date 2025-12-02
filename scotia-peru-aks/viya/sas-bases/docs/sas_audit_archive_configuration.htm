@@ -6,11 +6,11 @@
         <title>SAS Audit Archive Configuration</title>
     </head>
     <body>
-        <h1 id="139729114671280sas-audit-archive-configuration">SAS Audit Archive Configuration</h1>
-<h2 id="139729114671280overview">Overview</h2>
+        <h1 id="139641629952752sas-audit-archive-configuration">SAS Audit Archive Configuration</h1>
+<h2 id="139641629952752overview">Overview</h2>
 <p>The SAS Audit service can be configured to periodically archive audit records to file. If this feature is enabled, then a PersistentVolumeClaim must be created as the output location for these archive files.</p>
 <p><strong>Note:</strong> Because this task requires the SAS Environment Manager, it can only be performed after a successful deployment.</p>
-<h2 id="139729114671280prerequisites">Prerequisites</h2>
+<h2 id="139641629952752prerequisites">Prerequisites</h2>
 <p>Archiving is disabled by default, so you must enable the feature to use it.
 As an administrator, open the Audit service configuration in SAS Environment Manager and change the following settings to the specified values.</p>
 <table>
@@ -27,10 +27,10 @@ As an administrator, open the Audit service configuration in SAS Environment Man
 </tr>
 </tbody>
 </table>
-<h2 id="139729114671280installation">Installation</h2>
-<h3 id="139729114671280copy-the-example-files">Copy the Example Files</h3>
+<h2 id="139641629952752installation">Installation</h2>
+<h3 id="139641629952752copy-the-example-files">Copy the Example Files</h3>
 <p>Copy all of the files in <code>$deploy/sas-bases/examples/sas-audit/archive</code> to <code>$deploy/site-config/sas-audit</code>, where $deploy is the directory containing your SAS Viya platform installation files. Create the target directory, if it does not already exist.</p>
-<h3 id="139729114671280update-the-resourcesyaml-file">Update the resources.yaml File</h3>
+<h3 id="139641629952752update-the-resourcesyaml-file">Update the resources.yaml File</h3>
 <p>Edit the resources.yaml file to replace the following parameters with the appropriate values.</p>
 <table>
 <thead>
@@ -53,7 +53,7 @@ As an administrator, open the Audit service configuration in SAS Environment Man
 </tr>
 </tbody>
 </table>
-<h3 id="139729114671280update-the-base-kustomizationyaml-file">Update the Base kustomization.yaml File</h3>
+<h3 id="139641629952752update-the-base-kustomizationyaml-file">Update the Base kustomization.yaml File</h3>
 <p>After updating the example files, you should add references to them to the base kustomization.yaml file (<code>$deploy/kustomization.yaml</code>).
 * Add a reference to the resources.yaml file to the resources block.
 * Add a reference to the archive-transformer.yaml file to the transformers block.</p>
@@ -65,7 +65,7 @@ similar to the following:</p>
 transformers:
 - site-config/sas-audit/archive-transformer.yaml</code></pre>
 
-<h3 id="139729114671280build-and-apply-the-manifest">Build and Apply the Manifest</h3>
+<h3 id="139641629952752build-and-apply-the-manifest">Build and Apply the Manifest</h3>
 <p>As an administrator with cluster permissions, apply the edited files to your deployment by performing the steps described in <a href="https://documentation.sas.com/?cdcId=sasadmincdc&amp;cdcVersion=default&amp;docsetId=dplyml0phy0dkr&amp;docsetTarget=n1f2q6pp0gjheqn1jl204vptrubs.htm">Modify Existing Customizations in a Deployment</a>.</p>
 <blockquote>
 <p><strong>Note:</strong> Audit service persistentvolumeclaim data does not participate in the SAS Viya platform backup and restore procedure. Therefore it contains archived data that is never restored to the SAS Viya platform system. As a result, when audit archiving is performed, SAS recommends that the cluster administrator take a backup of the audit archive data and keep that data at a secure location. Steps for backup can be found at $deploy/sas-bases/examples/sas-audit/backup/README.md</p>

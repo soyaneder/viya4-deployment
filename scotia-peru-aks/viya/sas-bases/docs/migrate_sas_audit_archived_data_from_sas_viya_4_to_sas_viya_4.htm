@@ -6,11 +6,11 @@
         <title>Migrate SAS Audit Archived Data from SAS Viya 4 To SAS Viya 4</title>
     </head>
     <body>
-        <h1 id="139729115044832migrate-sas-audit-archived-data-from-sas-viya-4-to-sas-viya-4">Migrate SAS Audit Archived Data from SAS Viya 4 To SAS Viya 4</h1>
-<h2 id="139729115044832overview">Overview</h2>
+        <h1 id="139641630323664migrate-sas-audit-archived-data-from-sas-viya-4-to-sas-viya-4">Migrate SAS Audit Archived Data from SAS Viya 4 To SAS Viya 4</h1>
+<h2 id="139641630323664overview">Overview</h2>
 <p>Archived data from the audit process is stored in a persistent volume (PV). Audit and activity data are stored separately.</p>
 <p>Audit service PVC data does not participate in the SAS Viya platform backup and restore procedure. Therefore, it contains archived data that is never restored to the SAS Viya platform system. As a result, when audit archiving is performed, SAS recommends that the cluster administrator take a backup of the audit archive data and keep that data at a secure location.</p>
-<h2 id="139729115044832prerequisites">Prerequisites</h2>
+<h2 id="139641630323664prerequisites">Prerequisites</h2>
 <ol>
 <li>
 <p>The audit service should be running on both source and target environments and should have the PV attached.</p>
@@ -22,7 +22,7 @@
 <p>You should follow the steps described in <a href="https://go.documentation.sas.com/doc/en/itopscdc/default/itopssr/n0ampbltwqgkjkn1j3qogztsbbu0.htm">Hardware and Resource Requirements</a> page, especially section <a href="https://go.documentation.sas.com/doc/en/itopscdc/default/itopssr/n0ampbltwqgkjkn1j3qogztsbbu0.htm#n1egh9hqndi6lin13w58nozc7vco">Persistent Storage Volumes, PersistentVolumeClaims, and Storage Classes</a>.</p>
 </li>
 </ol>
-<h3 id="139729115044832best-practices-for-performing-manual-backup">Best Practices for Performing Manual Backup</h3>
+<h3 id="139641630323664best-practices-for-performing-manual-backup">Best Practices for Performing Manual Backup</h3>
 <ol>
 <li>
 <p>Take frequent backups of audit archived data during off-peak hours. The frequency of backups should be determined by the frequency of archiving defined by your organization.</p>
@@ -34,7 +34,7 @@
 <p>The time required to copy the archived audit data contents varies based on the size of the data, the disk I/O rate of the system, and the type of file system that you are using.</p>
 </li>
 </ol>
-<h2 id="139729115044832migrate-archived-audit-data-from-source-sas-viya-4-environment-to-target-sas-viya-4-environment">Migrate Archived Audit Data from Source SAS Viya 4 Environment to Target SAS Viya 4 Environment</h2>
+<h2 id="139641630323664migrate-archived-audit-data-from-source-sas-viya-4-environment-to-target-sas-viya-4-environment">Migrate Archived Audit Data from Source SAS Viya 4 Environment to Target SAS Viya 4 Environment</h2>
 <p>The following steps use a generic method (tar and kubectl exec) and an Audit service pod to copy data between environments. The steps in this generic method are not specific to any one cloud provider. You might follow a slightly different set of steps depending on what type of storage you are using for your data.</p>
 <ol>
 <li>

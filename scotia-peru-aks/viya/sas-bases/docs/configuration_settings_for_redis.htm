@@ -6,15 +6,15 @@
         <title>Configuration Settings for Redis</title>
     </head>
     <body>
-        <h1 id="139729115396848configuration-settings-for-redis">Configuration Settings for Redis</h1>
-<h2 id="139729115396848overview">Overview</h2>
+        <h1 id="139641630675776configuration-settings-for-redis">Configuration Settings for Redis</h1>
+<h2 id="139641630675776overview">Overview</h2>
 <p>Redis is used as a distributed cache for SAS Viya platform services. This README
 file describes the settings available for deploying Redis.</p>
-<h2 id="139729115396848installation">Installation</h2>
+<h2 id="139641630675776installation">Installation</h2>
 <p>The configuration files are located at <code>$deploy/sas-bases/examples/redis/server</code>.
 The following sections describe the configuration files and how to use them in
 your SAS Viya platform deployment.</p>
-<h3 id="139729115396848change-memory-resources">Change Memory Resources</h3>
+<h3 id="139641630675776change-memory-resources">Change Memory Resources</h3>
 <p>The <code>redis-modify-memory.yaml</code> transformer file allows you to change the memory
 resources for Redis nodes. The default required value is 90Mi, and the default
 limit is 500Mi. The Redis &lsquo;maxmemory&rsquo; setting is set to 90% of the container
@@ -39,7 +39,7 @@ example:</p>
 
 </li>
 </ol>
-<h3 id="139729115396848modify-persistentvolumeclaim-or-storageclass">Modify PersistentVolumeClaim or StorageClass</h3>
+<h3 id="139641630675776modify-persistentvolumeclaim-or-storageclass">Modify PersistentVolumeClaim or StorageClass</h3>
 <p>The redis-modify-pvc.yaml transformer file allows you to modify the
 PersistentVolumeClaim (PVC) size or the StorageClass for nodes.</p>
 <p><strong>Note:</strong> For existing deployments, you must delete the Redis StatefulSet and PVCs

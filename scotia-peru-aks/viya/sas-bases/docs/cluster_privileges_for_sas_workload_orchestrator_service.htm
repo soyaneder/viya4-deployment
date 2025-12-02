@@ -6,8 +6,8 @@
         <title>Cluster Privileges for SAS Workload Orchestrator Service</title>
     </head>
     <body>
-        <h1 id="139729114669792cluster-privileges-for-sas-workload-orchestrator-service">Cluster Privileges for SAS Workload Orchestrator Service</h1>
-<h2 id="139729114669792overview">Overview</h2>
+        <h1 id="139641630727184cluster-privileges-for-sas-workload-orchestrator-service">Cluster Privileges for SAS Workload Orchestrator Service</h1>
+<h2 id="139641630727184overview">Overview</h2>
 <p>SAS Workload Orchestrator Service is an advanced scheduler that integrates with SAS Launcher. SAS recommends adding this overlay to allow
 the SAS Workload Orchestrator service account to retrieve the following node and pod information so that your deployment will run optimally.</p>
 <ul>
@@ -59,15 +59,15 @@ the SAS Workload Orchestrator service account to retrieve the following node and
 </li>
 </ul>
 <p>Without the ability to get node labels as host properties, SAS Workload Orchestrator cannot allocate a new node from the correct node pool when a pod triggers a scale-up. As stated above, SAS Workload Orchestrator uses the host properties (that is, node labels) of the host type to be scaled to create the scaling pod&rsquo;s nodeAffinity information. Without the host properties, the only label in the nodeAffinity section will be &lsquo;workload.sas.com/class=compute&rsquo;. If you have only one deployment in a cluster and only one scalable node pool for the deployment, this is not a problem. If you have multiple deployments and each deployment has a scalable host type or multiple scalable host types, this is a problem because the node information cannot be accessed.</p>
-<h2 id="139729114669792instructions">Instructions</h2>
-<h3 id="139729114669792enable-the-clusterrole">Enable the ClusterRole</h3>
+<h2 id="139641630727184instructions">Instructions</h2>
+<h3 id="139641630727184enable-the-clusterrole">Enable the ClusterRole</h3>
 <p>The ClusterRole and ClusterRoleBinding are enabled by adding the file to the resources block of the base kustomization.yaml file
 (<code>$deploy/kustomization.yaml</code>). Here is an example:</p>
 <pre class="highlight"><code class="language-yaml">resources:
 ...
 - sas-bases/overlays/sas-workload-orchestrator</code></pre>
 
-<h3 id="139729114669792disable-the-clusterrole">Disable the ClusterRole</h3>
+<h3 id="139641630727184disable-the-clusterrole">Disable the ClusterRole</h3>
 <p>To disable the ClusterRole and ClusterRoleBinding:</p>
 <ol>
 <li>
@@ -86,7 +86,7 @@ ClusterRole option will not be applied in future Kustomize builds.</p>
 
 </li>
 </ol>
-<h2 id="139729114669792build">Build</h2>
+<h2 id="139641630727184build">Build</h2>
 <p>After you configure Kustomize, continue your SAS Viya platform deployment as documented.</p>
     </body>
 </html>

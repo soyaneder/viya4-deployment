@@ -6,21 +6,21 @@
         <title>Configure Git for SAS Model Publish Service</title>
     </head>
     <body>
-        <h1 id="139729114356992configure-git-for-sas-model-publish-service">Configure Git for SAS Model Publish Service</h1>
-<h2 id="139729114356992overview">Overview</h2>
+        <h1 id="139641629794064configure-git-for-sas-model-publish-service">Configure Git for SAS Model Publish Service</h1>
+<h2 id="139641629794064overview">Overview</h2>
 <p>The Model Publish service uses the sas-model-publish-git dedicated
 PersistentVolume Claim (PVC) as a workspace. When a user publishes a model to a
 Git destination, sas-model-publish creates a local repository under
 /models/git/publish/, which is then mounted from the sas-model-publish-git PVC
 in the start-up process.</p>
-<h2 id="139729114356992installation">Installation</h2>
+<h2 id="139641629794064installation">Installation</h2>
 <ol>
 <li>
 <p>Copy the files in the <code>$deploy/sas-bases/examples/sas-model-publish/git</code>
    directory to the <code>$deploy/site-config/sas-model-publish/git</code> directory.
    Create the target directory, if it does not already exist.</p>
 <p><strong>Note:</strong> If the destination directory already exists,
- <a href="#139729114356992verify-overlays">verify that the overlays</a> have been
+ <a href="#139641629794064verify-overlays">verify that the overlays</a> have been
  applied. If the output contains the /models/git/ mount directory path, you do
  not need to take any further actions, unless you want to override the defaults.</p>
 </li>
@@ -79,7 +79,7 @@ transformers:
 </ul>
 </li>
 </ol>
-<h2 id="139729114356992verify-overlays">Verify Overlays</h2>
+<h2 id="139641629794064verify-overlays">Verify Overlays</h2>
 <ol>
 <li>
 <p>Run the following command to verify whether the overlays have been applied:</p>
@@ -92,7 +92,7 @@ transformers:
 
 </li>
 </ol>
-<h2 id="139729114356992additional-resources">Additional Resources</h2>
+<h2 id="139641629794064additional-resources">Additional Resources</h2>
 <ul>
 <li><a href="http://documentation.sas.com/?cdcId=itopscdc&amp;cdcVersion=default&amp;docsetId=dplyml0phy0dkr&amp;docsetTarget=titlepage.htm">SAS Viya Platform: Deployment Guide</a></li>
 <li><a href="https://kubernetes.io/docs/concepts/storage/persistent-volumes/#persistentvolumeclaims">Persistent Volume Claims on Kubernetes</a></li>

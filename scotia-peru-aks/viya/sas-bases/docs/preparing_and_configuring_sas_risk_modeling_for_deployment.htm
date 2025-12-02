@@ -6,8 +6,8 @@
         <title>Preparing and Configuring SAS Risk Modeling for Deployment</title>
     </head>
     <body>
-        <h1 id="139729114174944preparing-and-configuring-sas-risk-modeling-for-deployment">Preparing and Configuring SAS Risk Modeling for Deployment</h1>
-<h2 id="139729114174944prerequisites">Prerequisites</h2>
+        <h1 id="139641628818976preparing-and-configuring-sas-risk-modeling-for-deployment">Preparing and Configuring SAS Risk Modeling for Deployment</h1>
+<h2 id="139641628818976prerequisites">Prerequisites</h2>
 <p>When SAS Risk Modeling is deployed, its content is integrated with the SAS Risk
 Cirrus platform. The platform includes a common layer, Cirrus Core, that is used
 by multiple solutions. Therefore, in order to deploy the SAS Risk Modeling
@@ -21,7 +21,7 @@ format) or
 <p>The Risk Cirrus Core README also contains information about storage options, such as external databases, for your solution. You must complete the pre-deployment described in the Risk Cirrus Core README before deploying SAS Risk Modeling. Please read that document for important information about the deployment tasks that should be completed prior to deploying SAS Risk Modeling.</p>
 <p><strong>IMPORTANT:</strong> You must complete the step <code>Modify the Configuration for Risk Cirrus Core</code>. Because SAS Risk Modeling uses workflow service tasks, a user account must be configured for a workflow client. If you know which user account you want to use and want to configure it during installation, set the <code>SAS_RISK_CIRRUS_SET_WORKFLOW_SERVICE_ACCOUNT_FLG</code> variable to &ldquo;Y&rdquo; and specify the user account in the value of the <code>SAS_RISK_CIRRUS_WORKFLOW_DEFAULT_SERVICE_ACCOUNT</code> variable.</p>
 <p>For more information about deploying Risk Cirrus Core, you can also read <a href="https://documentation.sas.com/?cdcId=cirruscdc&amp;cdcVersion=default&amp;docsetId=cirrusag&amp;docsetTarget=n0epbo3xtwa3o2n1g13zjxezgmgn.htm">Deployment Tasks</a> in the <em>SAS Risk Cirrus: Administrator&rsquo;s Guide</em>.</p>
-<h2 id="139729114174944installation">Installation</h2>
+<h2 id="139641628818976installation">Installation</h2>
 <ol>
 <li>
 <p>If you have a <code>$deploy/site-config/sas-risk-cirrus-rm/resources</code> directory, delete it and its contents. Remove the reference to this directory from the transformers section of your base <code>kustomization.yaml</code> file (<code>$deploy/kustomization.yaml</code>). This step should only be necessary if you are upgrading from a cadence prior to 2025.02.</p>
@@ -30,7 +30,7 @@ format) or
 <p>Copy the files in
     <code>$deploy/sas-bases/examples/sas-risk-cirrus-rm</code> to the
     <code>$deploy/site-config/sas-risk-cirrus-rm</code> directory. Create a destination directory if one does not exist.
-    <br><br> <strong>IMPORTANT:</strong> If the destination directory already exists, confirm it contains the <code>.env</code> file, not the <code>rm_transform.yaml</code> file that was used for cadences prior to 2025.02. If the directory already exists, and it has the <code>.env</code> file, then <a href="#139729114174944verify-overlay-connection-settings-applied-successfully">verify that the overlay connection settings</a> have been applied correctly. No further actions are required unless you want to change the connection settings to different values.</p>
+    <br><br> <strong>IMPORTANT:</strong> If the destination directory already exists, confirm it contains the <code>.env</code> file, not the <code>rm_transform.yaml</code> file that was used for cadences prior to 2025.02. If the directory already exists, and it has the <code>.env</code> file, then <a href="#139641628818976verify-overlay-connection-settings-applied-successfully">verify that the overlay connection settings</a> have been applied correctly. No further actions are required unless you want to change the connection settings to different values.</p>
 </li>
 <li>
 <p>Modify the <code>configuration.env</code> file (located in the <code>$deploy/site-config/sas-risk-cirrus-rm</code> directory). Lines with a <code>#</code> at the beginning are commented out; their values will not be applied during deployment. To override a default provided by SAS for a given variable, uncomment the line by removing the <code>#</code> at the beginning of the line and modify as explained in the following section. Specify, if needed, your settings as follows:</p>
@@ -58,7 +58,7 @@ SAS_RISK_CIRRUS_DEPLOYER_INCLUDE_SAMPLES=N
 
 </li>
 </ol>
-<h2 id="139729114174944complete-the-deployment-process">Complete the Deployment Process</h2>
+<h2 id="139641628818976complete-the-deployment-process">Complete the Deployment Process</h2>
 <p>When you have finished configuring your deployment using the README files that are provided, complete the deployment steps to apply the new settings. The method by which the manifest is applied depends on what deployment method is being used. For more information, see <a href="http://documentation.sas.com/?cdcId=itopscdc&amp;cdcVersion=default&amp;docsetId=dplyml0phy0dkr&amp;docsetTarget=p127f6y30iimr6n17x2xe9vlt54q.htm">Deploy the Software</a> in the <em>SAS Viya Platform: Deployment Guide</em>.</p>
 <p><strong>Note:</strong> The <code>.env</code> overlay can be applied during or after the initial deployment of the SAS Viya platform.</p>
 <ul>
@@ -67,7 +67,7 @@ SAS_RISK_CIRRUS_DEPLOYER_INCLUDE_SAMPLES=N
 <li>If the overlay is applied <em>after the initial deployment</em> of the SAS Viya platform, run
   <code>kustomize build</code> to create and apply the manifests.</li>
 </ul>
-<h2 id="139729114174944verify-overlay-connection-settings-applied-successfully">Verify Overlay Connection Settings Applied Successfully</h2>
+<h2 id="139641628818976verify-overlay-connection-settings-applied-successfully">Verify Overlay Connection Settings Applied Successfully</h2>
 <p>Before verifying the settings for SAS Risk Modeling solution, you should first verify Risk Cirrus Core&rsquo;s settings. Those instructions can be found in the Risk Cirrus Core README. To verify the settings for SAS Risk Modeling, do the following:</p>
 <ol>
 <li>
@@ -79,7 +79,7 @@ SAS_RISK_CIRRUS_DEPLOYER_INCLUDE_SAMPLES=N
 <p>Verify that the output contains the desired connection settings that you configured.</p>
 </li>
 </ol>
-<h2 id="139729114174944additional-resources">Additional Resources</h2>
+<h2 id="139641628818976additional-resources">Additional Resources</h2>
 <ul>
 <li>For administration information for this solution, see
   <a href="https://go.documentation.sas.com/doc/en/riskmdlcdc/default/riskmdlag/titlepage.htm">SAS Risk Modeling: Administrator&rsquo;s Guide</a>.</li>

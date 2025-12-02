@@ -6,18 +6,18 @@
         <title>CAS Server for the SAS Viya Platform</title>
     </head>
     <body>
-        <h1 id="139729114754448cas-server-for-the-sas-viya-platform">CAS Server for the SAS Viya Platform</h1>
-<h2 id="139729114754448overview">Overview</h2>
+        <h1 id="139641629891552cas-server-for-the-sas-viya-platform">CAS Server for the SAS Viya Platform</h1>
+<h2 id="139641629891552overview">Overview</h2>
 <p>This directory contains files to Kustomize your SAS Viya platform deployment to use a multi-node
 SAS Cloud Analytic Services (CAS) server, referred to as MPP.</p>
-<h2 id="139729114754448instructions">Instructions</h2>
-<h3 id="139729114754448edit-the-kustomizationyaml-file">Edit the kustomization.yaml File</h3>
+<h2 id="139641629891552instructions">Instructions</h2>
+<h3 id="139641629891552edit-the-kustomizationyaml-file">Edit the kustomization.yaml File</h3>
 <p>In order to add this CAS server to your deployment, add a reference to the <code>cas-server</code> overlay
 to the resources block of the base kustomization.yaml file (<code>$deploy/kustomization.yaml</code>).</p>
 <pre class="highlight"><code class="language-yaml">resources:
 - sas-bases/overlays/cas-server</code></pre>
 
-<h3 id="139729114754448modifying-the-number-of-cas-workers-mpp-only">Modifying the Number of CAS Workers (MPP Only)</h3>
+<h3 id="139641629891552modifying-the-number-of-cas-workers-mpp-only">Modifying the Number of CAS Workers (MPP Only)</h3>
 <p>On an MPP CAS Server, the number of workers helps determine the processing power
 of your cluster. The server is SMP by default which means there are no workers.
 The default number of workers in the cas-server overlay (0) can be modified by
@@ -25,7 +25,7 @@ using  the <code>cas-manage-workers.yaml</code> example located in the cas examp
 at <code>/$deploy/sas-bases/examples/cas/configure</code>. The number of workers cannot exceed
 the number of nodes in your k8s cluster, so ensure that you have enough resources
 to accommodate the value you choose.</p>
-<h3 id="139729114754448additional-modifications">Additional Modifications</h3>
+<h3 id="139641629891552additional-modifications">Additional Modifications</h3>
 <p>You can make modifications to the overlay through the use of
 Patch Transformers. Examples are located in <code>/$deploy/sas-bases/examples/cas/configure</code>,
 including how to add additional volume mounts and data connectors, modifying CAS
@@ -36,7 +36,7 @@ also be added to the transformers block of the base kustomization.yaml file:</p>
 - {{ PATCH-FILE-1 }}
 - {{ PATCH-FILE-2 }}</code></pre>
 
-<h3 id="139729114754448optional-cas-server-placement-configuration">Optional CAS Server Placement Configuration</h3>
+<h3 id="139641629891552optional-cas-server-placement-configuration">Optional CAS Server Placement Configuration</h3>
 <p>If you have an environment where there are untainted nodes, the Kubernetes
 scheduler may consider them candidates for the CAS Server. You can use
 an additional overlay to restrict the scheduling of the
@@ -67,7 +67,7 @@ transformers:
 - sas-bases/overlays/cas-server/require-cas-label-pools.yaml
 ...</code></pre>
 
-<h3 id="139729114754448cas-configuration-on-an-openshift-cluster">CAS Configuration on an OpenShift Cluster</h3>
+<h3 id="139641629891552cas-configuration-on-an-openshift-cluster">CAS Configuration on an OpenShift Cluster</h3>
 <p>The <code>/$deploy/sas-bases/examples/cas/configure</code> directory contains a file to
 grant Security Context Constraints for fsgroup 1001 on an OpenShift cluster. A
 Kubernetes cluster administrator should add these Security Context Constraints
@@ -89,7 +89,7 @@ oc -n {{ NAME-OF-NAMESPACE }} adm policy add-scc-to-user sas-cas-server-host -z 
 <p>Note: If you are enabling host launch, use the SecurityContexConstraint file
 cas-server-scc-host-launch.yaml instead of cas-server-scc.yaml. This file sets
 the correct capabilities and privilege escalation</p>
-<h3 id="139729114754448cas-auto-restart-during-version-updates">CAS Auto-Restart During Version Updates</h3>
+<h3 id="139641629891552cas-auto-restart-during-version-updates">CAS Auto-Restart During Version Updates</h3>
 <p>By default, CAS does not automatically restart during version updates performed
 by the SAS Viya Platform Deployment Operator. The default prevents the disruption of active
 CAS sessions so that tables do not need to be reloaded. This default behavior can be changed by
@@ -143,9 +143,9 @@ assumes the file was copied to the <code>$deploy/site-config/cas/configure</code
 </ol>
 <p><strong>Note:</strong> You cannot enable both CAS auto-restart and state transfer in the same SAS Viya platform deployment.</p>
 <p><strong>Note:</strong> Ideally this option should be set as a pre-deployment task. However, it can be applied to an already running CAS server, but that server must be manually restarted in order for the auto-restart option to be turned on.</p>
-<h2 id="139729114754448build">Build</h2>
+<h2 id="139641629891552build">Build</h2>
 <p>After you configure Kustomize, continue your SAS Viya platform deployment as documented.</p>
-<h2 id="139729114754448additional-resources">Additional Resources</h2>
+<h2 id="139641629891552additional-resources">Additional Resources</h2>
 <p>For more information about the difference between SMP and MPP CAS, see <a href="http://documentation.sas.com/?softwareId=mysas&amp;softwareVersion=prod&amp;docsetId=itopscon&amp;docsetTarget=n0tx1x9gu37i7qn1nuv8inwzrfet.htm&amp;locale=en#n0dj3c2j49krjhn1jho4z6daw5n1">What is the CAS Server, SMP, and MPP?</a>.</p>
     </body>
 </html>

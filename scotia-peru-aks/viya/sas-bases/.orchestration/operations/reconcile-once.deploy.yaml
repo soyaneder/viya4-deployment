@@ -3,7 +3,7 @@ kind: LifecycleOperation
 metadata:
   annotations:
     sas.com/component-name: sas-orchestration
-    sas.com/component-version: 1.147.0-20250903.1756922825568
+    sas.com/component-version: 1.147.1-20251124.1764004273016
   creationTimestamp: null
   name: reconcile-once.deploy
 spec:

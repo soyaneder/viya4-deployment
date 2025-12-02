@@ -6,11 +6,11 @@
         <title>Configuration Settings for Backup Using the SAS Viya Backup and Restore Utility</title>
     </head>
     <body>
-        <h1 id="139729115397664configuration-settings-for-backup-using-the-sas-viya-backup-and-restore-utility">Configuration Settings for Backup Using the SAS Viya Backup and Restore Utility</h1>
-<h2 id="139729115397664overview">Overview</h2>
+        <h1 id="139641630678992configuration-settings-for-backup-using-the-sas-viya-backup-and-restore-utility">Configuration Settings for Backup Using the SAS Viya Backup and Restore Utility</h1>
+<h2 id="139641630678992overview">Overview</h2>
 <p>This README describes how to revise and apply the settings for
 configuring backup jobs.</p>
-<h2 id="139729115397664change-the-storageclass-for-persistentvolumeclaims-used-for-storing-backups">Change the StorageClass for PersistentVolumeClaims Used for Storing Backups</h2>
+<h2 id="139641630678992change-the-storageclass-for-persistentvolumeclaims-used-for-storing-backups">Change the StorageClass for PersistentVolumeClaims Used for Storing Backups</h2>
 <p>If you want to retain the PersistentVolumeClaim (PVC) used for backup utility when the namespace is deleted,
 then use a StorageClass with a ReclaimPolicy of&rsquo;Retain&rsquo; as the backup PVC.</p>
 <ol>
@@ -39,7 +39,7 @@ transformers:
 <p>As an administrator with cluster permissions, apply the edited files to your deployment by performing the steps described in <a href="https://documentation.sas.com/?cdcId=sasadmincdc&amp;cdcVersion=default&amp;docsetId=dplyml0phy0dkr&amp;docsetTarget=n1f2q6pp0gjheqn1jl204vptrubs.htm">Modify Existing Customizations in a Deployment</a>.</p>
 </li>
 </ol>
-<h2 id="139729115397664change-the-storage-size-for-the-sas-common-backup-data-persistentvolumeclaim">Change the Storage Size for the <code>sas-common-backup-data</code> PersistentVolumeClaim</h2>
+<h2 id="139641630678992change-the-storage-size-for-the-sas-common-backup-data-persistentvolumeclaim">Change the Storage Size for the <code>sas-common-backup-data</code> PersistentVolumeClaim</h2>
 <ol>
 <li>
 <p>Copy the file <code>$deploy/sas-bases/examples/backup/configure/sas-common-backup-data-storage-size-transformer.yaml</code>
@@ -66,7 +66,7 @@ transformers:
 <p>As an administrator with cluster permissions, apply the edited files to your deployment by performing the steps described in <a href="https://documentation.sas.com/?cdcId=sasadmincdc&amp;cdcVersion=default&amp;docsetId=dplyml0phy0dkr&amp;docsetTarget=n1f2q6pp0gjheqn1jl204vptrubs.htm">Modify Existing Customizations in a Deployment</a>.</p>
 </li>
 </ol>
-<h2 id="139729115397664change-the-default-backup-schedule-to-a-custom-schedule">Change the Default Backup Schedule to a Custom Schedule</h2>
+<h2 id="139641630678992change-the-default-backup-schedule-to-a-custom-schedule">Change the Default Backup Schedule to a Custom Schedule</h2>
 <p>By default, the backup utility is run once per week on Sundays at 1:00 a.m. Use
 the following instructions to schedule a backup more suited to your resources.</p>
 <ol>
@@ -94,7 +94,7 @@ transformers:
 <p>As an administrator with cluster permissions, apply the edited files to your deployment by performing the steps described in <a href="https://documentation.sas.com/?cdcId=sasadmincdc&amp;cdcVersion=default&amp;docsetId=dplyml0phy0dkr&amp;docsetTarget=n1f2q6pp0gjheqn1jl204vptrubs.htm">Modify Existing Customizations in a Deployment</a>.</p>
 </li>
 </ol>
-<h2 id="139729115397664customize-the-default-incremental-backup-schedule">Customize the Default Incremental Backup Schedule</h2>
+<h2 id="139641630678992customize-the-default-incremental-backup-schedule">Customize the Default Incremental Backup Schedule</h2>
 <p>By default, the incremental backup is run daily at 6:00 a.m. Use the following instructions to change the schedule of this additional job to a time more suited to your resources.</p>
 <ol>
 <li>
@@ -121,7 +121,7 @@ transformers:
 <p>As an administrator with cluster permissions, apply the edited files to your deployment by performing the steps described in <a href="https://documentation.sas.com/?cdcId=sasadmincdc&amp;cdcVersion=default&amp;docsetId=dplyml0phy0dkr&amp;docsetTarget=n1f2q6pp0gjheqn1jl204vptrubs.htm">Modify Existing Customizations in a Deployment</a>.</p>
 </li>
 </ol>
-<h2 id="139729115397664change-the-default-schedule-to-back-up-all-sources-to-a-custom-schedule">Change the Default Schedule to Back Up All Sources to a Custom Schedule</h2>
+<h2 id="139641630678992change-the-default-schedule-to-back-up-all-sources-to-a-custom-schedule">Change the Default Schedule to Back Up All Sources to a Custom Schedule</h2>
 <p>By default, the additional job to back up all the data sources (including PostgreSQL) is suspended. When enabled, the job is scheduled to run once per week on Saturdays at 1:00 a.m by default.
 Use the following instructions to change the schedule of this additional job to a time more suited to your resources.
 This job should not be scheduled at the same time as <code>sas-scheduled-backup-job</code> or the <code>sas-scheduled-backup-incr-job</code>.</p>
@@ -150,7 +150,7 @@ transformers:
 <p>As an administrator with cluster permissions, apply the edited files to your deployment by performing the steps described in <a href="https://documentation.sas.com/?cdcId=sasadmincdc&amp;cdcVersion=default&amp;docsetId=dplyml0phy0dkr&amp;docsetTarget=n1f2q6pp0gjheqn1jl204vptrubs.htm">Modify Existing Customizations in a Deployment</a>.</p>
 </li>
 </ol>
-<h2 id="139729115397664modify-the-resources-for-the-backup-job">Modify the Resources for the Backup Job</h2>
+<h2 id="139641630678992modify-the-resources-for-the-backup-job">Modify the Resources for the Backup Job</h2>
 <p>If the default resources are not sufficient for the completion or successful execution of the backup job, modify the resources to the values you desire.</p>
 <ol>
 <li>
@@ -183,7 +183,7 @@ transformers:
 <p>As an administrator with cluster permissions, apply the edited files to your deployment by performing the steps described in <a href="https://documentation.sas.com/?cdcId=sasadmincdc&amp;cdcVersion=default&amp;docsetId=dplyml0phy0dkr&amp;docsetTarget=n1f2q6pp0gjheqn1jl204vptrubs.htm">Modify Existing Customizations in a Deployment</a>.</p>
 </li>
 </ol>
-<h2 id="139729115397664modify-the-resources-of-the-backup-copy-and-cleanup-job">Modify the Resources of the Backup Copy and Cleanup Job</h2>
+<h2 id="139641630678992modify-the-resources-of-the-backup-copy-and-cleanup-job">Modify the Resources of the Backup Copy and Cleanup Job</h2>
 <p>If the default resources are not sufficient for the completion or successful execution of the backup copy and cleanup job, modify the resources to the values you desire.</p>
 <ol>
 <li>
@@ -216,7 +216,7 @@ transformers:
 <p>As an administrator with cluster permissions, apply the edited files to your deployment by performing the steps described in <a href="https://documentation.sas.com/?cdcId=sasadmincdc&amp;cdcVersion=default&amp;docsetId=dplyml0phy0dkr&amp;docsetTarget=n1f2q6pp0gjheqn1jl204vptrubs.htm">Modify Existing Customizations in a Deployment</a>.</p>
 </li>
 </ol>
-<h2 id="139729115397664modify-the-resources-of-the-backup-agent-container-in-the-cas-controller-pod">Modify the Resources of the Backup Agent Container in the CAS Controller Pod</h2>
+<h2 id="139641630678992modify-the-resources-of-the-backup-agent-container-in-the-cas-controller-pod">Modify the Resources of the Backup Agent Container in the CAS Controller Pod</h2>
 <p>If the default resources are not sufficient for the completion or successful execution of the CAS controller pod,
 modify the resources of backup agent container of CAS controller pod to the values you desire.</p>
 <ol>
@@ -254,7 +254,7 @@ transformers:
 <p>As an administrator with cluster permissions, apply the edited files to your deployment by performing the steps described in <a href="https://documentation.sas.com/?cdcId=sasadmincdc&amp;cdcVersion=default&amp;docsetId=dplyml0phy0dkr&amp;docsetTarget=n1f2q6pp0gjheqn1jl204vptrubs.htm">Modify Existing Customizations in a Deployment</a>.</p>
 </li>
 </ol>
-<h2 id="139729115397664change-backup-job-timeout">Change Backup Job Timeout</h2>
+<h2 id="139641630678992change-backup-job-timeout">Change Backup Job Timeout</h2>
 <ol>
 <li>
 <p>If you need to change the backup job timeout value, add an entry to the sas-backup-job-parameters configMap in the configMapGenerator block of the base kustomization.yaml file (<code>$deploy/kustomization.yaml</code>).
@@ -272,7 +272,7 @@ The entry uses the following format, where {{ TIMEOUT-IN-MINUTES }} is an intege
 <p>As an administrator with cluster permissions, apply the edited files to your deployment by performing the steps described in <a href="https://documentation.sas.com/?cdcId=sasadmincdc&amp;cdcVersion=default&amp;docsetId=dplyml0phy0dkr&amp;docsetTarget=n1f2q6pp0gjheqn1jl204vptrubs.htm">Modify Existing Customizations in a Deployment</a>.</p>
 </li>
 </ol>
-<h2 id="139729115397664change-backup-retention-period">Change Backup Retention Period</h2>
+<h2 id="139641630678992change-backup-retention-period">Change Backup Retention Period</h2>
 <ol>
 <li>
 <p>If you need to change the backup retention period, add an entry to the sas-backup-job-parameters configMap in the configMapGenerator block of the base kustomization.yaml file (<code>$deploy/kustomization.yaml</code>).
@@ -290,7 +290,7 @@ The entry uses the following format, where {{ RETENTION-PERIOD-IN-DAYS }} is an 
 <p>As an administrator with cluster permissions, apply the edited files to your deployment by performing the steps described in <a href="https://documentation.sas.com/?cdcId=sasadmincdc&amp;cdcVersion=default&amp;docsetId=dplyml0phy0dkr&amp;docsetTarget=n1f2q6pp0gjheqn1jl204vptrubs.htm">Modify Existing Customizations in a Deployment</a>.</p>
 </li>
 </ol>
-<h2 id="139729115397664back-up-additional-consul-properties">Back Up Additional Consul Properties</h2>
+<h2 id="139641630678992back-up-additional-consul-properties">Back Up Additional Consul Properties</h2>
 <ol>
 <li>
 <p>If you want to back up additional consul properties, keys can be added to the sas-backup-agent-parameters configMap in the base kustomization.yaml file (<code>$deploy/kustomization.yaml</code>).
@@ -315,7 +315,7 @@ If the sas-backup-agent-parameters configMap is already included in your base ku
 <p>As an administrator with cluster permissions, apply the edited files to your deployment by performing the steps described in <a href="https://documentation.sas.com/?cdcId=sasadmincdc&amp;cdcVersion=default&amp;docsetId=dplyml0phy0dkr&amp;docsetTarget=n1f2q6pp0gjheqn1jl204vptrubs.htm">Modify Existing Customizations in a Deployment</a>.</p>
 </li>
 </ol>
-<h2 id="139729115397664exclude-specific-folders-and-files-during-file-system-backup">Exclude Specific Folders and Files During File System Backup</h2>
+<h2 id="139641630678992exclude-specific-folders-and-files-during-file-system-backup">Exclude Specific Folders and Files During File System Backup</h2>
 <ol>
 <li>
 <p>To exclude specific folders and files during file system backup, add an entry to the sas-backup-job-parameters configMap in the configMapGenerator block of the base kustomization.yaml file (<code>$deploy/kustomization.yaml</code>).
@@ -340,7 +340,7 @@ If the sas-backup-job-parameters configMap is already included in your base kust
 <p>As an administrator with cluster permissions, apply the edited files to your deployment by performing the steps described in <a href="https://documentation.sas.com/?cdcId=sasadmincdc&amp;cdcVersion=default&amp;docsetId=dplyml0phy0dkr&amp;docsetTarget=n1f2q6pp0gjheqn1jl204vptrubs.htm">Modify Existing Customizations in a Deployment</a>.</p>
 </li>
 </ol>
-<h2 id="139729115397664change-the-default-filter-to-exclude-specific-folders-and-files-during-file-system-backup">Change the Default Filter to Exclude Specific Folders and Files During File System Backup</h2>
+<h2 id="139641630678992change-the-default-filter-to-exclude-specific-folders-and-files-during-file-system-backup">Change the Default Filter to Exclude Specific Folders and Files During File System Backup</h2>
 <ol>
 <li>
 <p>By default, the filter list is set to exclude &ldquo;<em>.lck&rdquo;, &ldquo;.</em>&rdquo; and &ldquo;lost+found&rdquo; files and folders pattern from the file system backup. To change the default filter list to exclude files and folders
@@ -367,7 +367,7 @@ If the sas-backup-job-parameters configMap is already included in your base kust
 <p>As an administrator with cluster permissions, apply the edited files to your deployment by performing the steps described in <a href="https://documentation.sas.com/?cdcId=sasadmincdc&amp;cdcVersion=default&amp;docsetId=dplyml0phy0dkr&amp;docsetTarget=n1f2q6pp0gjheqn1jl204vptrubs.htm">Modify Existing Customizations in a Deployment</a>.</p>
 </li>
 </ol>
-<h2 id="139729115397664disable-backup-job-failure-notification">Disable Backup Job Failure Notification</h2>
+<h2 id="139641630678992disable-backup-job-failure-notification">Disable Backup Job Failure Notification</h2>
 <ol>
 <li>
 <p>By default, you are notified if the backup job fails. To disable backup job failure notification, add an entry to the sas-backup-job-parameters configMap in the configMapGenerator block of the base
@@ -386,7 +386,7 @@ kustomization.yaml file (<code>$deploy/kustomization.yaml</code>). Replace {{ EN
 <p>As an administrator with cluster permissions, apply the edited files to your deployment by performing the steps described in <a href="https://documentation.sas.com/?cdcId=sasadmincdc&amp;cdcVersion=default&amp;docsetId=dplyml0phy0dkr&amp;docsetTarget=n1f2q6pp0gjheqn1jl204vptrubs.htm">Modify Existing Customizations in a Deployment</a>.</p>
 </li>
 </ol>
-<h2 id="139729115397664include-or-exclude-all-registered-postgresql-servers-from-backup">Include or Exclude All Registered PostgreSQL Servers from Backup</h2>
+<h2 id="139641630678992include-or-exclude-all-registered-postgresql-servers-from-backup">Include or Exclude All Registered PostgreSQL Servers from Backup</h2>
 <ol>
 <li>
 <p>To include or exclude all Postgres servers registered with SAS Viya in the default back up, add the INCLUDE_POSTGRES variable to sas-backup-job-parameters configMap in the configMapGenerator
@@ -408,7 +408,7 @@ To exclude all the registered PostgreSQL servers, replace {{ INCLUDE-POSTGRES }}
 <p>As an administrator with cluster permissions, apply the edited files to your deployment by performing the steps described in <a href="https://documentation.sas.com/?cdcId=sasadmincdc&amp;cdcVersion=default&amp;docsetId=dplyml0phy0dkr&amp;docsetTarget=n1f2q6pp0gjheqn1jl204vptrubs.htm">Modify Existing Customizations in a Deployment</a>.</p>
 </li>
 </ol>
-<h2 id="139729115397664modify-the-fsgroup-resources-of-the-backup-and-restore-jobs">Modify the fsGroup Resources of the Backup and Restore Jobs</h2>
+<h2 id="139641630678992modify-the-fsgroup-resources-of-the-backup-and-restore-jobs">Modify the fsGroup Resources of the Backup and Restore Jobs</h2>
 <p>If using the default fsGroup settings does not result in the completion or successful execution of the backup job, modify the fsGroup resources to the values you desire.</p>
 <ol>
 <li>
@@ -436,13 +436,13 @@ transformers:
 <p>As an administrator with cluster permissions, apply the edited files to your deployment by performing the steps described in <a href="https://documentation.sas.com/?cdcId=sasadmincdc&amp;cdcVersion=default&amp;docsetId=dplyml0phy0dkr&amp;docsetTarget=n1f2q6pp0gjheqn1jl204vptrubs.htm">Modify Existing Customizations in a Deployment</a>.</p>
 </li>
 </ol>
-<h2 id="139729115397664disable-resource-validation">Disable Resource Validation</h2>
+<h2 id="139641630678992disable-resource-validation">Disable Resource Validation</h2>
 <p>By default, resources such as space available for a PVC are pre-validated against PVC capacity to store data for a backup job. You can disable the resource validations for backup job if necessary.</p>
-<h3 id="139729115397664disable-the-resource-validation-temporarily">Disable the resource validation temporarily</h3>
+<h3 id="139641630678992disable-the-resource-validation-temporarily">Disable the resource validation temporarily</h3>
 <p>Add an entry to the sas-backup-job-parameters configMap with the following command.</p>
 <pre class="highlight"><code class="language-bash">kubectl patch cm sas-backup-job-parameters-name -n name-of-namespace --type json -p '[{"op": "replace", "path": "/data/DISABLE_VALIDATION", "value":"true" }]'</code></pre>
 
-<h3 id="139729115397664disable-the-resource-validations-permanently">Disable the resource validations permanently</h3>
+<h3 id="139641630678992disable-the-resource-validations-permanently">Disable the resource validations permanently</h3>
 <ol>
 <li>
 <p>Add an entry to the sas-backup-job-parameters configMap in the configMapGenerator block of the base kustomization.yaml file.</p>
@@ -459,14 +459,14 @@ transformers:
 <p>As an administrator with cluster permissions, apply the edited files to your deployment by performing the steps described in <a href="https://documentation.sas.com/?cdcId=sasadmincdc&amp;cdcVersion=default&amp;docsetId=dplyml0phy0dkr&amp;docsetTarget=n1f2q6pp0gjheqn1jl204vptrubs.htm">Modify Existing Customizations in a Deployment</a>.</p>
 </li>
 </ol>
-<h2 id="139729115397664disable-proactive-notification">Disable Proactive Notification</h2>
+<h2 id="139641630678992disable-proactive-notification">Disable Proactive Notification</h2>
 <p>By default, resources such as space available for a PVC are pre-validated against PVC capacity to store data for a backup job and send a proactive notification.
 You can disable the proactive notification for resource validations for backup job if necessary.</p>
-<h3 id="139729115397664disable-the-proactive-notification-for-resource-validation-temporarily">Disable the proactive notification for resource validation temporarily</h3>
+<h3 id="139641630678992disable-the-proactive-notification-for-resource-validation-temporarily">Disable the proactive notification for resource validation temporarily</h3>
 <p>Add an entry to the sas-backup-job-parameters configMap with the following command.</p>
 <pre class="highlight"><code class="language-bash">kubectl patch cm sas-backup-job-parameters-name -n name-of-namespace --type json -p '[{"op": "replace", "path": "/data/DISABLE_PROACTIVE_NOTIFICATION", "value":"true" }]'</code></pre>
 
-<h3 id="139729115397664disable-the-proactive-notification-for-resource-validations-permanently">Disable the proactive notification for resource validations permanently</h3>
+<h3 id="139641630678992disable-the-proactive-notification-for-resource-validations-permanently">Disable the proactive notification for resource validations permanently</h3>
 <ol>
 <li>
 <p>Add an entry to the sas-backup-job-parameters configMap in the configMapGenerator block of the base kustomization.yaml file.</p>
@@ -483,13 +483,13 @@ You can disable the proactive notification for resource validations for backup j
 <p>As an administrator with cluster permissions, apply the edited files to your deployment by performing the steps described in <a href="https://documentation.sas.com/?cdcId=sasadmincdc&amp;cdcVersion=default&amp;docsetId=dplyml0phy0dkr&amp;docsetTarget=n1f2q6pp0gjheqn1jl204vptrubs.htm">Modify Existing Customizations in a Deployment</a>.</p>
 </li>
 </ol>
-<h2 id="139729115397664backup-progress">Backup Progress</h2>
+<h2 id="139641630678992backup-progress">Backup Progress</h2>
 <p>The backup progress feature provides real-time updates on the total estimated time for backup completion. This feature is enabled by default but can be disabled if users do not require progress tracking.</p>
-<h3 id="139729115397664disable-backup-progress-temporarily">Disable Backup Progress Temporarily</h3>
+<h3 id="139641630678992disable-backup-progress-temporarily">Disable Backup Progress Temporarily</h3>
 <p>Add an entry to the sas-backup-job-parameters configMap with the following command.</p>
 <pre class="highlight"><code class="language-bash">kubectl patch cm sas-backup-job-parameters-name -n name-of-namespace --type json -p '[{"op": "replace", "path": "/data/BACKUP_PROGRESS", "value":"false" }]'</code></pre>
 
-<h3 id="139729115397664disable-backup-progress-feature-permanently">Disable Backup Progress Feature Permanently</h3>
+<h3 id="139641630678992disable-backup-progress-feature-permanently">Disable Backup Progress Feature Permanently</h3>
 <ol>
 <li>
 <p>Add an entry to the sas-backup-job-parameters configMap in the configMapGenerator block of the base kustomization.yaml
@@ -508,7 +508,7 @@ You can disable the proactive notification for resource validations for backup j
  in <a href="https://documentation.sas.com/?cdcId=sasadmincdc&amp;cdcVersion=default&amp;docsetId=dplyml0phy0dkr&amp;docsetTarget=n1f2q6pp0gjheqn1jl204vptrubs.htm">Modify Existing Customizations in a Deployment</a>.</p>
 </li>
 </ol>
-<h2 id="139729115397664change-backup-progress-update-frequency">Change Backup Progress Update Frequency</h2>
+<h2 id="139641630678992change-backup-progress-update-frequency">Change Backup Progress Update Frequency</h2>
 <ol>
 <li>
 <p>To change the frequency of the updates on backup progress, add an entry to the sas-backup-job-parameters configMap within the configMapGenerator

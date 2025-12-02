@@ -6,11 +6,11 @@
         <title>Configure an Internal OpenSearch Instance for the SAS Viya Platform</title>
     </head>
     <body>
-        <h1 id="139729114197440configure-an-internal-opensearch-instance-for-the-sas-viya-platform">Configure an Internal OpenSearch Instance for the SAS Viya Platform</h1>
+        <h1 id="139641630290272configure-an-internal-opensearch-instance-for-the-sas-viya-platform">Configure an Internal OpenSearch Instance for the SAS Viya Platform</h1>
 <p><strong>Note:</strong> SAS terminology standards prohibit the use of the term &ldquo;master.&rdquo; However, this document refers to the term &ldquo;master node&rdquo; to maintain alignment with OpenSearch documentation.</p>
 <p><strong>Note:</strong> In previous releases, the SAS Viya platform included OpenDistro for Elasticsearch. Many Kubernetes resources keep the name OpenDistro for backwards compatiblity. </p>
 <p>This README file describes the files used to customize an internally managed instance of OpenSearch using the sas-opendistro operator provided by SAS. </p>
-<h2 id="139729114197440instructions">Instructions</h2>
+<h2 id="139641630290272instructions">Instructions</h2>
 <p>In order to use the internal search cluster instance, you must customize your
 deployment to point to the required overlay and transformers.</p>
 <ol>
@@ -112,13 +112,13 @@ deployment to point to the required overlay and transformers.</p>
    <a href="http://documentation.sas.com/?softwareId=mysas&amp;softwareVersion=prod&amp;docsetId=dplyml0phy0dkr&amp;docsetTarget=titlepage.htm&amp;locale=en">SAS Viya Platform: Deployment Guide</a>.</p>
 </li>
 </ol>
-<h2 id="139729114197440supported-topologies">Supported Topologies</h2>
+<h2 id="139641630290272supported-topologies">Supported Topologies</h2>
 <p>A single cluster is supported with the following topologies:</p>
 <ul>
 <li>One Node Set with both master and data roles.</li>
 <li>Two Node Sets: one with dedicated master role, and other with dedicated data role.</li>
 </ul>
-<h2 id="139729114197440operator-constraints">Operator Constraints</h2>
+<h2 id="139641630290272operator-constraints">Operator Constraints</h2>
 <p>The operator does not support the following actions:</p>
 <ul>
 <li>Dynamically changing a running cluster&rsquo;s properties, PersistentVolumeClaims or topology.</li>

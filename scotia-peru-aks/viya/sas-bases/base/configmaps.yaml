@@ -15,7 +15,7 @@ options:
 metadata:
   name: sas-lifecycle-image
 literals:
-  - image=cr.sas.com/viya-4-x64_oci_linux_2-docker/sas-orchestration:1.147.0-20250903.1756922825568
+  - image=cr.sas.com/viya-4-x64_oci_linux_2-docker/sas-orchestration:1.147.1-20251124.1764004273016
   - registry=cr.sas.com
 ---
 apiVersion: builtin
@@ -2398,7 +2398,7 @@ literals:
     metadata:
       annotations:
         sas.com/component-name: sas-orchestration
-        sas.com/component-version: 1.147.0-20250903.1756922825568
+        sas.com/component-version: 1.147.1-20251124.1764004273016
       creationTimestamp: null
       labels:
         participate.lifecycle.sas.com/assess: "true"
@@ -2461,7 +2461,7 @@ literals:
     metadata:
       annotations:
         sas.com/component-name: sas-orchestration
-        sas.com/component-version: 1.147.0-20250903.1756922825568
+        sas.com/component-version: 1.147.1-20251124.1764004273016
       creationTimestamp: null
       name: reconcile-once.deploy
     spec:
@@ -4399,7 +4399,7 @@ literals:
 - SAS_CADENCE_DISPLAY_SHORT_NAME=Long-Term Support
 - SAS_CADENCE_DISPLAY_VERSION=2025.09
 - SAS_CADENCE_NAME=lts
-- SAS_CADENCE_RELEASE=20251124.1764017608022
+- SAS_CADENCE_RELEASE=20251127.1764249807241
 - SAS_CADENCE_UPDATABLE_FROMS=lts-2025.03,stable-2025.09,stable-2025.06,stable-2025.07,stable-2025.08
 - SAS_CADENCE_VERSION=2025.09
 - SAS_DEPLOYMENT_TYPE=default

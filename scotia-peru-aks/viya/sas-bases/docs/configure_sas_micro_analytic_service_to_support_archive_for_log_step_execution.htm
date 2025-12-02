@@ -6,24 +6,24 @@
         <title>Configure SAS Micro Analytic Service to Support Archive for Log Step Execution</title>
     </head>
     <body>
-        <h1 id="139729113930528configure-sas-micro-analytic-service-to-support-archive-for-log-step-execution">Configure SAS Micro Analytic Service to Support Archive for Log Step Execution</h1>
-<h2 id="139729113930528overview">Overview</h2>
+        <h1 id="139641629211664configure-sas-micro-analytic-service-to-support-archive-for-log-step-execution">Configure SAS Micro Analytic Service to Support Archive for Log Step Execution</h1>
+<h2 id="139641629211664overview">Overview</h2>
 <p>If enabled, the SAS Micro Analytic Service archive feature records the inputs and outputs of step execution to a set of rolling log files. 
 To use the archive feature, SAS Micro Analytic Service must be configured with a persistent volume to use as a location in which to store the log files. 
 This README describes how to configure SAS Micro Analytic Service to use a PersistentVolumeClaim to define storage for the archive logs. </p>
 <p>By default, the archive feature is not enabled. This README also provides a link to where you can find more information about how to enable the archive feature in SAS Micro Analytic Service.</p>
-<h2 id="139729113930528prerequisites">Prerequisites</h2>
+<h2 id="139641629211664prerequisites">Prerequisites</h2>
 <p>The archive feature requires storage with ReadWriteMany access mode for storing transaction logs. A peristentVolumeClaim is defined to specify the storage required.</p>
 <p><strong>Note:</strong> The STORAGE-CLASS-NAME from the cloud provider is used to determine the STORAGE-CAPACITY that is required for your archives. The required storage capacity depends on the expected transaction volume, the size of your payloads, and your backup strategy.</p>
-<h2 id="139729113930528installation">Installation</h2>
+<h2 id="139641629211664installation">Installation</h2>
 <ol>
 <li>
 <p>Copy the files in <code>$deploy/sas-bases/examples/sas-microanalytic-score/archive</code> to the <code>$deploy/site-config/sas-microanalytic-score/archive</code> directory. Create the destination directory if it does not exist.</p>
-<p><strong>Note:</strong> If the destination directory already exists, <a href="#139729113930528verify-overlay-for-the-persistent-volume">verify that the overlay</a> has been applied. 
+<p><strong>Note:</strong> If the destination directory already exists, <a href="#139641629211664verify-overlay-for-the-persistent-volume">verify that the overlay</a> has been applied. 
  If the output contains the <code>/opt/sas/viya/config/var/log/microanalyticservice/default/archive</code> mount directory path, you do not need to take any further actions, unless you want to change the overlay parameters for the mounted directory.</p>
 </li>
 <li>
-<p>The resources.yaml file in <code>$deploy/site-config/sas-microanalytic-score/archive</code> contains the parameters of the storage that is required in the PeristentVolumeClaim. For more information about PersistentVolumeClaims, see <a href="#139729113930528additional-resources">Additional Resources</a>.</p>
+<p>The resources.yaml file in <code>$deploy/site-config/sas-microanalytic-score/archive</code> contains the parameters of the storage that is required in the PeristentVolumeClaim. For more information about PersistentVolumeClaims, see <a href="#139641629211664additional-resources">Additional Resources</a>.</p>
 <ul>
 <li>Replace {{ STORAGE-CAPACITY }} with the amount of storage required.</li>
 <li>Replace {{ STORAGE-CLASS-NAME }} with the appropriate storage class from the cloud provider that supports ReadWriteMany access mode.</li>
@@ -52,8 +52,8 @@ transformers:
 </ul>
 </li>
 </ol>
-<h2 id="139729113930528post-installation-tasks">Post-Installation Tasks</h2>
-<h3 id="139729113930528verify-overlay-for-the-persistent-volume">Verify Overlay for the Persistent Volume</h3>
+<h2 id="139641629211664post-installation-tasks">Post-Installation Tasks</h2>
+<h3 id="139641629211664verify-overlay-for-the-persistent-volume">Verify Overlay for the Persistent Volume</h3>
 <ol>
 <li>
 <p>Run the following command to verify whether the overlay has been applied:</p>
@@ -67,10 +67,10 @@ transformers:
 
 </li>
 </ol>
-<h3 id="139729113930528enable-the-archive-feature-in-sas-environment-manager">Enable the Archive Feature in SAS Environment Manager</h3>
+<h3 id="139641629211664enable-the-archive-feature-in-sas-environment-manager">Enable the Archive Feature in SAS Environment Manager</h3>
 <p>After the deployment is complete, the SAS Micro Analytic Service archive feature must be enabled in SAS Environment Manager.
 For more information, see <a href="http://documentation.sas.com/?cdcId=mascdc&amp;cdcVersion=default&amp;docsetId=masag&amp;docsetTarget=n0yfb6f53gngamn1tn7k0a5c60i6.htm">Archive Feature Configuration</a> in <em>SAS Micro Analytic Service: Programming and Administration Guide</em>.</p>
-<h2 id="139729113930528additional-resources">Additional Resources</h2>
+<h2 id="139641629211664additional-resources">Additional Resources</h2>
 <ul>
 <li><a href="http://documentation.sas.com/?cdcId=itopscdc&amp;cdcVersion=default&amp;docsetId=dplyml0phy0dkr&amp;docsetTarget=titlepage.htm">SAS Viya Platform: Deployment Guide</a></li>
 <li><a href="https://kubernetes.io/docs/concepts/storage/persistent-volumes/#persistentvolumeclaims">Persistent Volume Claims in Kubernetes</a></li>

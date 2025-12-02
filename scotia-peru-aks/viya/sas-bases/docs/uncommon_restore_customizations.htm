@@ -6,10 +6,10 @@
         <title>Uncommon Restore Customizations</title>
     </head>
     <body>
-        <h1 id="139729115181360uncommon-restore-customizations">Uncommon Restore Customizations</h1>
-<h2 id="139729115181360overview">Overview</h2>
+        <h1 id="139641630677600uncommon-restore-customizations">Uncommon Restore Customizations</h1>
+<h2 id="139641630677600overview">Overview</h2>
 <p>This README file contains information about customizations that are potentially required for restoring SAS Viya Platform from a backup. These customizations are not used often.</p>
-<h2 id="139729115181360custom-database-name">Custom Database Name</h2>
+<h2 id="139641630677600custom-database-name">Custom Database Name</h2>
 <p>If the database name on the system you want to restore (the target system) does not match the database name on the system from where a backup has been taken (the source system), then you must provide
 the appropriate database name as part of the restore operation.</p>
 <pre><code> The database name is provided by using an environment variable, RESTORE_DATABASE_MAPPING, which should be specified in the restore job ConfigMap, sas-restore-job-parameters. Use the following command:
@@ -38,7 +38,7 @@ the appropriate database name as part of the restore operation.</p>
 <p>As an administrator with cluster permissions, apply the edited files to your deployment by performing the steps described in <a href="https://documentation.sas.com/?cdcId=sasadmincdc&amp;cdcVersion=default&amp;docsetId=dplyml0phy0dkr&amp;docsetTarget=n1f2q6pp0gjheqn1jl204vptrubs.htm">Modify Existing Customizations in a Deployment</a>.</p>
 </li>
 </ol>
-<h2 id="139729115181360configure-new-postgresql-name">Configure New PostgreSQL Name</h2>
+<h2 id="139641630677600configure-new-postgresql-name">Configure New PostgreSQL Name</h2>
 <p>If you change the name of the PostgreSQL service during migration, you must map the new name to the old name. Edit the sas-restore-job-parameters configMap using the following command:</p>
 <pre><code> ```bash
  kubectl patch cm sas-restore-job-parameters-name -n name-of-namespace --type json -p '[{"op": "replace", "path": "/data/data-service-{{ NEW-SERVICE-NAME }}", "value":"{{ DIRECTORY-NAME-OF-POSTGRES-IN-BACKUP }}" }]'
@@ -81,7 +81,7 @@ PostgreSQL backup is stored (for example, <code>2022-03-02T09_04_11_611_0700/acm
 <p>As an administrator with cluster permissions, apply the edited files to your deployment by performing the steps described in <a href="https://documentation.sas.com/?cdcId=sasadmincdc&amp;cdcVersion=default&amp;docsetId=dplyml0phy0dkr&amp;docsetTarget=n1f2q6pp0gjheqn1jl204vptrubs.htm">Modify Existing Customizations in a Deployment</a>.</p>
 </li>
 </ol>
-<h2 id="139729115181360exclude-schemas-during-restore">Exclude Schemas During Restore</h2>
+<h2 id="139641630677600exclude-schemas-during-restore">Exclude Schemas During Restore</h2>
 <p>If you need to exclude some of the schemas during migration once, edit the sas-restore-job-parameters configMap using the following command:</p>
 <pre><code> ```yaml
  kubectl patch cm sas-restore-job-parameters-name -n name-of-namespace --type json -p '[{"op": "replace", "path": "/data/EXCLUDE_SCHEMAS", "value":"{{ schema1, schema2,... }}" }]'
@@ -112,7 +112,7 @@ PostgreSQL backup is stored (for example, <code>2022-03-02T09_04_11_611_0700/acm
 <p>As an administrator with cluster permissions, apply the edited files to your deployment by performing the steps described in <a href="https://documentation.sas.com/?cdcId=sasadmincdc&amp;cdcVersion=default&amp;docsetId=dplyml0phy0dkr&amp;docsetTarget=n1f2q6pp0gjheqn1jl204vptrubs.htm">Modify Existing Customizations in a Deployment</a>.</p>
 </li>
 </ol>
-<h2 id="139729115181360exclude-postgresql-instance-during-restore">Exclude PostgreSQL Instance During Restore</h2>
+<h2 id="139641630677600exclude-postgresql-instance-during-restore">Exclude PostgreSQL Instance During Restore</h2>
 <p>If you need to exclude some of the PostgreSQL instances during restore once, edit the sas-restore-job-parameters configMap using the following command:</p>
 <pre><code> ```bash
  kubectl patch cm sas-restore-job-parameters-name -n name-of-namespace --type json -p '[{"op": "replace", "path": "/data/EXCLUDE_SOURCES", "value":"{{ instance1, instance2,... }}" }]'
@@ -143,7 +143,7 @@ PostgreSQL backup is stored (for example, <code>2022-03-02T09_04_11_611_0700/acm
 <p>As an administrator with cluster permissions, apply the edited files to your deployment by performing the steps described in <a href="https://documentation.sas.com/?cdcId=sasadmincdc&amp;cdcVersion=default&amp;docsetId=dplyml0phy0dkr&amp;docsetTarget=n1f2q6pp0gjheqn1jl204vptrubs.htm">Modify Existing Customizations in a Deployment</a>.</p>
 </li>
 </ol>
-<h2 id="139729115181360enable-parallel-execution-for-the-restore-operation">Enable Parallel Execution for the Restore Operation</h2>
+<h2 id="139641630677600enable-parallel-execution-for-the-restore-operation">Enable Parallel Execution for the Restore Operation</h2>
 <p>You can set a jobs option that reduces the amount of time required to restore the SAS Infrastructure Data server.
 The time required to restore the database from backup is reduced by restoring the database objects over multiple parallel jobs.
 The optimal value for this option depends on the underlying hardware of the server, of the client, and of the network (for example, the number of CPU cores).

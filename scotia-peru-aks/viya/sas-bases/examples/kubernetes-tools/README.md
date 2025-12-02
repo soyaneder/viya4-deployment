@@ -25,13 +25,13 @@ To run the sas-orchestration image, Docker must be installed.
 Pull the `sas-orchestration` image:
 
 ```
-docker pull cr.sas.com/viya-4-x64_oci_linux_2-docker/sas-orchestration:1.147.0-20250903.1756922825568
+docker pull cr.sas.com/viya-4-x64_oci_linux_2-docker/sas-orchestration:1.147.1-20251124.1764004273016
 ```
 
-Replace 'cr.sas.com/viya-4-x64_oci_linux_2-docker/sas-orchestration:1.147.0-20250903.1756922825568' with a local tag for ease of use in the examples that will follow:
+Replace 'cr.sas.com/viya-4-x64_oci_linux_2-docker/sas-orchestration:1.147.1-20251124.1764004273016' with a local tag for ease of use in the examples that will follow:
 
 ```
-docker tag cr.sas.com/viya-4-x64_oci_linux_2-docker/sas-orchestration:1.147.0-20250903.1756922825568 sas-orchestration
+docker tag cr.sas.com/viya-4-x64_oci_linux_2-docker/sas-orchestration:1.147.1-20251124.1764004273016 sas-orchestration
 ```
 
 ## Examples

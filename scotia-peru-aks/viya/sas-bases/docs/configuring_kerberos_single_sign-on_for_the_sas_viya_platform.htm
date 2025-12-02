@@ -6,13 +6,13 @@
         <title>Configuring Kerberos Single Sign-On for the SAS Viya Platform</title>
     </head>
     <body>
-        <h1 id="139729114395264configuring-kerberos-single-sign-on-for-the-sas-viya-platform">Configuring Kerberos Single Sign-On for the SAS Viya Platform</h1>
+        <h1 id="139641629676304configuring-kerberos-single-sign-on-for-the-sas-viya-platform">Configuring Kerberos Single Sign-On for the SAS Viya Platform</h1>
 <p>This README describes the steps necessary to configure the SAS Viya platform for single sign-on
 using Kerberos.</p>
-<h2 id="139729114395264prerequisites">Prerequisites</h2>
+<h2 id="139641629676304prerequisites">Prerequisites</h2>
 <p>Before you start the deployment, obtain the Kerberos configuration file and keytab for the HTTP
 service account. Make sure you have tested the keytab before proceeding with the installation.</p>
-<h2 id="139729114395264installation">Installation</h2>
+<h2 id="139641629676304installation">Installation</h2>
 <ol>
 <li>
 <p>Copy and then edit the files in the $deploy/sas-bases/examples/kerberos/http directory to the $deploy/site-config/kerberos/http directory. Create the target directory, if it does not already exist.</p>
@@ -36,15 +36,15 @@ service account. Make sure you have tested the keytab before proceeding with the
 <p>Use the deployment commands described in <a href="http://documentation.sas.com/?cdcId=itopscdc&amp;cdcVersion=default&amp;docsetId=dplyml0phy0dkr&amp;docsetTarget=titlepage.htm">SAS Viya Platform Deployment Guide</a> to apply the new settings.</p>
 </li>
 </ol>
-<h2 id="139729114395264options">Options</h2>
-<h4 id="139729114395264to-enable-kerberos-debugging-in-the-jvm">To enable Kerberos debugging in the JVM</h4>
+<h2 id="139641629676304options">Options</h2>
+<h4 id="139641629676304to-enable-kerberos-debugging-in-the-jvm">To enable Kerberos debugging in the JVM</h4>
 <p>JAVA_OPTION_KRB5_DEBUG=-Dsun.security.krb5.debug=true
 JAVA_OPTION_JGSS_DEBUG=-Dsun.security.jgss.debug=true</p>
-<h4 id="139729114395264to-enable-spring-security-kerberos-debugging">To enable Spring security Kerberos debugging</h4>
+<h4 id="139641629676304to-enable-spring-security-kerberos-debugging">To enable Spring security Kerberos debugging</h4>
 <p>SAS_LOGON_KERBEROS_DEBUG=true</p>
-<h4 id="139729114395264when-not-using-kerberos-unconstrained-delegation-disable-the-warning-page-when-users-sign-in">When not using Kerberos unconstrained delegation, disable the warning page when users sign-in</h4>
+<h4 id="139641629676304when-not-using-kerberos-unconstrained-delegation-disable-the-warning-page-when-users-sign-in">When not using Kerberos unconstrained delegation, disable the warning page when users sign-in</h4>
 <p>SAS_LOGON_KERBEROS_DISABLEDELEGATIONWARNING=true</p>
-<h4 id="139729114395264to-enable-kerberos-unconstrained-delegation">To enable Kerberos unconstrained delegation</h4>
+<h4 id="139641629676304to-enable-kerberos-unconstrained-delegation">To enable Kerberos unconstrained delegation</h4>
 <p>SAS_LOGON_KERBEROS_HOLDONTOGSSCONTEXT=true</p>
     </body>
 </html>

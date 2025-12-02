@@ -6,11 +6,11 @@
         <title>Configure Python for the SAS Viya Platform Using a Docker Image</title>
     </head>
     <body>
-        <h1 id="139729114798016configure-python-for-the-sas-viya-platform-using-a-docker-image">Configure Python for the SAS Viya Platform Using a Docker Image</h1>
-<h2 id="139729114798016overview">Overview</h2>
+        <h1 id="139641629636112configure-python-for-the-sas-viya-platform-using-a-docker-image">Configure Python for the SAS Viya Platform Using a Docker Image</h1>
+<h2 id="139641629636112overview">Overview</h2>
 <p>The SAS Viya platform can use a customer-prepared environment consisting of a Python installation (and any required packages) that are stored on a Kubernetes PersistentVolume or a Docker image. This README describes how to make a Docker image that contains a Python installation available to your deployment.</p>
 <p><strong>Note:</strong> Python can be used by the Micro Analytic Score service, Cloud Analytic Services (CAS) and the Compute service. However, accessing Python via a Docker image is currently available as an option only for the Micro Analytic Score service. Therefore, if you use this method and you require Python for CAS or the Compute Server, a Python distribution must also be available via a Kubernetes persistent volume.</p>
-<h2 id="139729114798016prerequisites">Prerequisites</h2>
+<h2 id="139641629636112prerequisites">Prerequisites</h2>
 <p>Because Python can be used from a Docker image only by the Micro Analytic Score service, until the Docker image is available to other pods, make sure that the Python environment in the Docker image is available in the mounted volume for other pods. The SAS Viya platform provides YAML files that the Kustomize tool uses to configure Python. Before you use those files, you must perform the following tasks:</p>
 <ol>
 <li>
@@ -18,11 +18,11 @@
 <p>Here is a sample Docker registry configuration setting:</p>
 <pre class="highlight"><code class="language-json">{"auths": {"registry.company.com": {"username": "myusername","password": "mypassword","email":"myemail@company.com","auth":"&lt; mysername:mypassword in base64 encoded form&gt;"}}}</code></pre>
 
-<p>For more information about Python image preparation and registry configuration settings, see <a href="#139729114798016additional-resources">Additional Resources</a>.</p>
+<p>For more information about Python image preparation and registry configuration settings, see <a href="#139641629636112additional-resources">Additional Resources</a>.</p>
 </li>
 <li>
 <p>Make note of the attributes for the volume where Python and the associated packages are to be deployed. For example, note the server and directory for NFS.
-   For more information about various types of PersistentVolumes in Kubernetes, see <a href="#139729114798016additional-resources">Additional Resources</a>.</p>
+   For more information about various types of PersistentVolumes in Kubernetes, see <a href="#139641629636112additional-resources">Additional Resources</a>.</p>
 </li>
 <li>
 <p>Install Python and any necessary packages on the volume.</p>
@@ -39,16 +39,16 @@
 </ul>
 </li>
 </ol>
-<h2 id="139729114798016installation">Installation</h2>
+<h2 id="139641629636112installation">Installation</h2>
 <ol>
 <li>
 <p>Copy the files in the <code>$deploy/sas-bases/examples/sas-open-source-config/python</code> directory to the <code>$deploy/site-config/sas-open-source-config/python</code> directory.
    Create the destination directory, if it does not already exist.</p>
-<p><strong>Note:</strong> If the destination directory already exists, <a href="#139729114798016verify-the-overlay-for-the-python-docker-image">verify that the overlay</a> has been applied.
+<p><strong>Note:</strong> If the destination directory already exists, <a href="#139641629636112verify-the-overlay-for-the-python-docker-image">verify that the overlay</a> has been applied.
  If the output contains the <code>/mas2py</code> mount directory path, you do not need to take any further action unless you want to change the overlay parameters to use a different Python environment.</p>
 </li>
 <li>
-<p>Use the kustomization.yaml file to define the necessary environment variables. Replace all tags, such as {{ PYTHON-EXE-DIR }}, with the values that you gathered in the <a href="#139729114798016prerequisites">Prerequisites</a> step.
+<p>Use the kustomization.yaml file to define the necessary environment variables. Replace all tags, such as {{ PYTHON-EXE-DIR }}, with the values that you gathered in the <a href="#139641629636112prerequisites">Prerequisites</a> step.
    Then set the following parameters according to the SAS products that you will be using:</p>
 <ul>
 <li>MAS_PYPATH and MAS_M2PATH are used by SAS Micro Analytic Service.</li>
@@ -179,7 +179,7 @@ target:
 <p>All affected pods, except the CAS Server pod, are automatically restarted when the overlay is applied. If the overlay is applied after the initial deployment, the CAS Server might need an explicit restart. For information, see <a href="https://documentation.sas.com/?cdcId=sasadmincdc&amp;cdcVersion=default&amp;docsetId=calserverscas&amp;docsetTarget=n03003viyaservers000000admin.htm&amp;locale=en#p10hialoaqhwrtn1fuhsuakffwtv">Restart CAS Server</a>.</p>
 </li>
 </ol>
-<h2 id="139729114798016verify-the-overlay-for-the-python-docker-image">Verify the Overlay for the Python Docker Image</h2>
+<h2 id="139641629636112verify-the-overlay-for-the-python-docker-image">Verify the Overlay for the Python Docker Image</h2>
 <ol>
 <li>
 <p>Run the following command to verify whether the overlay has been applied:</p>
@@ -193,7 +193,7 @@ target:
 
 </li>
 </ol>
-<h2 id="139729114798016additional-resources">Additional Resources</h2>
+<h2 id="139641629636112additional-resources">Additional Resources</h2>
 <ul>
 <li><a href="http://documentation.sas.com/?cdcId=itopscdc&amp;cdcVersion=default&amp;docsetId=dplyml0phy0dkr&amp;docsetTarget=titlepage.htm">SAS Viya Platform: Deployment Guide</a></li>
 <li><a href="https://kubernetes.io/docs/concepts/storage/persistent-volumes/">Persistent Volumes in Kubernetes</a></li>

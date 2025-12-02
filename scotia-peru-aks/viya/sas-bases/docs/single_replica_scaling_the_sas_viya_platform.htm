@@ -6,11 +6,11 @@
         <title>Single Replica Scaling the SAS Viya Platform</title>
     </head>
     <body>
-        <h1 id="139729115474624single-replica-scaling-the-sas-viya-platform">Single Replica Scaling the SAS Viya Platform</h1>
+        <h1 id="139641630754944single-replica-scaling-the-sas-viya-platform">Single Replica Scaling the SAS Viya Platform</h1>
 <p><strong>Important:</strong> The transformer described in this README can be used to deploy the SAS Viya platform
 in a mode that is not high availability (HA). A non-HA deployment might be suitable
 for test environments. However, non-HA deployments are not recommended for production environments.</p>
-<h2 id="139729115474624overview">Overview</h2>
+<h2 id="139641630754944overview">Overview</h2>
 <p>The SAS Viya platform deploys stateful components in a High Availability configuration by
 default. Do not perform these steps on an environment that has already
 been configured.</p>
@@ -20,7 +20,7 @@ been configured.</p>
 <li>Consul</li>
 <li>internal instances of PostgreSQL</li>
 </ul>
-<h2 id="139729115474624installation">Installation</h2>
+<h2 id="139641630754944installation">Installation</h2>
 <p>A series of kustomize transformers modifies the appropriate SAS Viya platform
 deployment components to a single replica mode.</p>
 <p>Add <code>sas-bases/overlays/scaling/single-replica/transformer.yaml</code> to the

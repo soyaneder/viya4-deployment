@@ -6,8 +6,8 @@
         <title>Create an Additional CAS Server</title>
     </head>
     <body>
-        <h1 id="139729115438288create-an-additional-cas-server">Create an Additional CAS Server</h1>
-<h2 id="139729115438288overview">Overview</h2>
+        <h1 id="139641630678464create-an-additional-cas-server">Create an Additional CAS Server</h1>
+<h2 id="139641630678464overview">Overview</h2>
 <p>This README describes how to create additional CAS server definitions with the
 <code>create-cas-server.sh</code> script. The script creates a Custom Resource (CR) that
 can be added to your manifest and deployed to the Kubernetes cluster.</p>
@@ -16,7 +16,7 @@ deploying a new CAS server in the Kubernetes cluster in one directory. The
 directory can be referenced in the base <code>kustomization.yaml</code>.</p>
 <p><strong>Note:</strong> The script does not modify your Kubernetes cluster. It creates the manifests
 that you can apply to your Kubernetes cluster to add a CAS server.</p>
-<h2 id="139729115438288create-a-cas-server">Create a CAS Server</h2>
+<h2 id="139641630678464create-a-cas-server">Create a CAS Server</h2>
 <ol>
 <li>
 <p>Run the <code>create-cas-server.sh</code> script and specify, at a minimum, the instance
@@ -67,7 +67,7 @@ cas-{{ TENANT }}-{{ INSTANCE }}-permstore              Bound  ...</code></pre>
 
 </li>
 </ol>
-<h2 id="139729115438288example">Example</h2>
+<h2 id="139641630678464example">Example</h2>
 <p>Run the script with more options:</p>
 <pre class="highlight"><code class="language-bash">./create-cas-server.sh --instance sample --output . --workers 2 --backup 1</code></pre>
 

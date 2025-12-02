@@ -6,15 +6,15 @@
         <title>State Transfer for CAS Server for the SAS Viya Platform</title>
     </head>
     <body>
-        <h1 id="139729114378352state-transfer-for-cas-server-for-the-sas-viya-platform">State Transfer for CAS Server for the SAS Viya Platform</h1>
-<h2 id="139729114378352overview">Overview</h2>
+        <h1 id="139641630325632state-transfer-for-cas-server-for-the-sas-viya-platform">State Transfer for CAS Server for the SAS Viya Platform</h1>
+<h2 id="139641630325632overview">Overview</h2>
 <p>This directory contains files to Kustomize your SAS Viya platform deployment to enable state transfers.
 Enabling state transfers allows the sessions, tables, and state of a running CAS server to be preserved
 between a running CAS server and a new CAS server instance which will be started as part of the CAS server upgrade.</p>
 <p><strong>Note:</strong> You cannot enable both CAS auto-restart and state transfer in the same SAS Viya platform deployment.  If you have already
 enabled auto-restart, disable it before continuing.</p>
-<h2 id="139729114378352instructions">Instructions</h2>
-<h3 id="139729114378352edit-the-kustomizationyaml-file">Edit the kustomization.yaml File</h3>
+<h2 id="139641630325632instructions">Instructions</h2>
+<h3 id="139641630325632edit-the-kustomizationyaml-file">Edit the kustomization.yaml File</h3>
 <p>To add the new CAS server to your deployment:</p>
 <ol>
 <li>
@@ -87,7 +87,7 @@ kustomization.yaml file (<code>$deploy/kustomization.yaml</code>). Here is an ex
  in the transformers block.</p>
 </li>
 </ol>
-<h2 id="139729114378352build">Build</h2>
+<h2 id="139641630325632build">Build</h2>
 <p>After you configure Kustomize, continue your SAS Viya platform deployment as documented.</p>
     </body>
 </html>

@@ -6,21 +6,21 @@
         <title>Configure CPU and Memory Resources for SAS Micro Analytic Service</title>
     </head>
     <body>
-        <h1 id="139729114023872configure-cpu-and-memory-resources-for-sas-micro-analytic-service">Configure CPU and Memory Resources for SAS Micro Analytic Service</h1>
-<h2 id="139729114023872overview">Overview</h2>
+        <h1 id="139641629305008configure-cpu-and-memory-resources-for-sas-micro-analytic-service">Configure CPU and Memory Resources for SAS Micro Analytic Service</h1>
+<h2 id="139641629305008overview">Overview</h2>
 <p>By default, SAS Micro Analytic Service is deployed with 750 MB of memory and 250m CPU.</p>
 <p>If your SAS Micro Analytic Service deployment requires different resources, you can use the resources-transformer.yaml file in the <code>$deploy/sas-bases/examples/sas-microanalytic-score/resources</code> directory to configure different values.</p>
-<h2 id="139729114023872prerequisites">Prerequisites</h2>
+<h2 id="139641629305008prerequisites">Prerequisites</h2>
 <p>Determine the minimum and maximum value of memory and CPU required for your deployment. The values depend on available resources in the cluster and your desired throughput.</p>
-<h2 id="139729114023872installation">Installation</h2>
+<h2 id="139641629305008installation">Installation</h2>
 <ol>
 <li>
 <p>Copy the files in <code>$deploy/sas-bases/examples/sas-microanalytic-score/resources</code> to the <code>$deploy/site-config/sas-microanalytic-score/resources</code> directory. Create destination directory if it does not exist.</p>
-<p><strong>Note:</strong> If the destination directory already exists, <a href="#139729114023872verify-overlay-for-the-resources">verify that the overlay</a> has been applied. 
+<p><strong>Note:</strong> If the destination directory already exists, <a href="#139641629305008verify-overlay-for-the-resources">verify that the overlay</a> has been applied. 
  You do not need to take any further actions, unless you want to change the CPU and memory parameters to different values.</p>
 </li>
 <li>
-<p>Modify the resources-transformer.yaml in <code>$deploy/site-config/sas-microanalytic-score/resources</code> to specify your resource settings. For more information about Kubernetes resources, see <a href="#139729114023872additional-resources">Additional Resources</a>.</p>
+<p>Modify the resources-transformer.yaml in <code>$deploy/site-config/sas-microanalytic-score/resources</code> to specify your resource settings. For more information about Kubernetes resources, see <a href="#139641629305008additional-resources">Additional Resources</a>.</p>
 <ul>
 <li>Replace {{ MEMORY-REQUIRED }} with the minimum amount of memory required for SAS Micro Analytic Service.</li>
 <li>Replace {{ MEMORY-LIMIT }} with the maximum amount of memory that can be claimed for SAS Micro Analytic Service.</li>
@@ -45,7 +45,7 @@
 </ul>
 </li>
 </ol>
-<h2 id="139729114023872verify-overlay-for-the-resources">Verify Overlay for the Resources</h2>
+<h2 id="139641629305008verify-overlay-for-the-resources">Verify Overlay for the Resources</h2>
 <ol>
 <li>
 <p>Run the following command to verify whether the overlay has been applied:</p>
@@ -63,7 +63,7 @@ Requests:
 
 </li>
 </ol>
-<h2 id="139729114023872additional-resources">Additional Resources</h2>
+<h2 id="139641629305008additional-resources">Additional Resources</h2>
 <ul>
 <li><a href="http://documentation.sas.com/?cdcId=itopscdc&amp;cdcVersion=default&amp;docsetId=dplyml0phy0dkr&amp;docsetTarget=titlepage.htm">SAS Viya Platform: Deployment Guide</a></li>
 <li><a href="http://documentation.sas.com/?cdcId=mascdc&amp;cdcVersion=default&amp;docsetId=masag&amp;docsetTarget=n0xhk2rkiy2ku1n163otwgddvxra.htm">Configuring SAS Micro Analytic Service Resources</a> in <em>SAS Micro Analytic Service: Programming and Administration Guide</em></li>

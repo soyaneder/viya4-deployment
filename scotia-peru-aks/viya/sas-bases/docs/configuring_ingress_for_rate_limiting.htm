@@ -6,12 +6,12 @@
         <title>Configuring Ingress for Rate Limiting</title>
     </head>
     <body>
-        <h1 id="139729115057936configuring-ingress-for-rate-limiting">Configuring Ingress for Rate Limiting</h1>
-<h2 id="139729115057936overview">Overview</h2>
+        <h1 id="139641629891168configuring-ingress-for-rate-limiting">Configuring Ingress for Rate Limiting</h1>
+<h2 id="139641629891168overview">Overview</h2>
 <p>You can use the examples found within <code>$deploy/sas-bases/examples/security/web/rate-limiting</code> to enforce rate-limiting at the ingress-nginx controller for SAS Viya platform endpoints. The properties are applied to all Ingress resources deployed with the SAS Viya platform. If you are using any external load balancers or API gateways, enforcing rate-limiting with ingress-nginx is not optimal. Instead, enforce rate limiting through external technology. To read more about the available options in ingress-nginx, see https://github.com/kubernetes/ingress-nginx/blob/main/docs/user-guide/nginx-configuration/annotations.md#rate-limiting.</p>
 <p>If you are deploying on Red Hat OpenShift, you must enforce rate-limiting at the OpenShift router instead. The properties are applied to all Route resources deployed with the SAS Viya platform. To read more about the available options in OpenShift, see https://docs.openshift.com/container-platform/4.15/networking/routes/route-configuration.html#nw-route-specific-annotations_route-configuration.</p>
-<h2 id="139729115057936installation">Installation</h2>
-<h3 id="139729115057936ingress-nginx">ingress-nginx</h3>
+<h2 id="139641629891168installation">Installation</h2>
+<h3 id="139641629891168ingress-nginx">ingress-nginx</h3>
 <p>Use these steps to apply the desired properties to your SAS Viya platform deployment.</p>
 <ol>
 <li>
@@ -41,7 +41,7 @@ transformers:
 
 </li>
 </ol>
-<h3 id="139729115057936openshift">OpenShift</h3>
+<h3 id="139641629891168openshift">OpenShift</h3>
 <p>When deploying to Red Hat OpenShift, use these steps to apply the desired properties to your SAS Viya platform deployment. Do not use the steps for the ingress-nginx controller.</p>
 <ol>
 <li>

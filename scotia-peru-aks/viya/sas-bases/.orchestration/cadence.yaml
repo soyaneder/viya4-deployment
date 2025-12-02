@@ -6,6 +6,6 @@ metadata:
 spec:
   displayName: Long-Term Support 2025.09
   name: lts
-  release: "20251124.1764017608022"
+  release: "20251127.1764249807241"
   version: "2025.09"
 

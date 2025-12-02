@@ -6,12 +6,12 @@
         <title>Configuring General Ingress Options</title>
     </head>
     <body>
-        <h1 id="139729114797056configuring-general-ingress-options">Configuring General Ingress Options</h1>
-<h2 id="139729114797056overview">Overview</h2>
+        <h1 id="139641630077520configuring-general-ingress-options">Configuring General Ingress Options</h1>
+<h2 id="139641630077520overview">Overview</h2>
 <p>You can use the examples found within <code>$deploy/sas-bases/examples/ingress-configuration/</code> to set general configuration values for Ingress resources.</p>
 <p>The INGRESS_CLASS_NAME specifies the name of the IngressClass which SAS Viya Platform Ingress resources should use for this deployment. By default, SAS Viya Platform Ingress resources will use the <code>nginx</code> IngressClass. For more information about IngressClass resources, see <a href="https://kubernetes.io/docs/concepts/services-networking/ingress/#ingress-class">Ingress class</a> and <a href="https://kubernetes.github.io/ingress-nginx/user-guide/multiple-ingress/#using-ingressclasses">Using IngressClasses</a>.</p>
 <p>The corresponding transformer file to override the ingressClassName field in Ingress resources is found at <code>sas-bases/overlays/ingress-configuration/update-ingress-classname.yaml</code>.</p>
-<h2 id="139729114797056installation">Installation</h2>
+<h2 id="139641630077520installation">Installation</h2>
 <p>Use these steps to apply the desired properties to your SAS Viya platform deployment.</p>
 <ol>
 <li>

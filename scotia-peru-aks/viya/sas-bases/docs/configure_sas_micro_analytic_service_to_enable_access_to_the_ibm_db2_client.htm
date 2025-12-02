@@ -6,15 +6,15 @@
         <title>Configure SAS Micro Analytic Service to Enable Access to the IBM DB2 Client</title>
     </head>
     <body>
-        <h1 id="139729114023632configure-sas-micro-analytic-service-to-enable-access-to-the-ibm-db2-client">Configure SAS Micro Analytic Service to Enable Access to the IBM DB2 Client</h1>
-<h2 id="139729114023632overview">Overview</h2>
+        <h1 id="139641629304768configure-sas-micro-analytic-service-to-enable-access-to-the-ibm-db2-client">Configure SAS Micro Analytic Service to Enable Access to the IBM DB2 Client</h1>
+<h2 id="139641629304768overview">Overview</h2>
 <p>This document describes customizations that must be performed by the Kubernetes administrator for deploying SAS Micro Analytic Service to enable access to a DB2 database.</p>
 <p>SAS Micro Analytic Service uses the installed DB2 client environment. This environment must be accessible from a PersistentVolume.</p>
 <p><strong>Note:</strong> This overlay can be applied during the initial deployment of the SAS Viya platform or after the deployment of the SAS Viya platform.</p>
-<h2 id="139729114023632prerequisites">Prerequisites</h2>
+<h2 id="139641629304768prerequisites">Prerequisites</h2>
 <p>The DB2 Client must be installed. After the initial DB2 Client setup, two directories (for example, /db2client and /db2) must be created and accessible to SAS Micro Analytic Service.
 Ensure that the two directories contain the installed client files (for example, /db2client) and the configured server definition files (/db2).</p>
-<h2 id="139729114023632installation">Installation</h2>
+<h2 id="139641629304768installation">Installation</h2>
 <ol>
 <li>
 <p>Copy the files in <code>$deploy/sas-bases/examples/sas-microanalytic-score/db2-config</code> to the <code>$deploy/site-config/sas-microanalytic-score/db2-config</code> directory. Create the destination directory, if it does not already exist.</p>
@@ -86,7 +86,7 @@ Ensure that the two directories contain the installed client files (for example,
 </ul>
 </li>
 </ol>
-<h2 id="139729114023632verify-overlays-for-the-persistent-volumes">Verify Overlays for the Persistent Volumes</h2>
+<h2 id="139641629304768verify-overlays-for-the-persistent-volumes">Verify Overlays for the Persistent Volumes</h2>
 <ol>
 <li>
 <p>Run the following command to verify whether the overlays have been applied:</p>
@@ -121,7 +121,7 @@ Ensure that the two directories contain the installed client files (for example,
    SAS_EXT_PATH_ACCESS:                   /db2client/sqllib/bin:/db2client/sqllib/adm:/db2client/sqllib/misc</code></pre></p>
 </li>
 </ol>
-<h2 id="139729114023632additional-resources">Additional Resources</h2>
+<h2 id="139641629304768additional-resources">Additional Resources</h2>
 <ul>
 <li><a href="http://documentation.sas.com/?cdcId=itopscdc&amp;cdcVersion=default&amp;docsetId=dplyml0phy0dkr&amp;docsetTarget=titlepage.htm">SAS Viya Platform: Deployment Guide</a></li>
 <li><a href="https://kubernetes.io/docs/concepts/storage/persistent-volumes/#persistentvolumeclaims">Persistent Volume Claims on Kubernetes</a></li>

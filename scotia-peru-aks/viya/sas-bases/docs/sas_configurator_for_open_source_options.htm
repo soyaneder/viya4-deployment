@@ -6,8 +6,8 @@
         <title>SAS Configurator for Open Source Options</title>
     </head>
     <body>
-        <h1 id="139729114670752sas-configurator-for-open-source-options">SAS Configurator for Open Source Options</h1>
-<h2 id="139729114670752overview">Overview</h2>
+        <h1 id="139641629889824sas-configurator-for-open-source-options">SAS Configurator for Open Source Options</h1>
+<h2 id="139641629889824overview">Overview</h2>
 <p>With open-source language integration, SAS Viya platform users can decide which
 language they want to use for a given task. They can use either the SAS programming
 language or an open-source programming language, such as Python, R, Lua, or
@@ -30,7 +30,7 @@ point to the latest build for that profile.</p>
 <p>For system requirements and a full set of steps to use SAS Configurator for Open
 Source, see <a href="https://documentation.sas.com/?cdcId=itopscdc&amp;cdcVersion=default&amp;docsetId=dplyexternlang&amp;docsetTarget=titlepage.htm">SAS Viya Platform:
 Integration with External Languages</a>.</p>
-<h2 id="139729114670752summary-of-steps">Summary of Steps</h2>
+<h2 id="139641629889824summary-of-steps">Summary of Steps</h2>
 <p>Building Python or R requires a number of steps. This section describes the
 steps performed by SAS Configurator for Open Source in its operations to
 manage Python and R.</p>
@@ -39,18 +39,18 @@ the initial execution of the job. For example, packages are reprocessed only
 if a change occurs in the package list and the respective versions of
 R or Python remain unchanged. If the version of Python or R changes, then all
 steps are performed from the download of the source to the updating of symlinks.</p>
-<h3 id="139729114670752download">Download</h3>
+<h3 id="139641629889824download">Download</h3>
 <p>For Python, downloads the source, signature file, and signer&rsquo;s
 key from the configured location. For R, downloads only the source.</p>
-<h3 id="139729114670752verify">Verify</h3>
+<h3 id="139641629889824verify">Verify</h3>
 <p>Verifies the authenticity of the Python source using the signer&rsquo;s key and signature
 file. The R source cannot be verified at the time of this writing because signer
 keys are not generated for R source.</p>
-<h3 id="139729114670752extract">Extract</h3>
+<h3 id="139641629889824extract">Extract</h3>
 <p>Extracts the Python and R sources into a temporary directory for building.</p>
-<h3 id="139729114670752build">Build</h3>
+<h3 id="139641629889824build">Build</h3>
 <p>Configures and performs a make of the Python and R sources.</p>
-<h3 id="139729114670752install">Install</h3>
+<h3 id="139641629889824install">Install</h3>
 <p>Installs the Python and R builds within the PV and updates supporting
 components, such as pip, if applicable.</p>
 <p>Builds and installs configured packages for Python and R.</p>
@@ -58,11 +58,11 @@ components, such as pip, if applicable.</p>
 installed within any combination of the SAS Configurator for Open Source container,
 the SAS Programming Environment container, and the CAS Server container are not
 supported with the SAS Configurator for Open Source.</p>
-<h3 id="139729114670752sas-configurator-for-open-source-updates">SAS Configurator for Open Source Updates</h3>
+<h3 id="139641629889824sas-configurator-for-open-source-updates">SAS Configurator for Open Source Updates</h3>
 <p>If everything has completed successfully, creates the symbolic
 links, or changes the symbolic links&rsquo; targets to point to the latest builds
 for both Python and R.</p>
-<h3 id="139729114670752running-sas-configurator-for-open-source-with-custom-options-at-deployment">Running SAS Configurator for Open Source with Custom Options at Deployment</h3>
+<h3 id="139641629889824running-sas-configurator-for-open-source-with-custom-options-at-deployment">Running SAS Configurator for Open Source with Custom Options at Deployment</h3>
 <p>THe SAS Configurator for Open Source utility runs a job named sas-pyconfig. When
 you enable the utility, the job runs automatically
 once, during the initial SAS Viya platform deployment, and runs again
@@ -70,7 +70,7 @@ with subsequent SAS Viya updates.</p>
 <p>The official documentation for SAS Configurator for Open Source, <a href="https://documentation.sas.com/?cdcId=itopscdc&amp;cdcVersion=default&amp;docsetId=dplyexternlang&amp;docsetTarget=titlepage.htm">SAS Viya Platform:
 Integration with External Languages</a>,
 provides instructions for configuring and enabling the utility.</p>
-<h3 id="139729114670752resource-management">Resource Management</h3>
+<h3 id="139641629889824resource-management">Resource Management</h3>
 <p>SAS Configurator for Open Source requires more CPU and memory than most
 components. This requirement is largely due to Python and R building-related
 operations, such as those performed by <code>configure</code> and <code>make</code>. Because SAS
@@ -113,7 +113,7 @@ increase CPU and memory requests. By default, the recommended
 CPU and memory requests are specified in the file (change-limits.yaml),
 and no limits are specified. Below are some examples of
 updates to this file.</p>
-<h4 id="139729114670752changing-resource-limits-example-1">Changing Resource Limits: Example 1</h4>
+<h4 id="139641629889824changing-resource-limits-example-1">Changing Resource Limits: Example 1</h4>
 <p>In this example, SAS Open Source Configuration is configured with a CPU request
 value of 4000m and memory request value of 3000mi. No limit to CPU and memory
 usage is specified. This configuration should not be used in environments where
@@ -168,7 +168,7 @@ target:
 #  kind: CronJob
 #  name: sas-pyconfig</code></pre>
 
-<h4 id="139729114670752changing-resource-limits-example-2">Changing Resource Limits: Example 2</h4>
+<h4 id="139641629889824changing-resource-limits-example-2">Changing Resource Limits: Example 2</h4>
 <p>In this example, both requests and limits values for CPU and memory have been
 set to 4000m and 3000mi, respectively. This configuration can be used in an
 environment where resource quotas are enabled.</p>
@@ -222,13 +222,13 @@ target:
   kind: CronJob
   name: sas-pyconfig</code></pre>
 
-<h3 id="139729114670752change-the-configuration-and-rerun-the-job">Change the Configuration and Rerun the Job</h3>
+<h3 id="139641629889824change-the-configuration-and-rerun-the-job">Change the Configuration and Rerun the Job</h3>
 <p>You can change the configuration and run the sas-pyconfig job again without
 redeploying the SAS Viya platform. The <a href="https://documentation.sas.com/?cdcId=itopscdc&amp;cdcVersion=default&amp;docsetId=dplyexternlang&amp;docsetTarget=n09x4mz6i4ygb2n12p0804tvajpt.htm">official
 SAS Configurator for Open Source documentation</a>
 describes the steps to run the
 job manually and install and configure Python or R from source.</p>
-<h3 id="139729114670752disable-sas-configurator-for-open-source">Disable SAS Configurator for Open Source</h3>
+<h3 id="139641629889824disable-sas-configurator-for-open-source">Disable SAS Configurator for Open Source</h3>
 <p>By default, SAS Configurator for Open Source is disabled.</p>
 <ol>
 <li>
@@ -247,7 +247,7 @@ job manually and install and configure Python or R from source.</p>
 </ol>
 <p>SAS Configurator for Open Source does not run during a deployment or update of
 the SAS Viya platform.</p>
-<h2 id="139729114670752default-configuration-and-options">Default Configuration and Options</h2>
+<h2 id="139641629889824default-configuration-and-options">Default Configuration and Options</h2>
 <p>The configuration options used by SAS Configurator for Open Source are referenced
 from the sas-pyconfig-parameters ConfigMap (provided for you in the
 change-configuration.yaml file).
@@ -276,7 +276,7 @@ builds of Python or R.</p>
 Python profile is named &ldquo;default_py&rdquo;, and the predefined R profile is named
 &ldquo;default_r&rdquo;. Profiles are described in detail in the <a href="https://documentation.sas.com/?cdcId=itopscdc&amp;cdcVersion=default&amp;docsetId=dplyexternlang&amp;docsetTarget=p0kaxaz5x6y3oin1vqnednekblm7.htm">official
 SAS Configurator for Open Source documentation</a>.</p>
-<h2 id="139729114670752example-patch-file-1">Example Patch File 1</h2>
+<h2 id="139641629889824example-patch-file-1">Example Patch File 1</h2>
 <p>The following example change-configuration.yaml file contains the predefined profiles
 only:</p>
 <pre class="highlight"><code class="language-yaml">apiVersion: builtin
@@ -365,7 +365,7 @@ target:
   kind: ConfigMap
   name: sas-pyconfig-parameters</code></pre>
 
-<h2 id="139729114670752example-patch-file-2">Example Patch File 2</h2>
+<h2 id="139641629889824example-patch-file-2">Example Patch File 2</h2>
 <p>The following example change-configuration.yaml file adds a Python profile called
 &ldquo;myprofile&rdquo; to the global.profiles list and adds profile options for
 &ldquo;myprofile&rdquo;. Note that the default Python profile is still listed and will also be

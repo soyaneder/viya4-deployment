@@ -6,10 +6,10 @@
         <title>Configuration Settings for SAS Viya Platform Migration</title>
     </head>
     <body>
-        <h1 id="139729115184768configuration-settings-for-sas-viya-platform-migration">Configuration Settings for SAS Viya Platform Migration</h1>
-<h2 id="139729115184768overview">Overview</h2>
+        <h1 id="139641630464368configuration-settings-for-sas-viya-platform-migration">Configuration Settings for SAS Viya Platform Migration</h1>
+<h2 id="139641630464368overview">Overview</h2>
 <p>This README describes how to revise and apply the settings for configuring migration jobs.</p>
-<h2 id="139729115184768change-migration-job-timeout">Change Migration Job Timeout</h2>
+<h2 id="139641630464368change-migration-job-timeout">Change Migration Job Timeout</h2>
 <ol>
 <li>
 <p>To change the migration job timeout value, edit the <code>$deploy/kustomization.yaml</code> file by adding an entry for the sas-restore-job-parameters configMap in the configMapGenerator block.
@@ -33,7 +33,7 @@ The entry uses the following format, where {{ TIMEOUT-IN-MINUTES }} is an intege
 
 </li>
 </ol>
-<h2 id="139729115184768filter-configuration-definition-properties">Filter Configuration Definition Properties</h2>
+<h2 id="139641630464368filter-configuration-definition-properties">Filter Configuration Definition Properties</h2>
 <ol>
 <li>
 <p>To skip the migration of the configuration definition properties, edit the <code>$deploy/kustomization.yaml</code>
@@ -66,7 +66,7 @@ If the service name is not present in the definition then only provide &lsquo;de
 
 </li>
 </ol>
-<h2 id="139729115184768filter-configuration-properties">Filter Configuration Properties</h2>
+<h2 id="139641630464368filter-configuration-properties">Filter Configuration Properties</h2>
 <ol>
 <li>
 <p>To skip the migration of the configuration properties, edit the <code>$deploy/kustomization.yaml</code> file by adding an entry for the sas-restore-job-parameters configMap in the configMapGenerator block.
@@ -100,7 +100,7 @@ The entry uses the following format.</p>
 
 </li>
 </ol>
-<h2 id="139729115184768modify-the-resources-of-the-migration-job">Modify the Resources of the Migration Job</h2>
+<h2 id="139641630464368modify-the-resources-of-the-migration-job">Modify the Resources of the Migration Job</h2>
 <p>If the default resources are not sufficient for the completion or successful execution of the migration job, modify the resources to the values you desire.</p>
 <ol>
 <li>

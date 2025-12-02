@@ -6,8 +6,8 @@
         <title>Modify Container Security Settings</title>
     </head>
     <body>
-        <h1 id="139729115833536modify-container-security-settings">Modify Container Security Settings</h1>
-<h2 id="139729115833536overview">Overview</h2>
+        <h1 id="139641629675728modify-container-security-settings">Modify Container Security Settings</h1>
+<h2 id="139641629675728overview">Overview</h2>
 <p>This README describes customizations that can be made by the Kubernetes
 administrator to modify container security configurations while deploying the SAS Viya platform.
 An administrator might want or need to change the default container security settings in a SAS Viya platform
@@ -16,12 +16,12 @@ administrator might want to modify these settings.</p>
 <p>The steps in this README for fsGroup and seccomp can
 be used for any platform. However, if you are deploying on Red Hat OpenShift, these settings must be modified in
 order to take advantage of OpenShift&rsquo;s built-in security context constraints (SCCs). The title of each section indicates whether it is required for OpenShift.</p>
-<h3 id="139729115833536what-is-an-scc">What is an SCC?</h3>
+<h3 id="139641629675728what-is-an-scc">What is an SCC?</h3>
 <p>SCCs are the framework, provided by OpenShift, that controls what privileges can be requested by pods in the cluster.
 OpenShift provides users with several built-in SCCs. Admins can attach pods to any of these SCCs or they can create dedicated SCCs. Dedicated SCCs
 are created specifically to address the specs and capabilities required by a certain pod/product.
 For more information on OpenShift SCCs, see <a href="https://www.openshift.com/blog/managing-sccs-in-openshift">Managing SCCs in OpenShift</a>.</p>
-<h3 id="139729115833536purpose-of-the-customizations">Purpose of the Customizations</h3>
+<h3 id="139641629675728purpose-of-the-customizations">Purpose of the Customizations</h3>
 <p>You can use the customizations in this file to accomplish the following required or optional tasks:</p>
 <ul>
 <li>
@@ -42,12 +42,12 @@ For more information on OpenShift SCCs, see <a href="https://www.openshift.com/b
 </ul>
 <p><strong>Note:</strong> Pods that run with dedicated SCCs for Crunchy Data (the internal PostgreSQL server) or the CAS server do not need the customizations referenced in this README. They have dedicated SCCs that will contain all conditions for the pods
 without altering the podSpec. You can use some of these customizations for OpenSearch. For more information, see <a href="http://documentation.sas.com/doc/en/itopscdc/default/itopssr/n18dxcft030ccfn1ws2mujww1fav.htm#p08n4ci5vnlaj7n1h9xefbnemeut">Security Requirements</a>.</p>
-<h2 id="139729115833536instructions">Instructions</h2>
-<h3 id="139729115833536fsgroup">fsGroup</h3>
+<h2 id="139641629675728instructions">Instructions</h2>
+<h3 id="139641629675728fsgroup">fsGroup</h3>
 <p>The fsGroup field defines a special supplemental group that assigns a GID for all containers in the pod.
 Volumes that support ownership management are modified to be owned and writable by the GID specified in fsGroup.
 For more information about using fsGroup, see <a href="https://kubernetes.io/docs/tasks/configure-pod-container/security-context/">Configure a Security Context for a Pod or Container</a>.</p>
-<h4 id="139729115833536update-the-fsgroup-field-mandatory-for-openshift-optional-for-other-environments">Update the fsGroup Field (Mandatory for OpenShift; Optional for Other Environments)</h4>
+<h4 id="139641629675728update-the-fsgroup-field-mandatory-for-openshift-optional-for-other-environments">Update the fsGroup Field (Mandatory for OpenShift; Optional for Other Environments)</h4>
 <p><strong>Notes:</strong> Crunchy Data currently does not support updating this value. Do not attempt to change this setting for an internal PostgreSQL server. Instead, custom SCCs grant the Crunchy Data pods the ability to run with their specific group ID (GID).</p>
 <p>Updating this value for CAS is optional because CAS default settings work in all environments. If you want to update values for CAS, you must uncomment the corresponding PatchTransformer in the update-fsgroup.yaml file. If you are deploying on OpenShift, the corresponding SCC also must be updated to specify the new fsGroup values or be set to &ldquo;RunAsAny&rdquo;.</p>
 <p>Use these steps to update the fsGroup field for pods in your SAS Viya platform deployment.</p>
@@ -98,7 +98,7 @@ transformers:
 <p>(For OpenShift) If you performed the optional configuration for CAS from Step 5, update the dedicated SCC for CAS to allow the desired fsGroup value. This value should match the value from Step 2 above, or it should be set to <code>RunAsAny</code>.</p>
 </li>
 </ol>
-<h4 id="139729115833536remove-the-fsgroup-field-not-recommended-for-typical-deployment-scenarios">Remove the fsGroup Field (Not Recommended for Typical Deployment Scenarios)</h4>
+<h4 id="139641629675728remove-the-fsgroup-field-not-recommended-for-typical-deployment-scenarios">Remove the fsGroup Field (Not Recommended for Typical Deployment Scenarios)</h4>
 <p><strong>Note:</strong> Crunchy Data currently does not support removing this value. Pods for an internal PostgreSQL server will remain unaffected.</p>
 <p>To remove the fsGroup field from your deployment specification, add the relative path of the remove-fsgroup-transformer.yaml file
 to the transformers block of the base kustomization.yaml file (<code>$deploy/kustomization.yaml</code>). Here is an example:</p>
@@ -108,11 +108,11 @@ transformers:
 - sas-bases/overlays/security/container-security/remove-fsgroup-transformer.yaml
 ...</code></pre>
 
-<h3 id="139729115833536secure-computing-mode-seccomp">Secure Computing Mode (seccomp)</h3>
+<h3 id="139641629675728secure-computing-mode-seccomp">Secure Computing Mode (seccomp)</h3>
 <p>Secure computing mode (seccomp) is a security facility that restricts the actions that are available
 within a container. You can use this feature to restrict your application&rsquo;s access. For more information
 about seccomp, see <a href="https://docs.docker.com/engine/security/seccomp/">Seccomp security profiles for Docker</a>.</p>
-<h4 id="139729115833536update-the-seccomp-profile">Update the seccomp Profile</h4>
+<h4 id="139641629675728update-the-seccomp-profile">Update the seccomp Profile</h4>
 <p>Considerations:</p>
 <ul>
 <li>Crunchy Data (the internal PostgreSQL server) and OpenSearch currently do not support updating this value and will remain unaffected.</li>
@@ -139,7 +139,7 @@ transformers:
 
 </li>
 </ol>
-<h4 id="139729115833536remove-the-seccomp-profile-mandatory-for-openshift">Remove the seccomp Profile (Mandatory for OpenShift)</h4>
+<h4 id="139641629675728remove-the-seccomp-profile-mandatory-for-openshift">Remove the seccomp Profile (Mandatory for OpenShift)</h4>
 <p>To remove the seccomp profile settings from your deployment specification, add the relative path of the
 remove-seccomp-transformer.yaml file to the transformers block of the base kustomization.yaml file (<code>$deploy/kustomization.yaml</code>).</p>
 <p><strong>IMPORTANT:</strong>  You must make this modification in an OpenShift environment.</p>

@@ -6,16 +6,16 @@
         <title>Configure R for the SAS Viya Platform</title>
     </head>
     <body>
-        <h1 id="139729114641504configure-r-for-the-sas-viya-platform">Configure R for the SAS Viya Platform</h1>
-<h2 id="139729114641504overview">Overview</h2>
+        <h1 id="139641630080160configure-r-for-the-sas-viya-platform">Configure R for the SAS Viya Platform</h1>
+<h2 id="139641630080160overview">Overview</h2>
 <p>The SAS Viya platform can use a customer-prepared environment consisting of an R installation and any required packages stored on a Kubernetes Persistent Volume.
 This README describes how to make that volume available to your deployment.</p>
-<h2 id="139729114641504prerequisites">Prerequisites</h2>
+<h2 id="139641630080160prerequisites">Prerequisites</h2>
 <p>The SAS Viya platform provides YAML files that the Kustomize tool uses to configure R. Before you use those files, you must perform the following tasks:</p>
 <ol>
 <li>
 <p>Make note of the attributes of the volume where R and the associated packages are to be deployed. For example, note the server and directory for NFS.
-   For more information about various types of persistent volumes in Kubernetes, see <a href="#139729114641504additional-resources">Additional Resources</a>.</p>
+   For more information about various types of persistent volumes in Kubernetes, see <a href="#139641630080160additional-resources">Additional Resources</a>.</p>
 </li>
 <li>
 <p>Install R and any necessary packages on the volume.</p>
@@ -30,15 +30,15 @@ This README describes how to make that volume available to your deployment.</p>
 </ul>
 </li>
 </ol>
-<h2 id="139729114641504installation">Installation</h2>
+<h2 id="139641630080160installation">Installation</h2>
 <ol>
 <li>
 <p>Copy the files in the <code>$deploy/sas-bases/examples/sas-open-source-config/r</code> directory to the <code>$deploy/site-config/sas-open-source-config/r</code> directory. Create the target directory, if it does not already exist.</p>
-<p><strong>Note:</strong> If the destination directory already exists, <a href="#139729114641504verify-overlay-for-r-volume">verify that the overlay</a> has been applied.
+<p><strong>Note:</strong> If the destination directory already exists, <a href="#139641630080160verify-overlay-for-r-volume">verify that the overlay</a> has been applied.
  If the output contains the <code>/nfs/r-mount</code> directory path, you do not need to take any further actions, unless you want to change the overlay parameters to use a different R environment.</p>
 </li>
 <li>
-<p>The kustomization.yaml file defines all the necessary environment variables. Replace all tags, such as {{ R-HOMEDIR }}, with the values that you gathered in the <a href="#139729114641504prerequisites">Prerequisites</a> step. Then, set the following parameters, according to the SAS products that you will be using:</p>
+<p>The kustomization.yaml file defines all the necessary environment variables. Replace all tags, such as {{ R-HOMEDIR }}, with the values that you gathered in the <a href="#139641630080160prerequisites">Prerequisites</a> step. Then, set the following parameters, according to the SAS products that you will be using:</p>
 <ul>
 <li>DM_RHOME is used by the Open Source Code node in SAS Visual Data Mining and Machine Learning.</li>
 <li>SAS_EXTLANG_SETTINGS is used by applications that run Python and R code on Cloud Analytic Services (CAS). This includes PROC FCMP and the Time Series External Languages (EXTLANG) package. SAS_EXTLANG_SETTINGS should only be set in one example file; for example, if you set it in the Python example, you should not set it the R example. SAS_EXTLANG_SETTINGS should point to an XML file that is readable by all users. The path can be in the same volume that contains the R environment or in any other volume that is accessible to CAS. Refer to the documentation for the Time Series External Languages (EXTLANG) package for details about the expected XML schema.</li>
@@ -119,7 +119,7 @@ transformers:
 </code></pre>
 </li>
 </ol>
-<h2 id="139729114641504verify-overlay-for-r-volume">Verify Overlay for R Volume</h2>
+<h2 id="139641630080160verify-overlay-for-r-volume">Verify Overlay for R Volume</h2>
 <ol>
 <li>
 <p>Run the following command to verify whether the overlay has been applied:</p>
@@ -133,7 +133,7 @@ transformers:
 
 </li>
 </ol>
-<h2 id="139729114641504additional-resources">Additional Resources</h2>
+<h2 id="139641630080160additional-resources">Additional Resources</h2>
 <ul>
 <li><a href="http://documentation.sas.com/?cdcId=itopscdc&amp;cdcVersion=default&amp;docsetId=dplyml0phy0dkr&amp;docsetTarget=titlepage.htm">SAS Viya Platform: Deployment Guide</a></li>
 <li><a href="https://kubernetes.io/docs/concepts/storage/persistent-volumes/">Persistent Volumes in Kubernetes</a></li>

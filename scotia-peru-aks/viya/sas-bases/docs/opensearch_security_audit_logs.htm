@@ -6,14 +6,14 @@
         <title>OpenSearch Security Audit Logs</title>
     </head>
     <body>
-        <h1 id="139729115011920opensearch-security-audit-logs">OpenSearch Security Audit Logs</h1>
-<h2 id="139729115011920overview">Overview</h2>
+        <h1 id="139641630293056opensearch-security-audit-logs">OpenSearch Security Audit Logs</h1>
+<h2 id="139641630293056overview">Overview</h2>
 <p>Security audit logs track a range of OpenSearch cluster events. The OpenSearch audit logs can provide beneficial information for compliance purposes or assist in the aftermath of a security breach.</p>
 <p>The audit logs are written to audit indices in the OpenSearch cluster. Audit indices can build up over time and use valuable resources. By default, an Index State Management (ISM) policy named &lsquo;viya_delete_old_security_audit_logs&rsquo; is applied by the operator which deletes security audit log indices after seven days with an ISM priority of 50. OpenSearch enables ISM history logs, which are also stored to new indices. By default, ISM history retention is seven days. </p>
 <p>The ISM policy can be disabled or configured to retain OpenSearch audit log indices for a specified length of time. </p>
 <p>If you have already manually created an ISM policy for OpenSearch audit logs, the policy with the higher priority value will take precedence. </p>
-<h2 id="139729115011920configure-the-viya_delete_old_security_audit_logs-ism-policy">Configure the viya_delete_old_security_audit_logs ISM policy</h2>
-<h3 id="139729115011920configurable-parameters">Configurable Parameters</h3>
+<h2 id="139641630293056configure-the-viya_delete_old_security_audit_logs-ism-policy">Configure the viya_delete_old_security_audit_logs ISM policy</h2>
+<h3 id="139641630293056configurable-parameters">Configurable Parameters</h3>
 <table>
 <thead>
 <tr>
@@ -50,7 +50,7 @@
 </tr>
 </tbody>
 </table>
-<h3 id="139729115011920configuration-instructions">Configuration Instructions</h3>
+<h3 id="139641630293056configuration-instructions">Configuration Instructions</h3>
 <ol>
 <li>
 <p>Copy the audit log retention transformer from <code>$deploy/sas-bases/examples/configure-elasticsearch/internal/security-audit-logs/audit-log-retention-transformer.yaml</code> into the <code>$deploy/site-config</code> directory. Adjust the value for each parameter listed above that you would like to change. </p>
@@ -64,7 +64,7 @@
 </li>
 </ol>
 <p><strong>Note</strong>: The ISM policy values can be adjusted and reconfigured after the initial deployment.</p>
-<h2 id="139729115011920disable-security-audit-logs">Disable Security Audit Logs</h2>
+<h2 id="139641630293056disable-security-audit-logs">Disable Security Audit Logs</h2>
 <p>OpenSearch security audit logging can be disabled completely.</p>
 <ol>
 <li>
@@ -78,7 +78,7 @@
 
 </li>
 </ol>
-<h2 id="139729115011920additional-resources">Additional Resources</h2>
+<h2 id="139641630293056additional-resources">Additional Resources</h2>
 <p>For more information on OpenSearch audit logs or Index State Management (ISM) policies, see the <a href="https://opensearch.org/docs/latest/">OpenSearch Documentation</a>.</p>
     </body>
 </html>

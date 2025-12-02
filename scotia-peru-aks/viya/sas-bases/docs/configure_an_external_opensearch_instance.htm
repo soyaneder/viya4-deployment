@@ -6,9 +6,9 @@
         <title>Configure an External OpenSearch Instance</title>
     </head>
     <body>
-        <h1 id="139729115004784configure-an-external-opensearch-instance">Configure an External OpenSearch Instance</h1>
+        <h1 id="139641630280672configure-an-external-opensearch-instance">Configure an External OpenSearch Instance</h1>
 <p>This README file describes the files used to configure the SAS Viya platform deployment to use an externally managed instance of OpenSearch.</p>
-<h2 id="139729115004784prerequisites">Prerequisites</h2>
+<h2 id="139641630280672prerequisites">Prerequisites</h2>
 <p>Before deploying the SAS Viya platform, make sure you have the following prerequisites:</p>
 <ul>
 <li>
@@ -42,7 +42,7 @@
 </li>
 </ul>
 <p>If you are deploying SAS Visual Investigator, the external instance of OpenSearch requires a specific configuration of OpenSearch and its security plugin. For more information, see the README file at <code>$deploy/sas-bases/examples/configure-elasticsearch/external/config/README.md</code> (for Markdown format) or at <code>$deploy/sas-bases/docs/external_opensearch_configuration_requirements_for_sas_visual_investigator.htm</code> (for HTML format).</p>
-<h2 id="139729115004784instructions">Instructions</h2>
+<h2 id="139641630280672instructions">Instructions</h2>
 <p>In order to use an external OpenSearch instance, you must customize your deployment to point to the required resources and transformers.</p>
 <ol>
 <li>
@@ -93,7 +93,7 @@
 
 </li>
 </ol>
-<h2 id="139729115004784recommendations">Recommendations</h2>
+<h2 id="139641630280672recommendations">Recommendations</h2>
 <p>To ensure the optimal functionality of index creation within the SAS Viya platform, ensure that the action section inside the config/opensearch.yml file has the auto_create_index set to <code>-sand__*,-viya_catalog__*,-cirrus__*,-viya_cirrus__*,+*</code>.</p>
     </body>
 </html>

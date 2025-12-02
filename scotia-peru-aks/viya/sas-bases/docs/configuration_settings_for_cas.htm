@@ -6,8 +6,8 @@
         <title>Configuration Settings for CAS</title>
     </head>
     <body>
-        <h1 id="139729115833152configuration-settings-for-cas">Configuration Settings for CAS</h1>
-<h2 id="139729115833152overview">Overview</h2>
+        <h1 id="139641637727488configuration-settings-for-cas">Configuration Settings for CAS</h1>
+<h2 id="139641637727488overview">Overview</h2>
 <p>This document describes the customizations that can be made by the Kubernetes
 administrator for deploying CAS in both symmetric multiprocessing (SMP) and
 massively parallel processing (MPP) configurations.</p>
@@ -16,8 +16,8 @@ Kubernetes node for the server controller and two or more nodes for server
 workers. The <em>SAS Viya Platform: Deployment Guide</em> provides information to help
 you
 decide. A link to the deployment guide is provided in the
-<a href="#139729115833152additional-resources">Additional Resources</a> section.</p>
-<h2 id="139729115833152installation">Installation</h2>
+<a href="#139641637727488additional-resources">Additional Resources</a> section.</p>
+<h2 id="139641637727488installation">Installation</h2>
 <p>SAS provides example files for many common customizations. Read the descriptions
 for the example files in the following list. If you want to use an example file
 to simplify customizing your deployment, copy the file to your
@@ -27,7 +27,7 @@ off by curly braces and spaces, such as {{ NUMBER-OF-WORKERS }}. Replace the
 entire variable string, including the braces, with the value you want to use.</p>
 <p>After you edit a file, add a reference to it in the transformer block of the
 base <code>kustomization.yaml</code> file.</p>
-<h2 id="139729115833152examples">Examples</h2>
+<h2 id="139641637727488examples">Examples</h2>
 <p>The example files are located at <code>$deploy/sas-bases/examples/cas/configure</code>. The
 following is a list of each example file for CAS settings and the file name.</p>
 <ul>
@@ -137,7 +137,7 @@ default of &ldquo;RuntimeDefault&rdquo;.
   (<code>cas-enable-backing-store-with-priority-group-one.yaml</code>)</p>
 </li>
 </ul>
-<h3 id="139729115833152manage-the-number-of-workers">Manage the Number of Workers</h3>
+<h3 id="139641637727488manage-the-number-of-workers">Manage the Number of Workers</h3>
 <p><strong>Note:</strong> If you are using an SMP configuration, skip this section.</p>
 <p>By default, MPP CAS has two workers. To modify the number of workers, you must
 modify the cas-manage-workers.yaml transformer file. The file can be modified
@@ -155,12 +155,12 @@ variables allows you to use CAS Node Scaling after the software has been
 deployed without having to change any of the transformers or the base
 kustomization.yaml file. For details about CAS
 Node Scaling, see <a href="https://documentation.sas.com/?cdcId=sasadmincdc&amp;cdcVersion=default&amp;docsetId=calserverscas&amp;docsetTarget=n05000viyaservers000000admin.htm#n0frcy9n5mwb96n1jhkfl6d0cijj">CAS Node Scaling</a>.</p>
-<h4 id="139729115833152use-the-cas-manage-workersyaml-transformer">Use the cas-manage-workers.yaml Transformer</h4>
+<h4 id="139641637727488use-the-cas-manage-workersyaml-transformer">Use the cas-manage-workers.yaml Transformer</h4>
 <p>To use the cas-manage-workers.yaml transformer, copy the file to the
 $deploy/sas-config subdirectory. Then modify the file as described in the
 comments of the file itself before adding the file to the transformer block of
 the base kustomization.yaml file.</p>
-<h4 id="139729115833152set-the-environment-variables-for-cas-node-scaling">Set the Environment Variables for CAS Node Scaling</h4>
+<h4 id="139641637727488set-the-environment-variables-for-cas-node-scaling">Set the Environment Variables for CAS Node Scaling</h4>
 <p>To set the environment variables for CAS Node Scaling, copy the
 cas-add-environment-variables.yaml file to the $deploy/sas-config subdirectory.
 Modify the file to add the following environment variables:</p>
@@ -180,7 +180,7 @@ patch: |-
 <p>Ensure that you accurately designate which CAS servers are receiving the new
 environment variables in the target block of the file. Then add the file to the
 transformer block of the base kustomization.yaml file.</p>
-<h3 id="139729115833152disable-cloud-native-mode">Disable Cloud Native Mode</h3>
+<h3 id="139641637727488disable-cloud-native-mode">Disable Cloud Native Mode</h3>
 <p>Perform these steps if cloud native mode should be disabled in your environment.</p>
 <ol>
 <li>
@@ -206,7 +206,7 @@ tId=dplyml0phy0dkr&amp;docsetTarget=titepage.htm">SAS Viya Platform: Deployment
 Guide</a>.</p>
 </li>
 </ol>
-<h3 id="139729115833152enable-system-security-services-daemon-sssd-container">Enable System Security Services Daemon (SSSD) Container</h3>
+<h3 id="139641637727488enable-system-security-services-daemon-sssd-container">Enable System Security Services Daemon (SSSD) Container</h3>
 <blockquote>
 <p><strong><em>Note</em></strong>: If you are enabling SSSD on an OpenShift cluster, use the
 SecurityContextConstraint patch <code>cas-server-scc-sssd.yaml</code> instead of
@@ -231,7 +231,7 @@ the transformers list of the base kustomization.yaml file
 precede the entry <code>sas-bases/overlays/required/transformers.yaml</code> and any TLS
 transformers.</p>
 </blockquote>
-<h3 id="139729115833152add-a-custom-configuration-for-system-security-services-daemon-sssd">Add a Custom Configuration for System Security Services Daemon (SSSD)</h3>
+<h3 id="139641637727488add-a-custom-configuration-for-system-security-services-daemon-sssd">Add a Custom Configuration for System Security Services Daemon (SSSD)</h3>
 <p>Use these steps to provide a custom SSSD configuration to handle user
 authorization in your environment.</p>
 <ol>
@@ -275,7 +275,7 @@ secretGenerator:
 </code></pre>
 </li>
 </ol>
-<h3 id="139729115833152enable-host-launch-in-the-cas-server">Enable Host Launch in the CAS Server</h3>
+<h3 id="139641637727488enable-host-launch-in-the-cas-server">Enable Host Launch in the CAS Server</h3>
 <blockquote>
 <p><strong><em>Note</em></strong>: If you use Kerberos in your deployment, or enable SSSD and disable
 CASCLOUDNATIVE,
@@ -334,7 +334,7 @@ transformers:
 </code></pre>
 </li>
 </ol>
-<h3 id="139729115833152enable-cas-internode-encryption">Enable CAS Internode Encryption</h3>
+<h3 id="139641637727488enable-cas-internode-encryption">Enable CAS Internode Encryption</h3>
 <p>CAS supports encrypting connections between the worker nodes. When internode
 encryption is configured, any data sent between worker nodes is sent over a TLS
 connection.</p>
@@ -365,7 +365,7 @@ your <code>/site-config</code> directory.  For example:
 <p>The cas-enable-internode-tls.yaml transformer file defaults to targeting all
 CAS servers by specifying a name component of <code>.*</code>. Edit the transformer to
 indicate the CAS servers you want to target for CAS internode encryption. For
-more information about selecting specific CAS servers, see <a href="#139729115833152targeting-cas-servers">Targeting CAS
+more information about selecting specific CAS servers, see <a href="#139641637727488targeting-cas-servers">Targeting CAS
 Servers</a>.</p>
 </li>
 <li>
@@ -384,12 +384,12 @@ transformers:
 </code></pre>
 </li>
 </ol>
-<h3 id="139729115833152configure-behavior-of-cas-state-transfer">Configure Behavior of CAS State Transfer</h3>
+<h3 id="139641637727488configure-behavior-of-cas-state-transfer">Configure Behavior of CAS State Transfer</h3>
 <p>For the instructions to set up a CAS State transfer, including configuration steps,
 see the README file located at <code>$deploy/sas-bases/overlays/cas-server/state-transfer/README.md</code>
 (for Markdown format) or at <code>$deploy/sas-bases/docs/state_transfer_for_cas_server_for_the_sas_viya_platform.htm</code>
 (for HTML format).</p>
-<h3 id="139729115833152enable-a-backing-store-for-cas">Enable a Backing Store for CAS</h3>
+<h3 id="139641637727488enable-a-backing-store-for-cas">Enable a Backing Store for CAS</h3>
 <p>Generally, when CAS allocates memory, it uses memory allocated from the threaded
 kernel. However, such memory is susceptible to the Linux Out of Memory (OOM)
 killer, potentially causing the entire deployment of CAS to restart and
@@ -413,7 +413,7 @@ store for CAS memory allocation.</p>
 </ul>
 <p>Follow the instructions in the comments of the patch transformers to replace variables with the appropriate values.</p>
 <p><strong>Note:</strong> For information about CAS resource management policies, see <a href="https://go.documentation.sas.com/doc/en/sasadmincdc/v_058/calserverscas/n05000viyaservers000000admin.htm#n05030viyaservers000000admin">CAS Resource Management Policies</a></p>
-<h2 id="139729115833152targeting-cas-servers">Targeting CAS Servers</h2>
+<h2 id="139641637727488targeting-cas-servers">Targeting CAS Servers</h2>
 <p>Each example patch has a target section which tells it what resource(s) it
 should apply to.
 There are several parameters including object name, kind, version, and
@@ -436,7 +436,7 @@ overlay you can use a labelSelector:</p>
 option must be used, because the name is a config map token that cannot be
 targeted.</p>
 </blockquote>
-<h2 id="139729115833152additional-resources">Additional Resources</h2>
+<h2 id="139641637727488additional-resources">Additional Resources</h2>
 <p>For more information about CAS configuration and using example files, see the
 <a href="http://documentation.sas.com/?softwareId=mysas&amp;softwareVersion=prod&amp;docse
 tId=dplyml0phy0dkr&amp;docsetTarget=titlepage.htm">SAS Viya Platform: Deployment

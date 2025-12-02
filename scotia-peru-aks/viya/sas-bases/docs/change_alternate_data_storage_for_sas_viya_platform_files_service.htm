@@ -6,16 +6,16 @@
         <title>Change Alternate Data Storage for SAS Viya Platform Files Service</title>
     </head>
     <body>
-        <h1 id="139729114304464change-alternate-data-storage-for-sas-viya-platform-files-service">Change Alternate Data Storage for SAS Viya Platform Files Service</h1>
-<h2 id="139729114304464overview">Overview</h2>
+        <h1 id="139641629790320change-alternate-data-storage-for-sas-viya-platform-files-service">Change Alternate Data Storage for SAS Viya Platform Files Service</h1>
+<h2 id="139641629790320overview">Overview</h2>
 <p>The SAS Viya platform files service uses PostgreSQL to store file metadata and content. However, In PostgreSQL upload time is slower for large objects. To overcome this limitation you can choose to store the file content in other data storage, such as Azure Blob Storage.
 If you choose Azure Blob Storage as the storage database, then the file content is stored in Azure Blob Storage and file metadata remains in PostgreSQL.</p>
-<h2 id="139729114304464configure-sas-viya-file-service-for-azure-blob-storage">Configure SAS Viya File Service for Azure Blob Storage</h2>
+<h2 id="139641629790320configure-sas-viya-file-service-for-azure-blob-storage">Configure SAS Viya File Service for Azure Blob Storage</h2>
 <p>The steps necessary to configure the SAS Viya platform files service to use Azure Blob Storage
 as the back end for file content are listed below.</p>
-<h3 id="139729114304464prerequisites">Prerequisites</h3>
+<h3 id="139641629790320prerequisites">Prerequisites</h3>
 <p>Before you start, create or obtain a storage account and record the name of the storage account and its access key.</p>
-<h3 id="139729114304464installation">Installation</h3>
+<h3 id="139641629790320installation">Installation</h3>
 <ol>
 <li>
 <p>Copy the files in the <code>$deploy/sas-bases/examples/sas-files/azure/blob</code> directory to the

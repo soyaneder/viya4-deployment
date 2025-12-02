@@ -6,10 +6,10 @@
         <title>Uncommon Migration Customizations</title>
     </head>
     <body>
-        <h1 id="139729115001520uncommon-migration-customizations">Uncommon Migration Customizations</h1>
-<h2 id="139729115001520overview">Overview</h2>
+        <h1 id="139641630335712uncommon-migration-customizations">Uncommon Migration Customizations</h1>
+<h2 id="139641630335712overview">Overview</h2>
 <p>This README contains information for customizations potentially required for migrating to SAS Viya 4. These customizations are not used often.</p>
-<h2 id="139729115001520configure-new-postgresql-name">Configure New PostgreSQL Name</h2>
+<h2 id="139641630335712configure-new-postgresql-name">Configure New PostgreSQL Name</h2>
 <ol>
 <li>
 <p>If you change the name of the PostgreSQL service during migration, you must map the new name to the old name. Edit <code>$deploy/kustomization.yaml</code>
@@ -41,7 +41,7 @@ and add an entry to the restore_job_parameters configMap in configMapGenerator s
 
 </li>
 </ol>
-<h2 id="139729115001520exclude-schemas-during-migration">Exclude Schemas During Migration</h2>
+<h2 id="139641630335712exclude-schemas-during-migration">Exclude Schemas During Migration</h2>
 <ol>
 <li>
 <p>If you need to exclude some of the schemas during migration, edit <code>$deploy/kustomization.yaml</code> and
@@ -68,7 +68,7 @@ add an entry to the restore_job_parameters configMap in configMapGenerator secti
 
 </li>
 </ol>
-<h2 id="139729115001520custom-database-name">Custom Database Name</h2>
+<h2 id="139641630335712custom-database-name">Custom Database Name</h2>
 <ol>
 <li>
 <p>If the database name on the system you want to restore (the target system) does not match the database name on the system from where a backup has been taken
@@ -91,7 +91,7 @@ add an entry to the restore_job_parameters configMap in configMapGenerator secti
 
 </li>
 </ol>
-<h2 id="139729115001520exclude-postgresql-instance-during-migration">Exclude PostgreSQL Instance During Migration</h2>
+<h2 id="139641630335712exclude-postgresql-instance-during-migration">Exclude PostgreSQL Instance During Migration</h2>
 <ol>
 <li>
 <p>If you need to exclude some of the PostgreSQL instances during migration, edit <code>$deploy/kustomization.yaml</code>
@@ -118,7 +118,7 @@ and add an entry to the restore_job_parameters configMap in the configMapGenerat
 
 </li>
 </ol>
-<h2 id="139729115001520enable-parallel-execution-for-the-restore-operation">Enable Parallel Execution for the Restore Operation</h2>
+<h2 id="139641630335712enable-parallel-execution-for-the-restore-operation">Enable Parallel Execution for the Restore Operation</h2>
 <ol>
 <li>
 <p>You can set a jobs option that reduces the amount of time required to restore the SAS Infrastructure Data server.
@@ -147,7 +147,7 @@ literals:
 
 </li>
 </ol>
-<h2 id="139729115001520additional-resources">Additional Resources</h2>
+<h2 id="139641630335712additional-resources">Additional Resources</h2>
 <p>For more information about migration, see <a href="https://documentation.sas.com/?cdcId=sasadmincdc&amp;cdcVersion=default&amp;docsetId=calmigration&amp;docsetTarget=titlepage.htm">SAS Viya Platform Administration: Migration</a>.</p>
 <p><strong>Note:</strong> Ensure that the version indicated by the version selector for the document matches the version of your SAS Viya platform software.</p>
     </body>

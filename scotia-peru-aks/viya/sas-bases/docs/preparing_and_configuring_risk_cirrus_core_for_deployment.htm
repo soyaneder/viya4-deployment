@@ -6,8 +6,8 @@
         <title>Preparing and Configuring Risk Cirrus Core for Deployment</title>
     </head>
     <body>
-        <h1 id="139729115835120preparing-and-configuring-risk-cirrus-core-for-deployment">Preparing and Configuring Risk Cirrus Core for Deployment</h1>
-<h2 id="139729115835120overview-of-the-pre-deployment-process">Overview of the Pre-Deployment Process</h2>
+        <h1 id="139641631120496preparing-and-configuring-risk-cirrus-core-for-deployment">Preparing and Configuring Risk Cirrus Core for Deployment</h1>
+<h2 id="139641631120496overview-of-the-pre-deployment-process">Overview of the Pre-Deployment Process</h2>
 <p>Before you can deploy a SAS Risk Cirrus solution, it is important to understand that your solution
 content is integrated with the SAS Risk Cirrus platform. The platform includes a common layer (Risk
 Cirrus Core) that is used by all SAS Risk Cirrus solutions. Therefore, in order to fully deploy your
@@ -15,37 +15,37 @@ solution, you must deploy, at minimum, the Risk Cirrus Core content in addition 
 <p>In order to deploy Risk Cirrus Core, you must first complete the following pre-deployment tasks:</p>
 <ol>
 <li>
-<p><a href="#139729115835120review-the-risk-cirrus-objects-readme-file">Review the Risk Cirrus Objects README file.</a></p>
+<p><a href="#139641631120496review-the-risk-cirrus-objects-readme-file">Review the Risk Cirrus Objects README file.</a></p>
 </li>
 <li>
 <p>(For deployments that use external PostgreSQL databases)
-   <a href="#139729115835120deploy-and-stage-an-external-database">Deploy and stage an external PostgreSQL database</a>.</p>
+   <a href="#139641631120496deploy-and-stage-an-external-database">Deploy and stage an external PostgreSQL database</a>.</p>
 </li>
 <li>
-<p><a href="#139729115835120deploy-an-additional-postgresql-cluster-for-the-sas-common-data-store">Deploy an additional PostgreSQL cluster</a>
+<p><a href="#139641631120496deploy-an-additional-postgresql-cluster-for-the-sas-common-data-store">Deploy an additional PostgreSQL cluster</a>
    for the SAS Common Data Store.</p>
 </li>
 <li>
-<p><a href="#139729115835120specify-a-persistent-volume-claim-for-risk-cirrus-core">Specify a Persistent Volume Claim for Risk Cirrus Core</a>
+<p><a href="#139641631120496specify-a-persistent-volume-claim-for-risk-cirrus-core">Specify a Persistent Volume Claim for Risk Cirrus Core</a>
    by updating the SAS Viya platform customization file (kustomization.yaml).</p>
 </li>
 <li>
-<p><a href="#139729115835120modify-the-configuration-for-risk-cirrus-core">Modify the Configuration for Risk Cirrus Core</a>.</p>
+<p><a href="#139641631120496modify-the-configuration-for-risk-cirrus-core">Modify the Configuration for Risk Cirrus Core</a>.</p>
 </li>
 <li>
-<p><a href="#139729115835120review-solution-readme-files-for-additional-tasks">Review any solution README files for additional deployment-related tasks</a>.</p>
+<p><a href="#139641631120496review-solution-readme-files-for-additional-tasks">Review any solution README files for additional deployment-related tasks</a>.</p>
 </li>
 <li>
-<p><a href="#139729115835120complete-the-deployment-process">Complete the deployment process</a>.</p>
+<p><a href="#139641631120496complete-the-deployment-process">Complete the deployment process</a>.</p>
 </li>
 <li>
-<p><a href="#139729115835120verify-your-access-control-settings">Verify your access control settings</a>.</p>
+<p><a href="#139641631120496verify-your-access-control-settings">Verify your access control settings</a>.</p>
 </li>
 <li>
-<p><a href="#139729115835120verify-that-the-configuration-overrides-have-been-applied-successfully">Verify that the configuration overrides have been applied successfully</a>.</p>
+<p><a href="#139641631120496verify-that-the-configuration-overrides-have-been-applied-successfully">Verify that the configuration overrides have been applied successfully</a>.</p>
 </li>
 </ol>
-<h2 id="139729115835120review-the-risk-cirrus-objects-readme-file">Review the Risk Cirrus Objects README File</h2>
+<h2 id="139641631120496review-the-risk-cirrus-objects-readme-file">Review the Risk Cirrus Objects README File</h2>
 <p>If you plan to have multiple environments, follow the steps described in Risk Cirrus Objects README file located at <code>$deploy/sas-bases/examples/sas-risk-cirrus-objects/resources/README.md</code> (for Markdown-formatted instructions) and <code>$deploy/sas-bases/docs/configure_environment_id_settings_for_sas_risk_cirrus_builder_microservice.htm</code> (for HTML-formatted instructions). These instructions will help you to make changes to the sas_risk_cirrus_objects_transform.yaml and configure an environment ID for the target environment. The environment ID is used in the deployment process to set a new default Source System Code in the format <solution_shortname>_<environment_ID>. This configuration prevents object conflicts during promotion between environments and enables users to identify the environment in which a given object was created.</p>
 <p>When selecting the value of the environment ID:</p>
 <ul>
@@ -54,7 +54,7 @@ solution, you must deploy, at minimum, the Risk Cirrus Core content in addition 
 <li>Common examples include: PROD, PRE_PROD, DEV, TEST or UAT.</li>
 </ul>
 <p>You must set a unique environment ID for each environment. Do not use the same environment ID for multiple environments. Once the environment ID is set for a target environment, it&rsquo;s not recommended to change it.</p>
-<h2 id="139729115835120deploy-and-stage-an-external-database">Deploy and Stage an External Database</h2>
+<h2 id="139641631120496deploy-and-stage-an-external-database">Deploy and Stage an External Database</h2>
 <p><strong>IMPORTANT:</strong> This task is required only if you are deploying an external PostgreSQL database
 instance for a solution that supports its use.</p>
 <p>If your solution supports the use of an external PostgreSQL database instance, ensure that you have completed the following pre-deployment
@@ -71,7 +71,7 @@ tasks:</p>
 <p>The process for configuring the LTREE extension and setting the database locale varies depending on
 the cloud provider and operating system.</p>
 <p>For specific instructions on performing these tasks, consult your cloud provider documentation.</p>
-<h2 id="139729115835120deploy-an-additional-postgresql-cluster-for-the-sas-common-data-store">Deploy an Additional PostgreSQL Cluster for the SAS Common Data Store</h2>
+<h2 id="139641631120496deploy-an-additional-postgresql-cluster-for-the-sas-common-data-store">Deploy an Additional PostgreSQL Cluster for the SAS Common Data Store</h2>
 <p>The Risk Data Service requires the deployment of an additional PostgreSQL cluster called SAS Common
 Data Store (also called CDS PostgreSQL). This cluster is configured separately from the required
 platform PostgreSQL cluster that supports the SAS Infrastructure Data Server.</p>
@@ -81,7 +81,7 @@ instance, an external PostgreSQL instance must also be used for the SAS Common D
 (and vice versa).</p>
 <p>For more information about configuring the SAS Common Data Store cluster, see the README file
 located at <code>$deploy/sas-bases/examples/postgres/README.md</code> (for Markdown-formatted instructions) or <code>$deploy/sas-bases/docs/configure_postgresql.htm</code> (for HTML-formatted instructions).</p>
-<h2 id="139729115835120specify-a-persistent-volume-claim-for-risk-cirrus-core">Specify a Persistent Volume Claim for Risk Cirrus Core</h2>
+<h2 id="139641631120496specify-a-persistent-volume-claim-for-risk-cirrus-core">Specify a Persistent Volume Claim for Risk Cirrus Core</h2>
 <p>The best option for storing any code that is needed for SAS programming run-time environment
 sessions is a Network File Sharing (NFS) server that all programming run-time Kubernetes pods can
 access. In order for SAS Risk Cirrus solutions to operate properly, you must specify a Persistent
@@ -99,18 +99,18 @@ comma-separated list of PVCs.</p>
 
 <p>For additional information about this process, see
 <a href="https://documentation.sas.com/?cdcId=itopscdc&amp;cdcVersion=default&amp;docsetId=dplyml0phy0dkr&amp;docsetTarget=n08u2yg8tdkb4jn18u8zsi6yfv3d.htm#p0la9vh2963b2kn17f03ylvpiluu">Specify PersistentVolumeClaims to Use ReadWriteMany StorageClass</a>.</p>
-<h2 id="139729115835120modify-the-configuration-for-risk-cirrus-core">Modify the Configuration for Risk Cirrus Core</h2>
-<h3 id="139729115835120overview-of-configuration-parameters-for-risk-cirrus-core">Overview of Configuration Parameters for Risk Cirrus Core</h3>
+<h2 id="139641631120496modify-the-configuration-for-risk-cirrus-core">Modify the Configuration for Risk Cirrus Core</h2>
+<h3 id="139641631120496overview-of-configuration-parameters-for-risk-cirrus-core">Overview of Configuration Parameters for Risk Cirrus Core</h3>
 <p>Risk Cirrus Core provides a ConfigMap whose values control various aspects of its deployment process.  This
 includes variables such as logging level for the deployment, deployment steps to skip, etc.  SAS provides
 default values for these variables as described in the next section.  You can override these default values
 by configuring a <code>configuration.env</code> file with your override values and configuring your <code>kustomization.yaml</code>
 file to apply these overrides.</p>
 <p>For a list of variables that can be overridden and their default values, see
-<a href="#139729115835120risk-cirrus-core-configuration-parameters">Risk Cirrus Core Configuration Parameters</a>.</p>
+<a href="#139641631120496risk-cirrus-core-configuration-parameters">Risk Cirrus Core Configuration Parameters</a>.</p>
 <p>For the steps needed to override the default values with your own values, see
-<a href="#139729115835120apply-overrides-to-the-configuration-parameters">Apply your own overrides to the configuration parameters</a>.</p>
-<h3 id="139729115835120risk-cirrus-core-configuration-parameters">Risk Cirrus Core Configuration Parameters</h3>
+<a href="#139641631120496apply-overrides-to-the-configuration-parameters">Apply your own overrides to the configuration parameters</a>.</p>
+<h3 id="139641631120496risk-cirrus-core-configuration-parameters">Risk Cirrus Core Configuration Parameters</h3>
 <p>The following table contains a list of parameters that can be specified in the Risk Cirrus Core <code>.env</code>
 configuration file.  These parameters can all be found in the template configuration file (<code>configuration.env</code>)
 but are commented out in the template file.  Lines with a &lsquo;#&rsquo; at the beginning are commented out, and their values
@@ -146,7 +146,7 @@ must uncomment the line by removing the &lsquo;#&rsquo; at the beginning of the 
 </tr>
 </tbody>
 </table>
-<h3 id="139729115835120apply-overrides-to-the-configuration-parameters">Apply Overrides to the Configuration Parameters</h3>
+<h3 id="139641631120496apply-overrides-to-the-configuration-parameters">Apply Overrides to the Configuration Parameters</h3>
 <p>If you want to override any of the Risk Cirrus Core configuration parameters rather than using
 the default values, complete these steps:</p>
 <ol>
@@ -161,7 +161,7 @@ the default values, complete these steps:</p>
 <p>Copy the <code>configuration.env</code> from <code>$deploy/sas-bases/examples/sas-risk-cirrus-rcc</code> to the
    <code>$deploy/site-config/sas-risk-cirrus-rcc</code> directory. Create the destination directory if
    one does not exist. If the directory already exists and already has the expected <code>.env</code> file,
-   <a href="#139729115835120verify-that-configuration-overrides-have-been-applied-successfully">verify that the overrides</a>
+   <a href="#139641631120496verify-that-configuration-overrides-have-been-applied-successfully">verify that the overrides</a>
    have been correctly applied. No further actions are required, unless you want to apply different
    overrides.</p>
 </li>
@@ -195,25 +195,25 @@ the default values, complete these steps:</p>
 SAS_RISK_CIRRUS_SET_WORKFLOW_SERVICE_ACCOUNT_FLG=Y
 SAS_RISK_CIRRUS_WORKFLOW_DEFAULT_SERVICE_ACCOUNT=workflowacct</code></pre>
 
-<p>For a list of variables that can be overridden and their default values, see <a href="#139729115835120risk-cirrus-core-configuration-parameters">Risk Cirrus Core Configuration Parameters</a>.</p>
+<p>For a list of variables that can be overridden and their default values, see <a href="#139641631120496risk-cirrus-core-configuration-parameters">Risk Cirrus Core Configuration Parameters</a>.</p>
 </li>
 <li>
 <p>Save the <code>configuration.env</code> file.</p>
 </li>
 </ol>
-<h2 id="139729115835120review-solution-readme-files-for-additional-tasks">Review Solution README Files for Additional Tasks</h2>
+<h2 id="139641631120496review-solution-readme-files-for-additional-tasks">Review Solution README Files for Additional Tasks</h2>
 <p>After you have completed your pre-deployment configurations for Risk Cirrus Core, ensure that you
 review the solution README files for any Cirrus applications that you are deploying. These files
 contain additional pre-deployment instructions that you must follow to make changes to the
 kustomization.yaml file as well as to solution-specific configuration files, as part of the
 overall SAS Viya platform deployment. You can also refer to the solution-specific administrative
 documentation for further details as needed.</p>
-<h2 id="139729115835120complete-the-deployment-process">Complete the Deployment Process</h2>
+<h2 id="139641631120496complete-the-deployment-process">Complete the Deployment Process</h2>
 <p>When you have finished configuring your deployment using the README files that are provided,
 complete the deployment steps to apply the new settings. The method by which the manifest is applied
 depends on what deployment method is being used. For more information, see
 <a href="http://documentation.sas.com/?cdcId=itopscdc&amp;cdcVersion=default&amp;docsetId=dplyml0phy0dkr&amp;docsetTarget=p127f6y30iimr6n17x2xe9vlt54q.htm">Deploy the Software</a>.</p>
-<h2 id="139729115835120verify-your-access-control-settings">Verify Your Access Control Settings</h2>
+<h2 id="139641631120496verify-your-access-control-settings">Verify Your Access Control Settings</h2>
 <p>When deploying Risk Cirrus Core, you can determine whether to enable Linux Access Control Lists
 (ACL) to set permissions on Analysis Run directories. By default, when Risk Cirrus Core is deployed,
 the &lsquo;requireACL&rsquo; flag in SAS Environment Manager is set to OFF. If you are upgrading from an
@@ -249,7 +249,7 @@ the PVC. Using &lsquo;requireACL=OFF&rsquo; enables unrestricted sharing mode. T
 directory in the PVC. For more information about configuration settings in SAS Environment Manager,
 see
 <a href="https://documentation.sas.com/?cdcId=sasadmincdc&amp;cdcVersion=default&amp;docsetId=evfun&amp;docsetTarget=p19rd04uy9qnlkn10vwoajl66nxq.htm">Configuration Page</a></p>
-<h2 id="139729115835120verify-that-the-configuration-overrides-have-been-applied-successfully">Verify That the Configuration Overrides Have Been Applied Successfully</h2>
+<h2 id="139641631120496verify-that-the-configuration-overrides-have-been-applied-successfully">Verify That the Configuration Overrides Have Been Applied Successfully</h2>
 <p><strong>Note:</strong> If you configured overrides during a past deployment, your overrides should be available
 in the SAS Risk Cirrus Core ConfigMap.  To verify that your overrides were applied successfully
 to the ConfigMap, run the following command:</p>

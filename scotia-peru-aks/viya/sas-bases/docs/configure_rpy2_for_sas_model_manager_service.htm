@@ -6,8 +6,8 @@
         <title>Configure rpy2 for SAS Model Manager Service</title>
     </head>
     <body>
-        <h1 id="139729114301872configure-rpy2-for-sas-model-manager-service">Configure rpy2 for SAS Model Manager Service</h1>
-<h2 id="139729114301872overview">Overview</h2>
+        <h1 id="139641629148928configure-rpy2-for-sas-model-manager-service">Configure rpy2 for SAS Model Manager Service</h1>
+<h2 id="139641629148928overview">Overview</h2>
 <p>The SAS Model Manager service provides support for registering, organizing,
 and managing models within a common model repository. This service is used by
 SAS Event Stream Processing, SAS Intelligent Decisioning, SAS Model Manager,
@@ -19,7 +19,7 @@ executed using Python with the rpy2 package. The rpy2 package enables Python to
 directly access the R libraries and execute R code.</p>
 <p>This README describes how to configure your Python and R environments to use the
 rpy2 package for executing models.</p>
-<h2 id="139729114301872prerequisites">Prerequisites</h2>
+<h2 id="139641629148928prerequisites">Prerequisites</h2>
 <p>The SAS Viya platform provides YAML files that the Kustomize tool uses to
 configure Python and R. Before you use those files, you must perform the
 following tasks:</p>
@@ -33,7 +33,7 @@ the R_HOME environment variable.</p>
    their associated packages, are to be deployed. For example, for NFS, note the
    NFS server and directory. For more information about the various types of
    persistent volumes in Kubernetes, see
-   <a href="#139729114301872additional-resources">Additional Resources</a>.</p>
+   <a href="#139641629148928additional-resources">Additional Resources</a>.</p>
 </li>
 <li>
 <p>Verify that R 3.4+ is installed on the R volume.</p>
@@ -57,7 +57,7 @@ the R_HOME environment variable.</p>
    <code>$deploy/sas-bases/examples/sas-open-source-config/</code>.</p>
 </li>
 </ol>
-<h2 id="139729114301872installation">Installation</h2>
+<h2 id="139641629148928installation">Installation</h2>
 <ol>
 <li>
 <p>Copy the files in the <code>$deploy/sas-bases/examples/sas-model-manager/r</code>
@@ -137,7 +137,7 @@ target:
 </ul>
 </li>
 </ol>
-<h2 id="139729114301872additional-resources">Additional Resources</h2>
+<h2 id="139641629148928additional-resources">Additional Resources</h2>
 <ul>
 <li><a href="http://documentation.sas.com/?cdcId=itopscdc&amp;cdcVersion=default&amp;docsetId=dplyml0phy0dkr&amp;docsetTarget=titlepage.htm">SAS Viya Platform Deployment Guide</a></li>
 <li><a href="http://documentation.sas.com/?cdcId=mdlmgrcdc&amp;cdcVersion=default&amp;docsetId=mdlmgrag">SAS Model Manager: Administrator&rsquo;s Guide</a></li>

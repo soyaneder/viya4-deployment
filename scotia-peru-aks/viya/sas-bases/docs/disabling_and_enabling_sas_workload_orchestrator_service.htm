@@ -6,8 +6,8 @@
         <title>Disabling and Enabling SAS Workload Orchestrator Service</title>
     </head>
     <body>
-        <h1 id="139729114671712disabling-and-enabling-sas-workload-orchestrator-service">Disabling and Enabling SAS Workload Orchestrator Service</h1>
-<h2 id="139729114671712overview">Overview</h2>
+        <h1 id="139641630724784disabling-and-enabling-sas-workload-orchestrator-service">Disabling and Enabling SAS Workload Orchestrator Service</h1>
+<h2 id="139641630724784overview">Overview</h2>
 <p>The SAS Workload Orchestrator Service consists of a set of manager
 pods controlled by the sas-workload-orchestrator statefulset and
 a set of server pods controlled by the sas-workload-orchestrator
@@ -15,8 +15,8 @@ daemonset.</p>
 <p>This README file describes how to automatically disable (or enable)
 the SAS Workload Orchestrator Service by disabling (or enabling) the
 sas-workload-orchestrator statefulset and daemonset.</p>
-<h2 id="139729114671712instructions">Instructions</h2>
-<h3 id="139729114671712automatically-disable-the-sas-workload-orchestrator-service">Automatically Disable the SAS Workload Orchestrator Service</h3>
+<h2 id="139641630724784instructions">Instructions</h2>
+<h3 id="139641630724784automatically-disable-the-sas-workload-orchestrator-service">Automatically Disable the SAS Workload Orchestrator Service</h3>
 <p>Because the SAS Workload Orchestrator Service is enabled by default,
 there is no action needed to automatically enable the statefulset
 and daemonset pods.</p>
@@ -33,7 +33,7 @@ file (<code>$deploy/kustomization.yaml</code>).</p>
 ...
 - sas-bases/overlays/sas-workload-orchestrator/enable-disable/sas-workload-orchestrator-disable-patch-transformer.yaml</code></pre>
 
-<h3 id="139729114671712manually-disable-or-enable-the-sas-workload-orchestrator-service">Manually Disable or Enable the SAS Workload Orchestrator Service</h3>
+<h3 id="139641630724784manually-disable-or-enable-the-sas-workload-orchestrator-service">Manually Disable or Enable the SAS Workload Orchestrator Service</h3>
 <p>Manually enable or disable the SAS Workload Orchestrator Service
 statefulset and daemonset pods by using the &lsquo;kubectl patch&rsquo;
 command along with supplied patch files. There are four files, two for
@@ -49,7 +49,7 @@ temporary. If an update is applied to the deployment, SAS Workload Orchestrator
 Service will be enabled again. </p>
 <p>Both disabling and enabling manually require two kubectl patch commands, one for the
 sas-workload-orchestrator daemonset and one for the sas-workload-orchestrator statefulset.</p>
-<h4 id="139729114671712disabling">Disabling</h4>
+<h4 id="139641630724784disabling">Disabling</h4>
 <ol>
 <li>
 <p>Terminate the daemonset pods:</p>
@@ -67,7 +67,7 @@ sas-workload-orchestrator daemonset and one for the sas-workload-orchestrator st
 
 </li>
 </ol>
-<h4 id="139729114671712enabling">Enabling</h4>
+<h4 id="139641630724784enabling">Enabling</h4>
 <ol>
 <li>
 <p>Enable the statefulset pods:</p>

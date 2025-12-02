@@ -6,24 +6,24 @@
         <title>Configure Python and R Integration with the SAS Viya Platform</title>
     </head>
     <body>
-        <h1 id="139729114300864configure-python-and-r-integration-with-the-sas-viya-platform">Configure Python and R Integration with the SAS Viya Platform</h1>
-<h2 id="139729114300864table-of-contents">Table of Contents</h2>
+        <h1 id="139641629148448configure-python-and-r-integration-with-the-sas-viya-platform">Configure Python and R Integration with the SAS Viya Platform</h1>
+<h2 id="139641629148448table-of-contents">Table of Contents</h2>
 <ul>
-<li><a href="#139729114300864overview">Overview</a></li>
-<li><a href="#139729114300864prerequisites">Prerequisites</a></li>
-<li><a href="#139729114300864deployment-workflow">Deployment Workflow</a>:<ol>
-<li><a href="#1397291143008641-installation-of-python-from-source">Installation of Python from Source</a></li>
-<li><a href="#1397291143008642-installation-of-r-from-source">Installation of R from Source</a></li>
-<li><a href="#1397291143008643--mount-directories-for-python-and-r">Mount Directories for Python and R</a></li>
-<li><a href="#1397291143008644-configure-the-sas-viya-platform-to-connect-to-python-and-r">Configure the SAS Viya Platform to Connect to Python and R</a></li>
-<li><a href="#1397291143008645-enable-lockdown-access-methods">Enable LOCKDOWN Access Methods</a></li>
-<li><a href="#1397291143008646-configure-external-access-to-cas">Configure External Access to CAS</a></li>
-<li><a href="#1397291143008647-optional-configure-sas-model-repository-service-for-python-and-r-models">(Optional) Configure SAS Model Repository Service for Python and R Models</a></li>
+<li><a href="#139641629148448overview">Overview</a></li>
+<li><a href="#139641629148448prerequisites">Prerequisites</a></li>
+<li><a href="#139641629148448deployment-workflow">Deployment Workflow</a>:<ol>
+<li><a href="#1396416291484481-installation-of-python-from-source">Installation of Python from Source</a></li>
+<li><a href="#1396416291484482-installation-of-r-from-source">Installation of R from Source</a></li>
+<li><a href="#1396416291484483--mount-directories-for-python-and-r">Mount Directories for Python and R</a></li>
+<li><a href="#1396416291484484-configure-the-sas-viya-platform-to-connect-to-python-and-r">Configure the SAS Viya Platform to Connect to Python and R</a></li>
+<li><a href="#1396416291484485-enable-lockdown-access-methods">Enable LOCKDOWN Access Methods</a></li>
+<li><a href="#1396416291484486-configure-external-access-to-cas">Configure External Access to CAS</a></li>
+<li><a href="#1396416291484487-optional-configure-sas-model-repository-service-for-python-and-r-models">(Optional) Configure SAS Model Repository Service for Python and R Models</a></li>
 </ol>
 </li>
-<li><a href="#139729114300864additional-resources">Additional Resources</a></li>
+<li><a href="#139641629148448additional-resources">Additional Resources</a></li>
 </ul>
-<h2 id="139729114300864overview">Overview</h2>
+<h2 id="139641629148448overview">Overview</h2>
 <p>The SAS Viya platform can allow two-way communication between SAS (CAS and Compute
 engines) and open-source environments (Python and R). With open-source language
 integration, SAS users can decide which language they want to use for a given task.
@@ -33,7 +33,7 @@ Python and R for integration with the SAS Viya platform.</p>
 language integration, including the use of the SAS Configurator for Open Source
 tool that partially automates the setup, see <a href="https://documentation.sas.com/?cdcId=itopscdc&amp;cdcVersion=default&amp;docsetId=dplyexternlang&amp;docsetTarget=titlepage.htm">SAS Viya Platform:
 Integration with External Languages</a>.</p>
-<h2 id="139729114300864prerequisites">Prerequisites</h2>
+<h2 id="139641629148448prerequisites">Prerequisites</h2>
 <p>The SAS Viya platform provides YAML files that the Kustomize tool uses to configure
 Python. Before you use those files, verify that you have fulfilled the system requirements:</p>
 <ul>
@@ -47,7 +47,7 @@ must first download, install, and configure Python or R onto a separate internet
 Linux environment. Then package up the directories (in a tarball, for
 example) and copy them to the persistent storage available to your SAS Viya
 platform environment. For more information, see <a href="https://documentation.sas.com/doc/en/itopscdc/default/dplyexternlang/p06p36ppspce2nn128wmk4ttgf7r.htm">Install Python</a> or <a href="https://documentation.sas.com/doc/en/itopscdc/default/dplyexternlang/n1njppp7m1d2fgn1ltsogu5da4z0.htm">Install R</a>.</p>
-<h2 id="139729114300864deployment-workflow">Deployment Workflow</h2>
+<h2 id="139641629148448deployment-workflow">Deployment Workflow</h2>
 <p>Each of the following numbered sections provides details about installation and
 configuration steps required to enable various open source integration points.</p>
 <ul>
@@ -58,7 +58,7 @@ Python and R, complete Step 6.</li>
 <li>To enable the registration and publishing of open-source models using SAS
 Model Manager, complete Steps 1-5 (to enable open-source modeling) and Step 7.</li>
 </ul>
-<h3 id="1397291143008641-installation-of-python-from-source">1. Installation of Python from Source</h3>
+<h3 id="1396416291484481-installation-of-python-from-source">1. Installation of Python from Source</h3>
 <p>Install Python from source in a persistent volume that will be mounted to the
 SAS Viya platform pods. For more information, see <a href="https://documentation.sas.com/doc/en/itopscdc/default/dplyexternlang/p06p36ppspce2nn128wmk4ttgf7r.htm">Install Python</a>.</p>
 <p>SAS provides the SAS Configurator for Open Source utility
@@ -66,8 +66,8 @@ to partially automate the download and installation of Python from source. For
 more information, see
 <a href="https://documentation.sas.com/doc/en/itopscdc/default/dplyexternlang/p0thq20dh3hv7qn19lo6gmlp6vir.htm">Deploying and Using SAS Configurator for Open Source</a>.</p>
 <p>Python is installed into a persistent volume that is mounted to the SAS Viya
-platform pods in <a href="#1397291143008643-mount-directories-for-python-and-r">Step 3</a>.</p>
-<h3 id="1397291143008642-installation-of-r-from-source">2. Installation of R from Source</h3>
+platform pods in <a href="#1396416291484483-mount-directories-for-python-and-r">Step 3</a>.</p>
+<h3 id="1396416291484482-installation-of-r-from-source">2. Installation of R from Source</h3>
 <p>Install R from source in a persistent volume that will be mounted to the SAS Viya
 platform pods. For more information, see <a href="https://documentation.sas.com/doc/en/itopscdc/default/dplyexternlang/n1njppp7m1d2fgn1ltsogu5da4z0.htm">Install R</a>.</p>
 <p>SAS provides the SAS Configurator for Open Source utility
@@ -75,14 +75,14 @@ to partially automate the download and installation of R from source. For
 more information, see
 <a href="https://documentation.sas.com/doc/en/itopscdc/default/dplyexternlang/p0thq20dh3hv7qn19lo6gmlp6vir.htm">Deploying and Using SAS Configurator for Open Source</a>.</p>
 <p>R is installed into a persistent volume that is mounted to the SAS Viya platform
-pods in <a href="#1397291143008643--mount-directories-for-python-and-r">Step 3</a>.</p>
+pods in <a href="#1396416291484483--mount-directories-for-python-and-r">Step 3</a>.</p>
 <p>After installing R, you should also download and install all desired R packages
 (for example, by starting an R session and executing the
 <code>install.packages(my-desired-package)</code> command). The
 <a href="https://documentation.sas.com/doc/en/itopscdc/default/dplyexternlang/n1vzd0rlkcwu42n1rxcya8h62xez.htm#n1pnrpz7srq53jn1omu14cymlult">official documentation</a>
 provides advice about modifying the R and Rscript files, which contain some hardcoded
 paths, and copying shared libraries.</p>
-<h3 id="1397291143008643-mount-directories-for-python-and-r">3. Mount Directories for Python and R</h3>
+<h3 id="1396416291484483-mount-directories-for-python-and-r">3. Mount Directories for Python and R</h3>
 <p>Add NFS mounts for Python and R directories. Now that Python and R are installed
 in your persistent storage, you need to mount those directories so that they
 are available for the SAS Viya platform pods. Do this by copying transformers
@@ -95,7 +95,7 @@ for Python and R from the
 <li>For Python, <a href="https://documentation.sas.com/doc/en/itopscdc/default/dplyexternlang/p1m8h0fdcaxddfn178z3h3xaos6c.htm">Configure and Enable the Connection to Python</a></li>
 <li>For R, <a href="https://documentation.sas.com/doc/en/itopscdc/default/dplyexternlang/n0f9aytxpxatsxn158a5yquzxf1v.htm">Configure and Enable the Connection to R</a></li>
 </ul>
-<h3 id="1397291143008644-configure-the-sas-viya-platform-to-connect-to-python-and-r">4. Configure the SAS Viya Platform to Connect to Python and R</h3>
+<h3 id="1396416291484484-configure-the-sas-viya-platform-to-connect-to-python-and-r">4. Configure the SAS Viya Platform to Connect to Python and R</h3>
 <p>Now enable the SAS Viya platform to connect to the Python and R
 binaries that you installed in the mounted persistent storage volumes.
 If you are using SAS Configurator for Open Source, see:</p>
@@ -118,7 +118,7 @@ to add them. For more information, see
 both Python and R require you to create an extlang XML file to provide
 external language settings. For more information, see
 <a href="https://documentation.sas.com/doc/en/itopscdc/default/dplyexternlang/p1ahtg50rjoy6vn15h69jzaor9ej.htm#n1mkb2ixjg9qzdn1sv84je1g57ex">Use an extlang.xml File</a>.</p>
-<h3 id="1397291143008645-enable-lockdown-access-methods">5. Enable LOCKDOWN Access Methods</h3>
+<h3 id="1396416291484485-enable-lockdown-access-methods">5. Enable LOCKDOWN Access Methods</h3>
 <p>This step opens up communication between Python or R and the SAS Viya platform.
 LOCKDOWN  is a security feature in SAS that restricts access to specific system
 files and language features. LOCKDOWN is enabled by default for the SAS Viya
@@ -128,7 +128,7 @@ all, Python integration points in order to bypass LOCKDOWN restrictions. The
 <code>socket</code> method is also required to enable <code>PROC PYTHON</code> and the Python Code
 Editor. For more information, see <a href="https://documentation.sas.com/doc/en/itopscdc/default/dplyexternlang/p0w7q1enfoar5tn1xlpuh6aid83u.htm#n00uqhlap03y53n11zgg88ekgn2p">Enable LOCKDOWN Access Methods</a>
 in the official documentation.</p>
-<h3 id="1397291143008646-configure-external-access-to-cas">6. Configure External Access to CAS</h3>
+<h3 id="1396416291484486-configure-external-access-to-cas">6. Configure External Access to CAS</h3>
 <p>By default, CAS resources can be accessed by Python or R from within the cluster,
 but not from clients that are external to the cluster. Additional configuration
 steps are required to enable end users to access CAS resources
@@ -141,7 +141,7 @@ open-source programmers, and system administrators who want to leverage or
 manage the computational capabilities of the SAS Viya platform from open-source
 coding interfaces. See the <a href="https://developer.sas.com/home.html">SAS Developer Home page</a>
 for information about the various collections of resources.</p>
-<h3 id="1397291143008647-optional-configure-sas-model-repository-service-for-python-and-r-models">7. (Optional) Configure SAS Model Repository Service for Python and R Models</h3>
+<h3 id="1396416291484487-optional-configure-sas-model-repository-service-for-python-and-r-models">7. (Optional) Configure SAS Model Repository Service for Python and R Models</h3>
 <p>The SAS Viya platform must be configured to enable users to register and
 publish open-source models in the SAS Viya platform. The steps to take are
 provided within the official documentation. For more information, see the
@@ -154,7 +154,7 @@ following:</p>
 <li><a href="https://documentation.sas.com/?cdcId=mdlmgrcdc&amp;cdcVersion=default&amp;docsetId=mdlmgrag&amp;docsetTarget=p1pux2up89u0nln1fub8zb2aqets.htm">SAS Model Manager: Administrator&rsquo;s Guide &ndash; Configuring Support for Python Code Files</a></li>
 <li><a href="https://github.com/sassoftware/model-management-resources/tree/main/addons">SAS GitHub: Model Management Resources</a></li>
 </ul>
-<h2 id="139729114300864additional-resources">Additional Resources</h2>
+<h2 id="139641629148448additional-resources">Additional Resources</h2>
 <p>The SAS Viya platform also supports direct integration with Git within the SAS
 Studio interface. Update the properties described in the following resources:</p>
 <ul>

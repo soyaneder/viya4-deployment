@@ -4,8 +4,8 @@ metadata:
   annotations:
     controller-gen.kubebuilder.io/version: v0.11.1
     sas.com/component-name: sas-deployment-operator
-    sas.com/component-version: 1.147.0-20250903.1756922825567
-    sas.com/version: 1.147.0
+    sas.com/component-version: 1.147.1-20251124.1764004273015
+    sas.com/version: 1.147.1
   creationTimestamp: null
   labels:
     app.kubernetes.io/name: sas-deployment-operator
@@ -368,8 +368,8 @@ kind: ServiceAccount
 metadata:
   annotations:
     sas.com/component-name: sas-deployment-operator
-    sas.com/component-version: 1.147.0-20250903.1756922825567
-    sas.com/version: 1.147.0
+    sas.com/component-version: 1.147.1-20251124.1764004273015
+    sas.com/version: 1.147.1
   labels:
     app.kubernetes.io/name: sas-deployment-operator
     sas.com/admin: cluster-wide
@@ -381,8 +381,8 @@ kind: Role
 metadata:
   annotations:
     sas.com/component-name: sas-deployment-operator
-    sas.com/component-version: 1.147.0-20250903.1756922825567
-    sas.com/version: 1.147.0
+    sas.com/component-version: 1.147.1-20251124.1764004273015
+    sas.com/version: 1.147.1
   creationTimestamp: null
   labels:
     app.kubernetes.io/name: sas-deployment-operator
@@ -464,8 +464,8 @@ kind: ClusterRole
 metadata:
   annotations:
     sas.com/component-name: sas-deployment-operator
-    sas.com/component-version: 1.147.0-20250903.1756922825567
-    sas.com/version: 1.147.0
+    sas.com/component-version: 1.147.1-20251124.1764004273015
+    sas.com/version: 1.147.1
   creationTimestamp: null
   labels:
     app.kubernetes.io/name: sas-deployment-operator
@@ -579,8 +579,8 @@ kind: RoleBinding
 metadata:
   annotations:
     sas.com/component-name: sas-deployment-operator
-    sas.com/component-version: 1.147.0-20250903.1756922825567
-    sas.com/version: 1.147.0
+    sas.com/component-version: 1.147.1-20251124.1764004273015
+    sas.com/version: 1.147.1
   labels:
     app.kubernetes.io/name: sas-deployment-operator
     sas.com/admin: cluster-wide
@@ -599,8 +599,8 @@ kind: ClusterRoleBinding
 metadata:
   annotations:
     sas.com/component-name: sas-deployment-operator
-    sas.com/component-version: 1.147.0-20250903.1756922825567
-    sas.com/version: 1.147.0
+    sas.com/component-version: 1.147.1-20251124.1764004273015
+    sas.com/version: 1.147.1
   labels:
     app.kubernetes.io/name: sas-deployment-operator
     sas.com/admin: cluster-wide
@@ -624,8 +624,8 @@ kind: ConfigMap
 metadata:
   annotations:
     sas.com/component-name: sas-deployment-operator
-    sas.com/component-version: 1.147.0-20250903.1756922825567
-    sas.com/version: 1.147.0
+    sas.com/component-version: 1.147.1-20251124.1764004273015
+    sas.com/version: 1.147.1
   labels:
     app.kubernetes.io/name: sas-deployment-operator
     sas.com/admin: cluster-wide
@@ -637,8 +637,8 @@ kind: Deployment
 metadata:
   annotations:
     sas.com/component-name: sas-deployment-operator
-    sas.com/component-version: 1.147.0-20250903.1756922825567
-    sas.com/version: 1.147.0
+    sas.com/component-version: 1.147.1-20251124.1764004273015
+    sas.com/version: 1.147.1
   labels:
     app.kubernetes.io/name: sas-deployment-operator
     sas.com/admin: cluster-wide
@@ -660,8 +660,8 @@ spec:
         prometheus.io/scheme: http
         prometheus.io/scrape: "true"
         sas.com/component-name: sas-deployment-operator
-        sas.com/component-version: 1.147.0-20250903.1756922825567
-        sas.com/version: 1.147.0
+        sas.com/component-version: 1.147.1-20251124.1764004273015
+        sas.com/version: 1.147.1
       labels:
         app.kubernetes.io/name: sas-deployment-operator
         sas.com/admin: cluster-wide
@@ -695,7 +695,7 @@ spec:
         - name: OPERATOR_NAME
           value: sas-deployment-operator
         envFrom: []
-        image: cr.sas.com/viya-4-x64_oci_linux_2-docker/sas-deployment-operator:1.147.0-20250903.1756922825567
+        image: cr.sas.com/viya-4-x64_oci_linux_2-docker/sas-deployment-operator:1.147.1-20251124.1764004273015
         imagePullPolicy: Always
         livenessProbe:
           httpGet:
